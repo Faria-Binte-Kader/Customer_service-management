@@ -5,7 +5,7 @@
 class Person
 {
     public:
-        Person();
+        Person(string nam,long long int phn,string addr,string em);
         virtual ~Person();
 
         string Getname() { return name; }
