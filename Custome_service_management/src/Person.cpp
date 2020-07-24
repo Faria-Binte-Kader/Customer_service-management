@@ -1,8 +1,12 @@
 #include "Person.h"
 
-Person::Person()
+Person::Person(string nam,long long int phn,string addr,string em):name(""),phone_no(0),address(""),email("")
 {
-    //ctor
+    //ctors
+    Setname(nam);
+    Setphone_no(phn);
+    Setaddress(addr);
+    Setemail(em);
 }
 
 Person::~Person()
