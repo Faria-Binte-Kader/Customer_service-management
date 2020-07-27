@@ -1,5 +1,6 @@
 #ifndef PERSON_H
 #define PERSON_H
+#include<iostream>
 
 
 class Person
@@ -16,15 +17,19 @@ class Person
         void Setaddress(string val) { address = val; }
         string Getemail() { return email; }
         void Setemail(string val) { email = val; }
-        string Getpassword() { return password; }
-        void Setpassword(string val) { password = val; }
-
+        char* Getpassword() { return *password; }
+        void displayinfo();
+        virtual void generatePassword() = 0;
     protected:
         string name;
         long long int phone_no;
         string address;
         string email;
-        string password;
+        char *password;
+
+        void Setpassword(char *c);
+
 };
 
 #endif // PERSON_H
+
