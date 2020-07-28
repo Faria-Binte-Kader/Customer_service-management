@@ -1,7 +1,10 @@
 #include "Person.h"
-#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
 
-Person::Person(string nam,long long int phn,string addr,string em):name(""),phone_no(0),address(""),email("")
+Person::Person()
+{}
+Person::Person(string nam,string phn,string addr,string em):name(""),phone_no(0),address(""),email("")
 {
     //ctors
     Setname(nam);
@@ -20,11 +23,11 @@ Person::~Person()
 void Person::Setpassword(char *c)
         {
             delete[] password;
-            password=new char[strrlen(c)+1];
-            strcpy(paasword,c);
+            password=new char[strlen(c)+1];
+            strcpy(password,c);
         }
 
-void Person::dispalyinfo()
+void Person::displayinfo()
 {
     cout<<"Name: "<<Getname()<<endl;
     cout<<"Phone number: "<<Getphone_no()<<endl;
