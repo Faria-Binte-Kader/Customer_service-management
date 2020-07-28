@@ -88,6 +88,9 @@ void Student::displayinfo()
     cout<<"Duration\t\t: "<<getCourseDuration()<<endl;
     cout<<"Grade\t\t\t: "<<getGrade()<<endl;
     cout<<"Password\t\t: "<<getPassword()<<endl;
+    cout<<"Qualified?\t\t ";
+    if(isQualified()) cout<<" Yes"<<endl;
+    else if(!isQualified()) cout<<" No"<<endl;
     cout<<"\n\n"<<endl;
 }
 
@@ -124,5 +127,6 @@ void Student::setGrade(string g)
 
 bool Student::isQualified()
 {
-
+    if(grade=="A" || grade=="B")
+        return true;
 }
