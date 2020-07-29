@@ -4,6 +4,8 @@ Student::Student():Person(),course(Available_Courses::Application_Development),c
 {
     //ctor
     generatePassword();
+    setStudentId(Available_Courses::Application_Development);
+    total_students++;
 }
 
 Student::Student(string nam,string phn,string addr,string em,string cors,double corsfe, Date strtdat,int drtn,string grd):Person(nam,phn,addr,em),course(Available_Courses::Application_Development),course_fee(0),starting_date(0,0,0),course_duration(0),grade("-1")
@@ -15,6 +17,31 @@ Student::Student(string nam,string phn,string addr,string em,string cors,double 
     setCourseDuration(drtn);
     setGrade(grd);
     generatePassword();
+    setStudentId(course);
+    total_students++;
+}
+
+Student::~Student()
+{
+    //dtor
+}
+
+int Student::total_students=-1;
+
+void Student::setStudentId(Available_Courses c)
+{
+    if(c==Available_Courses::Web_Development)
+        student_id=student_id+100;
+    else if(c==Available_Courses::Data_Science)
+        student_id=student_id+200;
+    else if(c==Available_Courses::Application_Development)
+        student_id=student_id+300;
+    else if(c==Available_Courses::Embedded_systems)
+        student_id=student_id+400;
+    else if(c==Available_Courses::Cloud_Computing)
+        student_id=student_id+500;
+    else
+         cout<<"Student is not enrolled in a valid course"<<endl;
 }
 
 void Student::generatePassword()
@@ -32,11 +59,6 @@ void Student::generatePassword()
     rand_pass[12]='\0';
     random_shuffle(rand_pass,rand_pass+12);
     strcpy(password,rand_pass);
-}
-
-Student::~Student()
-{
-    //dtor
 }
 
 char* Student::getPassword()
@@ -78,13 +100,14 @@ string Student::getCourse()
 
 void Student::displayinfo()
 {
+    cout<<"Student ID\t\t: "<<getStudentId()<<endl;
     cout<<"Name\t\t\t: "<<Getname()<<endl;
     cout<<"Contact Number\t\t: "<<Getphone_no()<<endl;
     cout<<"Address\t\t\t: "<<Getaddress()<<endl;
     cout<<"Email\t\t\t: "<<Getemail()<<endl;
     cout<<"Course\t\t\t: "<<getCourse()<<endl;
     cout<<"Course Fee\t\t: "<<getCourseFee()<<endl;
-    cout<<"Starting Date\t\t: "<<starting_date.day<<"/"<<starting_date.mon<<"/"<<starting_date.year<<endl;
+    cout<<"Starting Date\t\t: "<<starting_date.day<<"/"<<starting_date.month<<"/"<<starting_date.year<<endl;
     cout<<"Duration\t\t: "<<getCourseDuration()<<endl;
     cout<<"Grade\t\t\t: "<<getGrade()<<endl;
     cout<<"Password\t\t: "<<getPassword()<<endl;
@@ -100,18 +123,16 @@ bool Student::hasCompleted()
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
     current_date.day=timePtr->tm_mday;
-    current_date.mon=(timePtr->tm_mon)+1;
+    current_date.month=(timePtr->tm_mon)+1;
     current_date.year=(timePtr->tm_year)+1900;
     time_passed.day=current_date.day-starting_date.day;
-    time_passed.mon=current_date.mon-starting_date.mon;
+    time_passed.month=current_date.month-starting_date.month;
     time_passed.year=current_date.year-starting_date.year;
-    if(time_passed.day<=0 && time_passed.mon<=0 && time_passed.year>0) time_passed.year--;
+    if(time_passed.day<=0 && time_passed.month<=0 && time_passed.year>0) time_passed.year--;
     if(time_passed.day<0) time_passed.day=31+time_passed.day;
-    if(time_passed.mon<0) time_passed.mon=12+time_passed.mon-1;
+    if(time_passed.month<0) time_passed.month=12+time_passed.month-1;
     int days_passed;
-    //cout<<time_passed.day<<" "<<time_passed.month<<" "<<time_passed.year<<endl;
-    days_passed=time_passed.year*365+time_passed.mon*30+time_passed.day;
-    //cout<<days_passed<<endl;
+    days_passed=time_passed.year*365+time_passed.month*30+time_passed.day;
     if(days_passed>=course_duration)
         return true;
     else if(days_passed<course_duration) return false;
