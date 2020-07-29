@@ -2,7 +2,8 @@
 #include<bits/stdc++.h>
 Person::Person():name(""),phone_no(""),address(""),email("")
 {
-
+   password=new char[1];
+   strcpy(password,"");
 }
 Person::Person(std::string nam,std::string phn,std::string addr,std::string em):name(nam),phone_no(phn),address(addr),email(em)
 {
