@@ -1,6 +1,20 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include<bits/stdc++.h>
+struct Date
+{
+    int day;
+    int month;
+    int year;
+    Date()
+    {
+
+    }
+    Date(int d,int m,int y):day(d),month(m),year(y)
+    {
+
+    }
+};
 class Person
 {
 protected:
@@ -9,44 +23,44 @@ protected:
     std::string address;
     std::string email;
     char *password;
-    void SetPassword(char *c);
+    void setPassword(char *c);
 public:
     Person();
     Person(std::string nam,std::string phn,std::string addr,std::string em);
     virtual ~Person();
-    std::string GetName()
+    std::string getName()
     {
         return name;
     }
-    void SetName(std::string val)
+    void setName(std::string val)
     {
         name=val;
     }
-    std::string GetPhone_no()
+    std::string getPhone_no()
     {
         return phone_no;
     }
-    void SetPhone_no(std::string val)
+    void setPhone_no(std::string val)
     {
         phone_no=val;
     }
-    std::string GetAddress()
+    std::string getAddress()
     {
         return address;
     }
-    void SetAddress(std::string val)
+    void setAddress(std::string val)
     {
         address=val;
     }
-    std::string GetEmail()
+    std::string getEmail()
     {
         return email;
     }
-    void SetEmail(std::string val)
+    void setEmail(std::string val)
     {
         email=val;
     }
-    char* GetPassword()
+    char* getPassword()
     {
         return password;
     }
