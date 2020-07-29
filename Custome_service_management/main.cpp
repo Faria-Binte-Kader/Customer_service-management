@@ -40,14 +40,21 @@ Customer custReceiveInfo(Customer &c)
 }
 int main()
 {
-    Customer c1;
+    Customer c1,c3;
     c1=custReceiveInfo(c1);
     c1.displayinfo();
-    Customer c2("a b c","00000","d e","aaa",50000,3,"f g",Date(1,2,2020),WorkType::Data_Science);
-    //c2=custReceiveInfo(c2);
+    Customer c2("a b c","0000","sh sdj l","bhjhhj",70000,3,"hvhjbjh gvhbjhvg hghh",Date(1,2,2020),WorkType::Application_Development);
     c2.displayinfo();
-    Customer c3;
-    c3=custReceiveInfo(c3);
     c3.displayinfo();
+    cout<<endl;
+    Employee e1("a b c","0000","sh sdj l","bhjhhj","Web_Development",7);
+    Employee e2;
+    e1.displayinfo();
+    e2.displayinfo();
+    cout<<endl;
+    Student s1("a b c","0000","sh sdj l","bhjhhj","Web_Development",1000,Date(1,2,2020),2,"A");
+    Student s2;
+    s1.displayinfo();
+    s2.displayinfo();
     return 0;
 }
