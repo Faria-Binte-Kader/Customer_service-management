@@ -48,7 +48,17 @@ bool Customer::isServed()
     if(dt2.month>12) dt2.year++;
     time_t now=time(0);
     tm* dt1=localtime(&now);
-    if((dt1->tm_mday==dt2.day)&&(1+dt1->tm_mon==dt2.month)&&(1900+dt1->tm_year==dt2.year)) return 1;
+    if(1900+dt1->tm_year>dt2.year) return 1;
+    if(1900+dt1->tm_year==dt2.year)
+    {
+        if(1+dt1->tm_mon>dt2.month) return 1;
+        else if(1+dt1->tm_mon==dt2.month)
+        {
+            if(dt1->tm_mday>=dt2.day) return 1;
+            else return 0;
+        }
+        else return 0;
+    }
     else return 0;
 }
 void Customer::generatePassword()
