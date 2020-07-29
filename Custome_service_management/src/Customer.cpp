@@ -6,7 +6,7 @@ Customer::Customer():Person(),budget(0.0),duration(0),description(""),assigned_d
     cust_id++;
     generatePassword();
 }
-Customer::Customer(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date d,WorkType w):Person(nam,phn,addr,em),budget(b),duration(t),assigned_date(d.day,d.month,d.year),work(w)
+Customer::Customer(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date d,WorkType w):Person(nam,phn,addr,em),budget(0.0),duration(0),description(""),assigned_date(0,0,0),work(WorkType::Web_Development)
 {
     setBudget(b);
     setDuration(t);
@@ -21,6 +21,7 @@ Customer::~Customer()
 {
 
 }
+int Customer::cust_id=1000;
 std::string Customer::getWork()
 {
     if(work==WorkType::Web_Development)
@@ -38,7 +39,7 @@ std::string Customer::getWork()
     else
         return std::string("");
 }
-bool Customer::isServed(Date dt)
+bool Customer::isServed()
 {
     Date dt2;
     dt2.day=assigned_date.day;
@@ -85,6 +86,22 @@ void Customer::displayinfo()
     std::cout<<"Budget: "<<getBudget()<<std::endl;
     std::cout<<"Duration: "<<getDuration()<<std::endl;
     std::cout<<"Cost: "<<getCost()<<std::endl;
-    std::cout<<"Date Assigned: "<<getDate().day<<"/"<<getDate().month<<"/"<<getDate().year<<"/"<<std::endl;
+    std::cout<<"Description: "<<getDescription()<<std::endl;
+    std::cout<<"Date Assigned: "<<getDate().day<<"/"<<getDate().month<<"/"<<getDate().year<<std::endl;
     std::cout<<"Project Type: "<<getWork()<<std::endl;
+    std::cout<<"Project Condition: ";
+    if(isServed()) std::cout<<"Served."<<std::endl;
+    else std::cout<<"Not served yet."<<std::endl;
+}
+void Customer::setinfo(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date dt2,WorkType w)
+{
+    Person::setName(nam);
+    Person::setPhone_no(phn);
+    Person::setAddress(addr);
+    Person::setEmail(em);
+    setBudget(b);
+    setDuration(t);
+    setDescription(desc);
+    setDate(dt2);
+    setWork(w);
 }
