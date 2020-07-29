@@ -4,16 +4,6 @@
 #include <Person.h>
 
 
-struct Date
-{
-    int day;
-    int mon;
-    //string month;
-    int year;
-    Date(){}
-    Date(int d,int m,int y):day(d),mon(m),year(y){}
-};
-
 enum class Available_Courses {Web_Development,Data_Science,Application_Development,Embedded_systems,Cloud_Computing};
 
 class Student :virtual public Person
@@ -39,6 +29,8 @@ public:
     void displayinfo();
 
     bool hasCompleted();
+    void setStudentId(Available_Courses c);
+    long long int getStudentId(){return student_id;}
 
 protected:
     Available_Courses course;
@@ -48,7 +40,8 @@ protected:
     string grade;
 
 
-    int student_id;
+    long long int student_id=200031001+total_students+1;//starts from 31001 because student is our 3rd class xD
+    static int total_students; //if student_id creates any problem it's because of this one
 private:
 
 };
