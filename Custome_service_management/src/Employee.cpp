@@ -1,50 +1,78 @@
-#include "Employee.h"
+#include"Employee.h"
 #include<bits/stdc++.h>
-using namespace std;
-
-Employee::Employee():Person(),designation(Designation::Web_Development),experience(0),salary(0.0),no_of_projects(0)
+Employee::Employee():Person(),designation(Designation::Web_Development),experience(0)
 {
-    //ctor
-
     employee_id++;
-    setEmployeeId(employee_id);
+    setPosition();
+    setSalary();
     generatePassword();
 }
-
-Employee::Employee(string nam,string phn,string addr,string em,Designation des,int ex,double salary,int nopro):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0),salary(0.0),no_of_projects(0)
+Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
 {
-    //ctor
     employee_id++;
-    Setdesignation(des);
-    Setexperience(ex);
-    setEmployeeId(employee_id);
-    Setposition(ex);
+    setDesignation(des);
+    setExperience(ex);
+    setPosition();
+    setSalary();
     generatePassword();
 }
-
 Employee::~Employee()
 {
-    //dtor
+
 }
-
-
-
-string Employee::Getdesignation()
+int Employee::employee_id=0;
+void Employee::setPosition()
+{
+    if(experience<5) position="Entry Level";
+    else if(experience>=5&&experience<10) position="Junior";
+    else position="Senior";
+}
+void Employee::setSalary()
+{
+    if(experience<5)
+    {
+        salary=30000+experience*2000;
+    }
+    else if(experience>=5&&experience<10)
+    {
+        salary=50000+(experience-5)*5000;
+    }
+    else if(experience>=10)
+    {
+        salary=100000+(experience-10)*10000;
+    }
+}
+void Employee::setDesignation(std::string val)
+{
+    if(val=="Web Development")
+        designation=Designation::Web_Development;
+    else if(val=="Data Science")
+        designation=Designation::Data_Science;
+    else if(val=="Application Development")
+        designation=Designation::Application_Development;
+    else if(val=="Embedded Systems")
+        designation=Designation::Embedded_Systems;
+    else if(val=="Cloud Computing")
+        designation=Designation::Cloud_Computing;
+    else
+        std::cout<<"Invalid designation input for employee "<<getName()<<std::endl;
+}
+std::string Employee::getDesignation()
 {
     if(designation==Designation::Web_Development)
-        return string("Web Development");
+        return std::string("Web Development");
     else if(designation==Designation::Mobile_Development)
-        return string("Mobile Development");
+        return std::string("Mobile Development");
     else if(designation==Designation::Data_Science)
-        return string("Data Science");
+        return std::string("Data Science");
     else if(designation==Designation::Application_Development)
-        return string("Application Development");
+        return std::string("Application Development");
     else if(designation==Designation::Embedded_Systems)
-        return string("Embedded Systems");
+        return std::string("Embedded Systems");
     else if(designation==Designation::Cloud_Computing)
-        return string("Cloud Computing");
+        return std::string("Cloud Computing");
     else
-        return string("");
+        return std::string("");
 }
 /*void Employee::addCustomer(Customer c)
 {
@@ -65,35 +93,23 @@ bool Employee::removeCustomer(int index)
         return true;
     }
 }*/
-
-void Employee::Setposition(int a)
-{
-    if(a>=3)
-        position="Junior group 1";
-    else if(a<=6 && a>3)
-        position="Junior group 2";
-    else if(a>6)
-        position="Senior";
-}
-
 void Employee::displayinfo()
 {
     Person::displayinfo();
-    cout<<Getdesignation()<<endl;
-    cout<<Getexperience()<<endl;
-    cout<<Getposition()<<endl;
-    cout<<Getsalary()<<endl;
-    //cout<<getno_ofprojects()<<endl;
-
+    std::cout<<"ID: "<<employee_id<<std::endl;
+    std::cout<<"Designation: "<<getDesignation()<<std::endl;
+    std::cout<<"Experience: "<<getExperience()<<std::endl;
+    std::cout<<"Position: "<<getPosition()<<std::endl;
+    std::cout<<"Salary: "<<getSalary()<<std::endl;
 }
 void Employee::generatePassword()
 {
-    delete [] password;
+    delete[] password;
     char lower[]="abcdefghijklmnopqrstuvwxyz";
     char upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char special[]="!@#$%&-_(),:{}";
     char number[]="0123456789";
-    password= new char[15];
+    password=new char[15];
     int b=0;
     for(int i=0; i<5; i++)
     {
@@ -114,5 +130,4 @@ void Employee::generatePassword()
     }
     std::random_shuffle(password,password+12);
     password[12]='\0';
-
 }
