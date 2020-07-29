@@ -1,72 +1,56 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
-#include <Person.h>
+#include<Person.h>
 #include<bits/stdc++.h>
-
-using namespace std;
-
-enum class Designation {Web_Development,Mobile_Development,Data_Science,Application_Development,Embedded_Systems,Cloud_Computing};
-
-class Employee : virtual public Person
+enum class Designation{Web_Development,Mobile_Development,Data_Science,Application_Development,Embedded_Systems,Cloud_Computing};
+class Employee:virtual public Person
 {
 protected:
     Designation designation;
     int experience;
-    string position;
+    std::string position;
     double salary;
-    static int employee_id;
-    int no_of_projects;
-    double bonus;
+    //int no_of_projects;
+    //double bonus;
     //Customer customer[10];
 public:
+    static int employee_id;
     Employee();
-    Employee(string nam,string phn,string addr,string em,Designation des,int ex,double salary,int nopro);
+    Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
     virtual ~Employee();
-
-    string Getdesignation();
-    void Setdesignation(Designation val)
-    {
-        designation = val;
-    }
-    int Getexperience()
+    std::string getDesignation();
+    void setDesignation(std::string val);
+    int getExperience()
     {
         return experience;
     }
-    void Setexperience(int val)
+    void setExperience(int val)
     {
-        experience = val;
+        experience=val;
     }
-    string Getposition()
+    std::string getPosition()
     {
         return position;
     }
-    void Setposition(int val);
-    double Getsalary()
+    void setPosition();
+    double getSalary()
     {
         return salary;
     }
-    void Setsalary(double val)
-    {
-        salary = val;
-    }
+    void setSalary();
     //void addCustomer(Customer c);
     //bool removeCustomer(int index);
-    void getEmployee_id();
-    static void setEmployeeId(int id)
+    /*double getbonus()
     {
-        employee_id=id;
-    };
-    double getbonus();
-    void calcbonus();
-    int getno_ofprojects();
+        return bonus;
+    }
+    void calcbonus()
+    {
+
+    }*/
+    //int getno_ofprojects();
     void generatePassword();
     void displayinfo();
-
-    //int getGroupId();  //implement later
-
-
-
+    //int getGroupId();
 };
-
-int Employee::employee_id=0;
-#endif // EMPLOYEE_H
+#endif
