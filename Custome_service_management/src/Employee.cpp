@@ -5,7 +5,6 @@ Employee::Employee():Person(),designation(Designation::Web_Development),experien
     total_employee++;
     setPosition();
     setSalary();
-    setEmployeeID(Designation::Application_Development);
     generatePassword();
 }
 Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
@@ -15,7 +14,6 @@ Employee::Employee(std::string nam,std::string phn,std::string addr,std::string 
     setExperience(ex);
     setPosition();
     setSalary();
-    setEmployeeID(designation);
     generatePassword();
 }
 Employee::~Employee()
@@ -76,33 +74,17 @@ std::string Employee::getDesignation()
     else
         return std::string("");
 }
-void Employee::setEmployeeID(Designation d)
-{
-    if(d==Designation::Web_Development)
-        employee_id=employee_id+100;
-    else if(d==Designation::Data_Science)
-        employee_id=employee_id+200;
-    else if(d==Designation::Application_Development)
-        employee_id=employee_id+300;
-    else if(d==Designation::Embedded_Systems)
-        employee_id=employee_id+400;
-    else if(d==Designation::Cloud_Computing)
-        employee_id=employee_id+500;
-    else
-        std::cout<<"Employee is not assigned in a valid course"<<std::endl;
-}
+
 /*void Employee::addCustomer(Customer c)
 {
     if(workingfor+1>10) cout<<"Occupied"<<endl;
     else
     {
         customer[workingfor]=c;
-
         workingfor++;
     }
 bool Employee::removeCustomer(int index)
 {
-
     if(index+1>workingfor||index<0) return false;
     else if(index+1==workingfor)
     {
@@ -148,3 +130,16 @@ void Employee::generatePassword()
     std::random_shuffle(password,password+12);
     password[12]='\0';
 }
+
+void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex)
+{
+    Person::setName(nam);
+    Person::setPhone_no(phn);
+    Person::setAddress(addr);
+    Person::setEmail(em);
+    setDesignation(des);
+    setExperience(ex);
+    setPosition();
+    setSalary();
+}
+
