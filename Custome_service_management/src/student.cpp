@@ -1,34 +1,28 @@
-#include "student.h"
-
+#include"Student.h"
+#include<bits/stdc++.h>
 Student::Student():Person(),course(Available_Courses::Application_Development),course_fee(0),starting_date(0,0,0),course_duration(0),grade(" ")
 {
-    //ctor
     generatePassword();
-    //setStudentId(Available_Courses::Application_Development);
+    setStudentId(Available_Courses::Application_Development);
     total_students++;
 }
-
 Student::Student(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd):Person(nam,phn,addr,em),course(Available_Courses::Application_Development),course_fee(0),starting_date(0,0,0),course_duration(0),grade("-1")
 {
-    //ctor
     setCourse(cors);
     setCourseFee(corsfe);
     setStartingDate(strtdat);
     setCourseDuration(drtn);
     setGrade(grd);
     generatePassword();
-    //setStudentId(course);
+    setStudentId(course);
     total_students++;
 }
-
 Student::~Student()
 {
-    //dtor
+
 }
-
-int Student::total_students=-1;
-
-/*void Student::setStudentId(Available_Courses c)
+int Student::total_students=0;
+void Student::setStudentId(Available_Courses c)
 {
     if(c==Available_Courses::Web_Development)
         student_id=student_id+100;
@@ -36,14 +30,13 @@ int Student::total_students=-1;
         student_id=student_id+200;
     else if(c==Available_Courses::Application_Development)
         student_id=student_id+300;
-    else if(c==Available_Courses::Embedded_systems)
+    else if(c==Available_Courses::Embedded_Systems)
         student_id=student_id+400;
     else if(c==Available_Courses::Cloud_Computing)
         student_id=student_id+500;
     else
         std::cout<<"Student is not enrolled in a valid course"<<std::endl;
-}*/
-
+}
 void Student::generatePassword()
 {
     char special_character[]="!@#$%&*_-:/<>";
@@ -60,55 +53,44 @@ void Student::generatePassword()
     std::random_shuffle(rand_pass,rand_pass+12);
     strcpy(password,rand_pass);
 }
-
 char* Student::getPassword()
 {
     return password;
 }
-
 void Student::setCourse(std::string c)
 {
     if(c=="Web Development")
         course=Available_Courses::Web_Development;
-    else if(c=="Mobile Development")
-        course=Available_Courses::Mobile_Development;
     else if(c=="Data Science")
         course=Available_Courses::Data_Science;
     else if(c=="Application Development")
         course=Available_Courses::Application_Development;
     else if(c=="Embedded Systems")
-        course=Available_Courses::Embedded_systems;
+        course=Available_Courses::Embedded_Systems;
     else if(c=="Cloud Computing")
         course=Available_Courses::Cloud_Computing;
     else
         std::cout<<"Invalid Course input for student "<<getName()<<std::endl;
 }
-
 std::string Student::getCourse()
 {
     if(course==Available_Courses::Web_Development)
         return std::string("Web Development");
-    else if(course==Available_Courses::Mobile_Development)
-        return std::string("Mobile Development");
     else if(course==Available_Courses::Data_Science)
         return std::string("Data Science");
     else if(course==Available_Courses::Application_Development)
         return std::string("Application Development");
-    else if(course==Available_Courses::Embedded_systems)
+    else if(course==Available_Courses::Embedded_Systems)
         return std::string("Embedded Systems");
     else if(course==Available_Courses::Cloud_Computing)
         return std::string("Cloud Computing");
     else
         return std::string("No Course Found");
 }
-
 void Student::displayinfo()
 {
+    Person::displayinfo();
     std::cout<<"Student ID\t\t: "<<getStudentId()<<std::endl;
-    std::cout<<"Name\t\t\t: "<<getName()<<std::endl;
-    std::cout<<"Contact Number\t\t: "<<getPhone_no()<<std::endl;
-    std::cout<<"Address\t\t\t: "<<getAddress()<<std::endl;
-    std::cout<<"Email\t\t\t: "<<getEmail()<<std::endl;
     std::cout<<"Course\t\t\t: "<<getCourse()<<std::endl;
     std::cout<<"Course Fee\t\t: "<<getCourseFee()<<std::endl;
     std::cout<<"Starting Date\t\t: "<<starting_date.day<<"/"<<starting_date.month<<"/"<<starting_date.year<<std::endl;
@@ -120,7 +102,6 @@ void Student::displayinfo()
     else if(!isQualified()) std::cout<<" No"<<std::endl;
     std::cout<<"\n\n"<<std::endl;
 }
-
 bool Student::hasCompleted()
 {
     Date current_date,time_passed;
@@ -141,7 +122,6 @@ bool Student::hasCompleted()
         return true;
     else if(days_passed<course_duration) return false;
 }
-
 void Student::setGrade(std::string g)
 {
     if(hasCompleted()==true)
@@ -149,23 +129,8 @@ void Student::setGrade(std::string g)
     else
         std::cout<<"Error for student "<<getName()<<" .Course not finished yet."<<std::endl;
 }
-
 bool Student::isQualified()
 {
     if(grade=="A" || grade=="B")
         return true;
-}
-
-void Student::setInfo(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd)
-{
-    Person::setName(nam);
-    Person::setPhone_no(phn);
-    Person::setAddress(addr);
-    Person::setEmail(em);
-    setCourse(cors);
-    setCourseFee(corsfe);
-    setStartingDate(strtdat);
-    setCourseDuration(drtn);
-    setGrade(grd);
-    //setStudentId(course);
 }
