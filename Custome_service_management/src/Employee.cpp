@@ -5,6 +5,7 @@ Employee::Employee():Person(),designation(Designation::Web_Development),experien
     total_employee++;
     setPosition();
     setSalary();
+    calcBonus();
     generatePassword();
 }
 Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
@@ -14,6 +15,7 @@ Employee::Employee(std::string nam,std::string phn,std::string addr,std::string 
     setExperience(ex);
     setPosition();
     setSalary();
+    calcBonus();
     generatePassword();
 }
 Employee::~Employee()
@@ -74,7 +76,11 @@ std::string Employee::getDesignation()
     else
         return std::string("");
 }
-
+void Employee::calcBonus()
+{
+    bonus=getSalary();
+    bonus=bonus/10;
+}
 /*void Employee::addCustomer(Customer c)
 {
     if(workingfor+1>10) cout<<"Occupied"<<endl;
@@ -142,4 +148,3 @@ void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::str
     setPosition();
     setSalary();
 }
-
