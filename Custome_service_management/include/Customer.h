@@ -8,7 +8,7 @@ class Customer:virtual public Person
 protected:
     double budget;
     int duration;
-    double final_cost=0.0;
+    double final_cost;
     std::string description;
     static int total_customer;
     const int cust_id=1001+total_customer;
@@ -35,11 +35,11 @@ public:
     {
         duration=val;
     }
-    int getCost()
+    double getCost()
     {
         return final_cost;
     }
-    void setCost(int val)
+    void setCost(double val)
     {
         final_cost=val;
     }
