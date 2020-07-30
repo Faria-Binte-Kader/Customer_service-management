@@ -2,25 +2,27 @@
 #include<bits/stdc++.h>
 Employee::Employee():Person(),designation(Designation::Web_Development),experience(0)
 {
-    employee_id++;
+    total_employee++;
     setPosition();
     setSalary();
+    setEmployeeID(Designation::Application_Development);
     generatePassword();
 }
 Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
 {
-    employee_id++;
+    total_employee++;
     setDesignation(des);
     setExperience(ex);
     setPosition();
     setSalary();
+    setEmployeeID(designation);
     generatePassword();
 }
 Employee::~Employee()
 {
 
 }
-int Employee::employee_id=0;
+int Employee::total_employee=0;
 void Employee::setPosition()
 {
     if(experience<5) position="Entry Level";
@@ -74,6 +76,21 @@ std::string Employee::getDesignation()
     else
         return std::string("");
 }
+void Employee::setEmployeeID(Designation d)
+{
+    if(d==Designation::Web_Development)
+        employee_id=employee_id+100;
+    else if(d==Designation::Data_Science)
+        employee_id=employee_id+200;
+    else if(d==Designation::Application_Development)
+        employee_id=employee_id+300;
+    else if(d==Designation::Embedded_Systems)
+        employee_id=employee_id+400;
+    else if(d==Designation::Cloud_Computing)
+        employee_id=employee_id+500;
+    else
+        std::cout<<"Employee is not assigned in a valid course"<<std::endl;
+}
 /*void Employee::addCustomer(Customer c)
 {
     if(workingfor+1>10) cout<<"Occupied"<<endl;
@@ -96,7 +113,7 @@ bool Employee::removeCustomer(int index)
 void Employee::displayinfo()
 {
     Person::displayinfo();
-    std::cout<<"ID: "<<employee_id<<std::endl;
+    std::cout<<"ID: "<<getEmployeeID()<<std::endl;
     std::cout<<"Designation: "<<getDesignation()<<std::endl;
     std::cout<<"Experience: "<<getExperience()<<std::endl;
     std::cout<<"Position: "<<getPosition()<<std::endl;
