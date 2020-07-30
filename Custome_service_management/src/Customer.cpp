@@ -4,7 +4,6 @@
 Customer::Customer():Person(),budget(0.0),duration(0),description(""),assigned_date(0,0,0),work(WorkType::Web_Development)
 {
     total_customer++;
-    setCustID(WorkType::Application_Development);
     generatePassword();
 }
 Customer::Customer(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date d,WorkType w):Person(nam,phn,addr,em),budget(0.0),duration(0),description(""),assigned_date(0,0,0),work(WorkType::Web_Development)
@@ -16,7 +15,6 @@ Customer::Customer(std::string nam,std::string phn,std::string addr,std::string 
     setDate(d);
     setWork(w);
     total_customer++;
-    setCustID(work);
     generatePassword();
 }
 Customer::~Customer()
@@ -41,21 +39,7 @@ std::string Customer::getWork()
     else
         return std::string("");
 }
-void Customer::setCustID(WorkType wr)
-{
-    if(wr==WorkType::Web_Development)
-        cust_id=cust_id+100;
-    else if(wr==WorkType::Data_Science)
-        cust_id=cust_id+200;
-    else if(wr==WorkType::Application_Development)
-        cust_id=cust_id+300;
-    else if(wr==WorkType::Embedded_Systems)
-        cust_id=cust_id+400;
-    else if(wr==WorkType::Cloud_Computing)
-        cust_id=cust_id+500;
-    else
-        std::cout<<"Customer is not asking for a valid type"<<std::endl;
-}
+
 bool Customer::isServed()
 {
     Date dt2;
@@ -132,3 +116,4 @@ void Customer::setinfo(std::string nam,std::string phn,std::string addr,std::str
     setDate(dt2);
     setWork(w);
 }
+
