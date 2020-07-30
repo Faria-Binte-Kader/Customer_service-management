@@ -3,7 +3,6 @@
 Student::Student():Person(),course(Available_Courses::Application_Development),course_fee(0),starting_date(0,0,0),course_duration(0),grade(" ")
 {
     generatePassword();
-    setStudentId(Available_Courses::Application_Development);
     total_students++;
 }
 Student::Student(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd):Person(nam,phn,addr,em),course(Available_Courses::Application_Development),course_fee(0),starting_date(0,0,0),course_duration(0),grade("-1")
@@ -14,7 +13,6 @@ Student::Student(std::string nam,std::string phn,std::string addr,std::string em
     setCourseDuration(drtn);
     setGrade(grd);
     generatePassword();
-    setStudentId(course);
     total_students++;
 }
 Student::~Student()
@@ -22,21 +20,7 @@ Student::~Student()
 
 }
 int Student::total_students=0;
-void Student::setStudentId(Available_Courses c)
-{
-    if(c==Available_Courses::Web_Development)
-        student_id=student_id+100;
-    else if(c==Available_Courses::Data_Science)
-        student_id=student_id+200;
-    else if(c==Available_Courses::Application_Development)
-        student_id=student_id+300;
-    else if(c==Available_Courses::Embedded_Systems)
-        student_id=student_id+400;
-    else if(c==Available_Courses::Cloud_Computing)
-        student_id=student_id+500;
-    else
-        std::cout<<"Student is not enrolled in a valid course"<<std::endl;
-}
+
 void Student::generatePassword()
 {
     char special_character[]="!@#$%&*_-:/<>";
@@ -134,3 +118,4 @@ bool Student::isQualified()
     if(grade=="A" || grade=="B")
         return true;
 }
+
