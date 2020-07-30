@@ -2,7 +2,7 @@
 #define STUDENT_H
 #include"Person.h"
 #include<bits/stdc++.h>
-enum class Available_Courses {Web_Development,Data_Science,Application_Development,Embedded_Systems,Cloud_Computing};
+enum class Available_Courses {Web_Development,Mobile_Development,Data_Science,Application_Development,Embedded_Systems,Cloud_Computing};
 class Student:virtual public Person
 {
 protected:
@@ -48,16 +48,17 @@ public:
         return grade;
     }
     void setGrade(std::string g);
-    void dispalyinfo();
     bool isQualified();
     void generatePassword();
     char* getPassword();
     void displayinfo();
+
+    void setInfo(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd);
     bool hasCompleted();
+    //void setStudentId(Available_Courses c);
     long long int getStudentId()
     {
         return student_id;
     }
 };
 #endif
-
