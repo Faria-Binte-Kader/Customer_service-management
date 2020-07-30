@@ -11,7 +11,7 @@ protected:
     std::string position;
     double salary;
     static int total_employee;
-    int employee_id=2000+total_employee;
+    const int employee_id=2001+total_employee;
     //int no_of_projects;
     //double bonus;
     //Customer customer[10];
@@ -43,7 +43,6 @@ public:
     {
         return employee_id;
     }
-    void setEmployeeID(Designation d);
     //void addCustomer(Customer c);
     //bool removeCustomer(int index);
     /*double getbonus()
@@ -52,11 +51,11 @@ public:
     }
     void calcbonus()
     {
-
     }*/
     //int getno_ofprojects();
     void generatePassword();
     void displayinfo();
+    void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
     //int getGroupId();
 };
 #endif
