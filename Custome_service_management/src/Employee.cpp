@@ -147,4 +147,5 @@ void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::str
     setExperience(ex);
     setPosition();
     setSalary();
+    calcBonus();
 }
