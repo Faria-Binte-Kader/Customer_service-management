@@ -12,7 +12,7 @@ protected:
     int course_duration;
     std::string grade;
     static int total_students;
-    int student_id=3000+total_students;
+    const int student_id=3001+total_students;
 public:
     Student();
     Student(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd);
@@ -54,10 +54,10 @@ public:
     char* getPassword();
     void displayinfo();
     bool hasCompleted();
-    void setStudentId(Available_Courses c);
     long long int getStudentId()
     {
         return student_id;
     }
 };
 #endif
+
