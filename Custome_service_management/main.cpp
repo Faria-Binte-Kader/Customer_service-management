@@ -5,14 +5,20 @@
 #include<string>
 #include<bits/stdc++.h>
 using namespace std;
-void createproject(Employee e[],int m1,int m2,int m3)
+Customer createproject(Customer &cc,Employee e[],int m1,int m2,int m3,double cs)
 {
     cout<<"Member 1: "<<endl;
     e[m1].displayinfo();
+    cout<<"----------------------------------------"<<endl;
     cout<<"Member 2: "<<endl;
     e[m2].displayinfo();
+    cout<<"----------------------------------------"<<endl;
     cout<<"Member 3: "<<endl;
     e[m3].displayinfo();
+    cout<<"----------------------------------------"<<endl;
+    cout<<"Total Cost: "<<cs<<endl;
+    cc.setCost(cs);
+    return cc;
     //Project object will be created. will figure out after project class in done. dont bother :3
 }
 struct Senior
@@ -36,8 +42,11 @@ struct Entry
     int ID;
     int expr;
 };
-void generateOption(double b,int t,string w,Employee e[])
+Customer generateOption(Customer &c,Employee e[])
 {
+    double b=c.getBudget();
+    int t=c.getDuration();
+    string w=c.getWork();
     int index[100][3],option[100][3],ex[100][3],op;
     double cost[100];
     Senior senior[100];
@@ -104,7 +113,7 @@ void generateOption(double b,int t,string w,Employee e[])
     if(cnt==0)
     {
         cout<<"No teams available within budget"<<endl;
-        return;
+        return c;
     }
     for(int i=0;i<cnt;i++)
     {
@@ -118,7 +127,8 @@ void generateOption(double b,int t,string w,Employee e[])
     }
     cout<<"Which option do you choose?"<<endl;
     cin>>op;
-    createproject(e,index[op-1][0],index[op-1][1],index[op-1][2]);
+    createproject(c,e,index[op-1][0],index[op-1][1],index[op-1][2],cost[op-1]);
+    return c;
 }
 Customer custReceiveInfo(Customer &c)
 {
@@ -179,6 +189,7 @@ int main()
     Customer c1;
     custReceiveInfo(c1);
     c1.displayinfo();
-    generateOption(c1.getBudget(),c1.getDuration(),c1.getWork(),e);
+    generateOption(c1,e);
+    c1.displayinfo();
     return 0;
 }
