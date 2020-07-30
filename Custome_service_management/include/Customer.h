@@ -10,12 +10,12 @@ protected:
     int duration;
     double final_cost=0.0;
     std::string description;
+    static int total_customer;
+    int cust_id=1000+total_customer;
     //int project_id;
     Date assigned_date;
     WorkType work;
 public:
-    long long int cust_id=1000+total_customer;
-    static int total_customer;
     Customer();
     Customer(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date d,WorkType w);
     virtual ~Customer();
@@ -59,6 +59,11 @@ public:
     {
         project_id=val;
     }*/
+    int getCustID()
+    {
+        return cust_id;
+    }
+    void setCustID(WorkType wr);
     Date getDate()
     {
         return assigned_date;
