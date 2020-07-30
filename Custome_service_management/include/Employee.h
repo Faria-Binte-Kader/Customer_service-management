@@ -13,7 +13,7 @@ protected:
     static int total_employee;
     const int employee_id=2001+total_employee;
     //int no_of_projects;
-    //double bonus;
+    double bonus;
     //Customer customer[10];
 public:
     Employee();
@@ -45,13 +45,11 @@ public:
     }
     //void addCustomer(Customer c);
     //bool removeCustomer(int index);
-    /*double getbonus()
+    double getBonus()
     {
         return bonus;
     }
-    void calcbonus()
-    {
-    }*/
+    void calcBonus();
     //int getno_ofprojects();
     void generatePassword();
     void displayinfo();
