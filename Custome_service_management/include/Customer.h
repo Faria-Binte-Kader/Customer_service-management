@@ -11,7 +11,7 @@ protected:
     double final_cost=0.0;
     std::string description;
     static int total_customer;
-    int cust_id=1000+total_customer;
+    const int cust_id=1001+total_customer;
     //int project_id;
     Date assigned_date;
     WorkType work;
@@ -63,7 +63,7 @@ public:
     {
         return cust_id;
     }
-    void setCustID(WorkType wr);
+
     Date getDate()
     {
         return assigned_date;
