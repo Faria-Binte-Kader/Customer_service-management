@@ -1,6 +1,7 @@
 #include"Customer.h"
 #include"Employee.h"
 #include"Student.h"
+#include"Intern.h"
 #include<ctime>
 #include<string>
 #include<bits/stdc++.h>
@@ -163,6 +164,21 @@ Customer custReceiveInfo(Customer &c)
     c.setinfo(nam,phn,addr,em,b,t,desc,dt2,w);
     return c;
 }
+
+Intern intrReceiveInfo(Student &s,Intern &i)
+{
+    string nam,phn,addr,em,d;
+    int p;
+    nam=s.getName();
+    phn=s.getPhone_no();
+    addr=s.getAddress();
+    em=s.getEmail();
+    d=s.getCourse();
+    cout<<"Enter Intership Period: "<<endl;
+    cin>>p;
+    i.setinfo(nam,phn,addr,em,d,p);
+    return i;
+}
 int main()
 {
     Employee e[20];
@@ -191,5 +207,15 @@ int main()
     c1.displayinfo();
     generateOption(c1,e);
     c1.displayinfo();
+    Date d(3,2,20);
+    Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
+    Intern i1;
+    if(s1.isQualified()==true)
+    {
+        intrReceiveInfo(s1,i1);
+        i1.displayinfo();
+    }
     return 0;
+
 }
+
