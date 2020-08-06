@@ -6,6 +6,7 @@ Employee::Employee():Person(),designation(Designation::Web_Development),experien
     setPosition();
     setSalary();
     calcBonus();
+    setProjectId(0);
     generatePassword();
 }
 Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
@@ -16,6 +17,7 @@ Employee::Employee(std::string nam,std::string phn,std::string addr,std::string 
     setPosition();
     setSalary();
     calcBonus();
+    setProjectId(0);
     generatePassword();
 }
 Employee::~Employee()
@@ -81,23 +83,7 @@ void Employee::calcBonus()
     bonus=getSalary();
     bonus=bonus/10;
 }
-/*void Employee::addCustomer(Customer c)
-{
-    if(workingfor+1>10) cout<<"Occupied"<<endl;
-    else
-    {
-        customer[workingfor]=c;
-        workingfor++;
-    }
-bool Employee::removeCustomer(int index)
-{
-    if(index+1>workingfor||index<0) return false;
-    else if(index+1==workingfor)
-    {
-        workingfor--;
-        return true;
-    }
-}*/
+
 void Employee::displayinfo()
 {
     Person::displayinfo();
@@ -106,6 +92,8 @@ void Employee::displayinfo()
     std::cout<<"Experience: "<<getExperience()<<std::endl;
     std::cout<<"Position: "<<getPosition()<<std::endl;
     std::cout<<"Salary: "<<getSalary()<<std::endl;
+    std::cout<<"Password: "<<getPassword()<<std::endl;
+    std::cout<<"Project id: "<<getProjectId()<<std::endl;
 }
 void Employee::generatePassword()
 {
@@ -137,6 +125,10 @@ void Employee::generatePassword()
     password[12]='\0';
 }
 
+char* Employee::getPassword()
+    {
+        return password;
+    }
 void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex)
 {
     Person::setName(nam);
@@ -149,3 +141,16 @@ void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::str
     setSalary();
     calcBonus();
 }
+void Employee::operator =(Employee e1)
+{
+    /*setName(e1.getName());
+    setPhone_no(e1.getPhone_no());
+    setAddress(e1.getAddress());
+    setEmail(e1.getEmail());
+    setDesignation(e1.getDesignation());
+    setExperience(e1.getExperience());*/
+    setEmployeeID(e1.getEmployeeID());
+    setinfo(e1.getName(),e1.getPhone_no(),e1.getAddress(),e1.getEmail(),e1.getDesignation(),e1.getExperience());
+
+}
+
