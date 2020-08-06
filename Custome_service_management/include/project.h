@@ -22,13 +22,16 @@ class Project
         Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des);
         virtual ~Project();
         int getProjectId(){return projectId;}
-        int getProjectTime(){return project_time;}
+        int getTime(){return project_time;}
         void setStatus(Date del_date);
         std::string getStatus(){return status;}
         Date getDeliveryDate(){return delivery_date;}
         Date calcDeliveryDate();
+        void setCost(double c) { cost=c; }
         double getCost(){return cost;}
-        void displayInfo();
+        void setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cst);
+        void projectDetails();
 };
 
 #endif // PROJECT_H
+
