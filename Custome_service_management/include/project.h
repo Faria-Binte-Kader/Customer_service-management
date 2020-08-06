@@ -9,7 +9,7 @@ class Project
 {
     protected:
         static int total_projects;
-        const int projectId=10000+total_projects;
+        const int projectId=10001+total_projects;
         Employee emp1,emp2,emp3;
         Customer cust;
         int project_time; //in months
@@ -22,12 +22,13 @@ class Project
         Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des);
         virtual ~Project();
         int getProjectId(){return projectId;}
-        int getTime(){return project_time;}
+        int getProjectTime(){return project_time;}
         void setStatus(Date del_date);
         std::string getStatus(){return status;}
         Date getDeliveryDate(){return delivery_date;}
         Date calcDeliveryDate();
         double getCost(){return cost;}
+        void displayInfo();
 };
 
 #endif // PROJECT_H
