@@ -29,6 +29,12 @@ Date Project::calcDeliveryDate()
     delivery_date.day=cust.getDate().day;
     delivery_date.year=cust.getDate().year+project_time/12;
     delivery_date.month=cust.getDate().month+project_time-(delivery_date.year-cust.getDate().year)*12;
+    if(delivery_date.month>12)
+    {
+        delivery_date.year=delivery_date.year+delivery_date.month/12;
+        delivery_date.month=delivery_date.month-12;
+    }
+
 }
 
 void Project::setStatus(Date del_date)
@@ -50,5 +56,16 @@ void Project::setStatus(Date del_date)
     if(days_passed>0)
         status="Finished";
     else if(days_passed<0) status="Unfinished";
+}
+
+void Project::displayInfo()
+{
+    std::cout<<"Project ID: "<<getProjectId()<<std::endl;
+    std::cout<<"Customer ID: "<<cust.getCustID()<<std::endl;
+    std::cout<<"Employee IDs:   1. "<<emp1.getEmployeeID()<<"\n\t\t2. "<<emp2.getEmployeeID()<<"\n\t\t3. "<<emp3.getEmployeeID()<<std::endl;
+    std::cout<<"Project Time: "<<getProjectTime()<<std::endl;
+    std::cout<<"Status: "<<getStatus()<<std::endl;
+    std::cout<<"Delivery Date: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
+    std::cout<<"Project Cost: "<<getCost()<<std::endl;
 }
 
