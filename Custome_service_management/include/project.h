@@ -22,7 +22,7 @@ class Project
         Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des);
         virtual ~Project();
         int getProjectId(){return projectId;}
-        int getTime(){return project_time;}
+        int getProjectTime(){return project_time;}
         void setStatus(Date del_date);
         std::string getStatus(){return status;}
         Date getDeliveryDate(){return delivery_date;}
@@ -34,4 +34,3 @@ class Project
 };
 
 #endif // PROJECT_H
-
