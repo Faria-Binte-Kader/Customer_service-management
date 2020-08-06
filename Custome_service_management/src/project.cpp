@@ -29,6 +29,11 @@ Date Project::calcDeliveryDate()
     delivery_date.day=cust.getDate().day;
     delivery_date.year=cust.getDate().year+project_time/12;
     delivery_date.month=cust.getDate().month+project_time-(delivery_date.year-cust.getDate().year)*12;
+    if(delivery_date.month>12)
+    {
+        delivery_date.year=delivery_date.year+delivery_date.month/12;
+        delivery_date.month=delivery_date.month-12;
+    }
 }
 
 void Project::setStatus(Date del_date)
@@ -50,7 +55,7 @@ void Project::setStatus(Date del_date)
         time_passed.month=12+time_passed.month-1;
     int days_passed;
     days_passed=time_passed.year*365+time_passed.month*30+time_passed.day;
-    if(days_passed>0)
+    if(days_passed>=0)
         status="Finished";
     else if(days_passed<0)
         status="Unfinished";
@@ -59,13 +64,17 @@ void Project::setStatus(Date del_date)
 void Project::setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cst)
 {
     setCost(cst);
+    cust=c;
     emp1=e1;
     emp2=e2;
     emp3=e3;
     emp1.setProjectId(projectId);
     emp2.setProjectId(projectId);
     emp3.setProjectId(projectId);
-    c.setCost(cst);
+    setCost(cst);
+    project_time=cust.getDuration();
+    calcDeliveryDate();
+    setStatus(delivery_date);
     std::cout<<"Member 1: "<<std::endl;
     emp1.displayinfo();
     std::cout<<"----------------------------------------"<<std::endl;
@@ -83,9 +92,13 @@ void Project::projectDetails()
 {
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Project id: "<<getProjectId()<<std::endl;
+    std::cout<<"Customer ID: "<<cust.getCustID()<<std::endl;
     std::cout<<"Member 1 id: "<<emp1.getEmployeeID()<<std::endl;
     std::cout<<"Member 2 id: "<<emp2.getEmployeeID()<<std::endl;
     std::cout<<"Member 3 id: "<<emp3.getEmployeeID()<<std::endl;
+    std::cout<<"Project Time: "<<getProjectTime()<<std::endl;
+    std::cout<<"Status: "<<getStatus()<<std::endl;
+    std::cout<<"Delivery Date: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
+    std::cout<<"Project Cost: "<<getCost()<<std::endl;
     //std::cout<<"Customer id: "<<getProjectId()<<std::endl;
 }
-
