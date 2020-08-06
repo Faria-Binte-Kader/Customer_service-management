@@ -2,26 +2,17 @@
 #include"Employee.h"
 #include"Student.h"
 #include"Intern.h"
+#include"project.h"
 #include<ctime>
 #include<string>
 #include<bits/stdc++.h>
+int M1;
+int M2;
+int M3;
+int Total_project;
+double Cost;
 using namespace std;
-Customer createproject(Customer &cc,Employee e[],int m1,int m2,int m3,double cs)
-{
-    cout<<"Member 1: "<<endl;
-    e[m1].displayinfo();
-    cout<<"----------------------------------------"<<endl;
-    cout<<"Member 2: "<<endl;
-    e[m2].displayinfo();
-    cout<<"----------------------------------------"<<endl;
-    cout<<"Member 3: "<<endl;
-    e[m3].displayinfo();
-    cout<<"----------------------------------------"<<endl;
-    cout<<"Total Cost: "<<cs<<endl;
-    cc.setCost(cs);
-    return cc;
-    //Project object will be created. will figure out after project class in done. dont bother :3
-}
+
 struct Senior
 {
     int idx;
@@ -43,7 +34,7 @@ struct Entry
     int ID;
     int expr;
 };
-Customer generateOption(Customer &c,Employee e[])
+bool generateOption(Customer &c,Employee e[])
 {
     double b=c.getBudget();
     int t=c.getDuration();
@@ -55,7 +46,7 @@ Customer generateOption(Customer &c,Employee e[])
     Entry entry[100];
     int s=0,j=0,en=0,cnt=0;
     double temp,temp2,temp3,pro;
-    for(int i=0;i<20;i++)
+    for(int i=0; i<20; i++)
     {
         if(e[i].getDesignation()==w&&e[i].getPosition()=="Senior"&&(e[i].getBonus()*t)<=b)
         {
@@ -82,17 +73,20 @@ Customer generateOption(Customer &c,Employee e[])
             en++;
         }
     }
-    for(int i=0;i<s;i++)
+    for(int i=0; i<s; i++)
     {
         temp=senior[i].bonus;
-        for(int k=0;k<j;k++)
+        for(int k=0; k<j; k++)
         {
-            if((temp+junior[k].bonus)>b) break;
-            else temp2=temp+junior[k].bonus;
-            for(int l=0;l<en;l++)
+            if((temp+junior[k].bonus)>b)
+                break;
+            else
+                temp2=temp+junior[k].bonus;
+            for(int l=0; l<en; l++)
             {
                 pro=((temp2+entry[l].bonus)*50)/100;
-                if((temp2+entry[l].bonus+pro)>b) break;
+                if((temp2+entry[l].bonus+pro)>b)
+                    break;
                 else
                 {
                     temp3=temp2+entry[l].bonus+pro;
@@ -114,9 +108,9 @@ Customer generateOption(Customer &c,Employee e[])
     if(cnt==0)
     {
         cout<<"No teams available within budget"<<endl;
-        return c;
+        return false;
     }
-    for(int i=0;i<cnt;i++)
+    for(int i=0; i<cnt; i++)
     {
         cout<<"Option: "<<i+1<<endl;
         cout<<"Member 1: "<<option[i][0]<<" [Experience: "<<ex[i][0]<<" years]"<<endl;
@@ -128,9 +122,21 @@ Customer generateOption(Customer &c,Employee e[])
     }
     cout<<"Which option do you choose?"<<endl;
     cin>>op;
-    createproject(c,e,index[op-1][0],index[op-1][1],index[op-1][2],cost[op-1]);
-    return c;
+    M1=index[op-1][0];
+    M2=index[op-1][1];
+    M3=index[op-1][2];
+    Cost=cost[op-1];
+    cout<<"Do you want to confirm?"<<endl;
+    cout<<"1. Yes 2. No"<<endl;
+    int confirm;
+    cin>>confirm;
+    if(confirm==1)
+        return true;
+    else if(confirm==2)
+        return false;
 }
+
+
 Customer custReceiveInfo(Customer &c)
 {
     string nam,phn,addr,em,desc,garbage;
@@ -179,8 +185,11 @@ Intern intrReceiveInfo(Student &s,Intern &i)
     i.setinfo(nam,phn,addr,em,d,p);
     return i;
 }
+
 int main()
 {
+    Total_project=0;
+    Project p[100];
     Employee e[20];
     e[0].setinfo("a","123","abc","def","Web Development",11);
     e[1].setinfo("b","123","abc","def","Web Development",15);
@@ -202,11 +211,18 @@ int main()
     e[17].setinfo("h","123","abc","def","Data Science",3);
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
+
     Customer c1;
     custReceiveInfo(c1);
-    c1.displayinfo();
-    generateOption(c1,e);
-    c1.displayinfo();
+    if(generateOption(c1,e)==true)
+    {
+        p[Total_project].setInfo(c1,e[M1],e[M2],e[M3],Cost);
+        Total_project++;
+
+    }
+
+    p[0].projectDetails();
+
     Date d(3,2,20);
     Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
     Intern i1;
@@ -215,6 +231,7 @@ int main()
         intrReceiveInfo(s1,i1);
         i1.displayinfo();
     }
+
     return 0;
 
 }
