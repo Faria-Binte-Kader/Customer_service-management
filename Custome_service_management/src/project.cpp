@@ -9,7 +9,7 @@ Project::Project():status("Unfinished")
     setStatus(delivery_date);
 }
 
-Project::Project(Customer c,  Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des):cust(c),emp1(e1),emp2(e2),emp3(e3),cost(cst),project_time(tm),description(des),status("Unfinished")
+Project::Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des):cust(c),emp1(e1),emp2(e2),emp3(e3),cost(cst),project_time(tm),description(des),status("Unfinished")
 {
     //ctor
     total_projects++;
@@ -29,12 +29,6 @@ Date Project::calcDeliveryDate()
     delivery_date.day=cust.getDate().day;
     delivery_date.year=cust.getDate().year+project_time/12;
     delivery_date.month=cust.getDate().month+project_time-(delivery_date.year-cust.getDate().year)*12;
-    if(delivery_date.month>12)
-    {
-        delivery_date.year=delivery_date.year+delivery_date.month/12;
-        delivery_date.month=delivery_date.month-12;
-    }
-
 }
 
 void Project::setStatus(Date del_date)
@@ -48,24 +42,50 @@ void Project::setStatus(Date del_date)
     time_passed.day=current_date.day-del_date.day;
     time_passed.month=current_date.month-del_date.month;
     time_passed.year=current_date.year-del_date.year;
-    if(time_passed.day<=0 && time_passed.month<=0 && time_passed.year>0) time_passed.year--;
-    if(time_passed.day<0) time_passed.day=31+time_passed.day;
-    if(time_passed.month<0) time_passed.month=12+time_passed.month-1;
+    if(time_passed.day<=0 && time_passed.month<=0 && time_passed.year>0)
+        time_passed.year--;
+    if(time_passed.day<0)
+        time_passed.day=31+time_passed.day;
+    if(time_passed.month<0)
+        time_passed.month=12+time_passed.month-1;
     int days_passed;
     days_passed=time_passed.year*365+time_passed.month*30+time_passed.day;
     if(days_passed>0)
         status="Finished";
-    else if(days_passed<0) status="Unfinished";
+    else if(days_passed<0)
+        status="Unfinished";
 }
 
-void Project::displayInfo()
+void Project::setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cst)
 {
-    std::cout<<"Project ID: "<<getProjectId()<<std::endl;
-    std::cout<<"Customer ID: "<<cust.getCustID()<<std::endl;
-    std::cout<<"Employee IDs:   1. "<<emp1.getEmployeeID()<<"\n\t\t2. "<<emp2.getEmployeeID()<<"\n\t\t3. "<<emp3.getEmployeeID()<<std::endl;
-    std::cout<<"Project Time: "<<getProjectTime()<<std::endl;
-    std::cout<<"Status: "<<getStatus()<<std::endl;
-    std::cout<<"Delivery Date: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
-    std::cout<<"Project Cost: "<<getCost()<<std::endl;
+    setCost(cst);
+    emp1=e1;
+    emp2=e2;
+    emp3=e3;
+    emp1.setProjectId(projectId);
+    emp2.setProjectId(projectId);
+    emp3.setProjectId(projectId);
+    c.setCost(cst);
+    std::cout<<"Member 1: "<<std::endl;
+    emp1.displayinfo();
+    std::cout<<"----------------------------------------"<<std::endl;
+    std::cout<<"Member 2: "<<std::endl;
+    emp2.displayinfo();
+    std::cout<<"----------------------------------------"<<std::endl;
+    std::cout<<"Member 3: "<<std::endl;
+    emp3.displayinfo();
+    std::cout<<"----------------------------------------"<<std::endl;
+    std::cout<<"Total Cost: "<<getCost()<<std::endl;
+
+}
+
+void Project::projectDetails()
+{
+    std::cout<<"----------------------------------------"<<std::endl;
+    std::cout<<"Project id: "<<getProjectId()<<std::endl;
+    std::cout<<"Member 1 id: "<<emp1.getEmployeeID()<<std::endl;
+    std::cout<<"Member 2 id: "<<emp2.getEmployeeID()<<std::endl;
+    std::cout<<"Member 3 id: "<<emp3.getEmployeeID()<<std::endl;
+    //std::cout<<"Customer id: "<<getProjectId()<<std::endl;
 }
 
