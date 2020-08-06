@@ -11,10 +11,11 @@ protected:
     std::string position;
     double salary;
     static int total_employee;
-    const int employee_id=2001+total_employee;
+    //const
+     int employee_id=2001+total_employee;
     //int no_of_projects;
+    int projectid;
     double bonus;
-    //Customer customer[10];
 public:
     Employee();
     Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
@@ -43,6 +44,7 @@ public:
     {
         return employee_id;
     }
+    void setEmployeeID(int a) {employee_id=a;}
     //void addCustomer(Customer c);
     //bool removeCustomer(int index);
     double getBonus()
@@ -51,9 +53,13 @@ public:
     }
     void calcBonus();
     //int getno_ofprojects();
+    char* getPassword();
     void generatePassword();
     void displayinfo();
     void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
-    //int getGroupId();
+    int getProjectId() {return projectid;}
+    void setProjectId(int a) {projectid=a;}
+    void operator =(Employee e1);
 };
 #endif
+
