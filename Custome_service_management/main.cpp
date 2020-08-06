@@ -189,7 +189,6 @@ Intern intrReceiveInfo(Student &s,Intern &i)
 int main()
 {
     Total_project=0;
-    Project p[100];
     Employee e[20];
     e[0].setinfo("a","123","abc","def","Web Development",11);
     e[1].setinfo("b","123","abc","def","Web Development",15);
@@ -212,7 +211,8 @@ int main()
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
 
-    Customer c1;
+    Customer c1,c2;
+    Project p[100];
     custReceiveInfo(c1);
     if(generateOption(c1,e)==true)
     {
@@ -220,8 +220,15 @@ int main()
         Total_project++;
 
     }
+    /*custReceiveInfo(c2);
+    if(generateOption(c2,e)==true)
+    {
+        p[Total_project].setInfo(c2,e[M1],e[M2],e[M3],Cost);
+        Total_project++;
+    }*/
 
     p[0].projectDetails();
+    //p[1].projectDetails();
 
     Date d(3,2,20);
     Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
@@ -235,4 +242,3 @@ int main()
     return 0;
 
 }
-
