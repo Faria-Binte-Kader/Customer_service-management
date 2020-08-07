@@ -117,3 +117,15 @@ void Customer::setinfo(std::string nam,std::string phn,std::string addr,std::str
     setWork(w);
 }
 
+void Customer::operator =(Customer c1)
+{
+    /*setName(e1.getName());
+    setPhone_no(e1.getPhone_no());
+    setAddress(e1.getAddress());
+    setEmail(e1.getEmail());
+    setDesignation(e1.getDesignation());
+    setExperience(e1.getExperience());*/
+    setCustID(c1.getCustID());
+    setinfo(c1.getName(),c1.getPhone_no(),c1.getAddress(),c1.getEmail(),c1.getBudget(),c1.getDuration(),c1.getDescription(),c1.getDate(),c1.getWorkType());
+
+}
