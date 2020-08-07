@@ -23,7 +23,7 @@ class Project
         virtual ~Project();
         int getProjectId(){return projectId;}
         int getProjectTime(){return project_time;}
-        void setStatus(Date del_date);
+        void setStatus();
         std::string getStatus(){return status;}
         Date getDeliveryDate(){return delivery_date;}
         Date calcDeliveryDate();
