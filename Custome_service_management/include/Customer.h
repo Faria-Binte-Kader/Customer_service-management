@@ -11,7 +11,7 @@ protected:
     double final_cost=0;
     std::string description;
     static int total_customer;
-    const int cust_id=1001+total_customer;
+    int cust_id=1001+total_customer;
     //int project_id;
     Date assigned_date;
     WorkType work;
@@ -63,7 +63,7 @@ public:
     {
         return cust_id;
     }
-
+    void setCustID(int a) {cust_id=a;}
     Date getDate()
     {
         return assigned_date;
@@ -73,6 +73,10 @@ public:
         assigned_date=val;
     }
     std::string getWork();
+    WorkType getWorkType()
+    {
+        return work;
+    }
     void setWork(WorkType val)
     {
         work=val;
@@ -81,5 +85,6 @@ public:
     void generatePassword();
     void displayinfo();
     void setinfo(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date dt2,WorkType w);
+    void operator =(Customer c1);
 };
 #endif
