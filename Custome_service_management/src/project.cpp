@@ -6,7 +6,7 @@ Project::Project():status("Unfinished")
     //ctor
     total_projects++;
     calcDeliveryDate();
-    setStatus(delivery_date);
+    setStatus();
 }
 
 Project::Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des):cust(c),emp1(e1),emp2(e2),emp3(e3),cost(cst),project_time(tm),description(des),status("Unfinished")
@@ -14,7 +14,7 @@ Project::Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, i
     //ctor
     total_projects++;
     calcDeliveryDate();
-    setStatus(delivery_date);
+    setStatus();
 }
 
 int Project::total_projects=0;
@@ -36,29 +36,27 @@ Date Project::calcDeliveryDate()
     }
 }
 
-void Project::setStatus(Date del_date)
+void Project::setStatus()
 {
-    Date current_date,time_passed;
-    time_t t=time(NULL);
-    tm* timePtr = localtime(&t);
-    current_date.day=timePtr->tm_mday;
-    current_date.month=(timePtr->tm_mon)+1;
-    current_date.year=(timePtr->tm_year)+1900;
-    time_passed.day=current_date.day-del_date.day;
-    time_passed.month=current_date.month-del_date.month;
-    time_passed.year=current_date.year-del_date.year;
-    if(time_passed.day<=0 && time_passed.month<=0 && time_passed.year>0)
-        time_passed.year--;
-    if(time_passed.day<0)
-        time_passed.day=31+time_passed.day;
-    if(time_passed.month<0)
-        time_passed.month=12+time_passed.month-1;
-    int days_passed;
-    days_passed=time_passed.year*365+time_passed.month*30+time_passed.day;
-    if(days_passed>=0)
-        status="Finished";
-    else if(days_passed<0)
-        status="Unfinished";
+    Date dt2;
+    dt2.day=cust.getDate().day;
+    dt2.month=cust.getDate().month+cust.getDuration();
+    dt2.year=cust.getDate().year;
+    if(dt2.month>12) dt2.year++;
+    time_t now=time(0);
+    tm* dt1=localtime(&now);
+    if(1900+dt1->tm_year>dt2.year) status="Finished";
+    if(1900+dt1->tm_year==dt2.year)
+    {
+        if(1+dt1->tm_mon>dt2.month) status="Finished";
+        else if(1+dt1->tm_mon==dt2.month)
+        {
+            if(dt1->tm_mday>=dt2.day) status="Finished";
+            else status="Unfinished";
+        }
+        else status="Unfinished";
+    }
+    else status="Unfinished";
 }
 
 void Project::setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cst)
@@ -74,7 +72,7 @@ void Project::setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cs
     setCost(cst);
     project_time=cust.getDuration();
     calcDeliveryDate();
-    setStatus(delivery_date);
+    setStatus();
     std::cout<<"Member 1: "<<std::endl;
     emp1.displayinfo();
     std::cout<<"----------------------------------------"<<std::endl;
