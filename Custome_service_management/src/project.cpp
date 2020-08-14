@@ -59,9 +59,8 @@ void Project::setStatus()
     else status="Unfinished";
 }
 
-void Project::setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cst)
+void Project::setInfo(Customer& c, Employee& e1,Employee& e2, Employee& e3,double cst)
 {
-    setCost(cst);
     cust=c;
     emp1=e1;
     emp2=e2;
@@ -69,10 +68,14 @@ void Project::setInfo(Customer c, Employee e1,Employee e2, Employee e3,double cs
     emp1.setProjectId(projectId);
     emp2.setProjectId(projectId);
     emp3.setProjectId(projectId);
+    cust.setCost(cst);
+    cust.SetProjectId(projectId);
     setCost(cst);
     project_time=cust.getDuration();
     calcDeliveryDate();
     setStatus();
+    std::cout<<"Customer: "<<std::endl;
+    cust.displayinfo();
     std::cout<<"Member 1: "<<std::endl;
     emp1.displayinfo();
     std::cout<<"----------------------------------------"<<std::endl;
