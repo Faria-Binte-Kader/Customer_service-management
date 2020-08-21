@@ -95,6 +95,8 @@ std::string Student::getCourse()
 }
 void Student::displayinfo()
 {
+    std::cout<<"\n----------------------------------------"<<std::endl;
+    std::cout<<"Student Information:"<<std::endl;
     Person::displayinfo();
     std::cout<<"Student ID\t\t: "<<getStudentId()<<std::endl;
     std::cout<<"Course\t\t\t: "<<getCourse()<<std::endl;

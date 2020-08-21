@@ -9,7 +9,7 @@ Project::Project():status("Unfinished")
     setStatus();
 }
 
-Project::Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des):cust(c),emp1(e1),emp2(e2),emp3(e3),cost(cst),project_time(tm),description(des),status("Unfinished")
+Project::Project(Customer &c, Employee &e1,Employee &e2, Employee &e3, double cst, int tm, std::string des):cust(c),emp1(e1),emp2(e2),emp3(e3),cost(cst),project_time(tm),description(des),status("Unfinished")
 {
     //ctor
     total_projects++;
@@ -59,7 +59,7 @@ void Project::setStatus()
     else status="Unfinished";
 }
 
-void Project::setInfo(Customer& c, Employee& e1,Employee& e2, Employee& e3,double cst)
+void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,double cst)
 {
     cust=c;
     emp1=e1;
