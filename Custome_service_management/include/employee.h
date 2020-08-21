@@ -55,8 +55,8 @@ public:
     //int getno_ofprojects();
     char* getPassword();
     void generatePassword();
-    void displayinfo();
-    void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
+    virtual void displayinfo();
+    virtual void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
     int getProjectId() {return projectid;}
     void setProjectId(int a) {projectid=a;}
     Employee operator =(Employee& e1);

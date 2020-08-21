@@ -51,7 +51,7 @@ public:
     bool isQualified();
     void generatePassword();
     char* getPassword();
-    void displayinfo();
+    virtual void displayinfo();
 
     void setInfo(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd);
     bool hasCompleted();

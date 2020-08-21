@@ -19,7 +19,7 @@ class Project
         double cost;
     public:
         Project();
-        Project(Customer c, Employee e1,Employee e2, Employee e3, double cst, int tm, std::string des);
+        Project(Customer &c, Employee &e1,Employee &e2, Employee &e3, double cst, int tm, std::string des);
         virtual ~Project();
         int getProjectId(){return projectId;}
         int getProjectTime(){return project_time;}
@@ -29,7 +29,7 @@ class Project
         Date calcDeliveryDate();
         void setCost(double c) { cost=c; }
         double getCost(){return cost;}
-        void setInfo(Customer& c, Employee& e1,Employee& e2, Employee& e3,double cst);
+        void setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,double cst);
         void projectDetails();
 };
 
