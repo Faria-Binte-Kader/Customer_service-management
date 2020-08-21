@@ -171,7 +171,7 @@ Customer custReceiveInfo(Customer &c)
     return c;
 }
 
-Intern intrReceiveInfo(Student &s,Intern &i)
+Employee* intrReceiveInfo(Student &s,Employee* i)
 {
     string nam,phn,addr,em,d;
     int p;
@@ -182,7 +182,8 @@ Intern intrReceiveInfo(Student &s,Intern &i)
     d=s.getCourse();
     cout<<"Enter Intership Period: "<<endl;
     cin>>p;
-    i.setinfo(nam,phn,addr,em,d,p);
+    i=new Intern();
+    i->setinfo(nam,phn,addr,em,d,p);
     return i;
 }
 
@@ -229,16 +230,24 @@ int main()
 
     p[0].projectDetails();
     //p[1].projectDetails();
-
     Date d(3,2,20);
     Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
-    Intern i1;
+    Student s2("somestudent","456","xyz","def","Data Science",10.0,d,1,"B");
+    Employee* i[2];
+    //Intern i1;
+
     if(s1.isQualified()==true)
     {
-        intrReceiveInfo(s1,i1);
-        i1.displayinfo();
+        i[0]=intrReceiveInfo(s1,i[0]);
+        i[0]->displayinfo();
     }
-
+    if(s2.isQualified()==true)
+    {
+        i[1]=intrReceiveInfo(s2,i[1]);
+        i[1]->displayinfo();
+    }
+    delete i[0];
+    delete i[1];
     return 0;
 
 }
