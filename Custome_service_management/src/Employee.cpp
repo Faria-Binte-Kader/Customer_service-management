@@ -126,9 +126,9 @@ void Employee::generatePassword()
 }
 
 char* Employee::getPassword()
-    {
-        return password;
-    }
+{
+    return password;
+}
 void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex)
 {
     Person::setName(nam);
