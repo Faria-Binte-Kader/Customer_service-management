@@ -5,6 +5,7 @@ Customer::Customer():Person(),budget(0.0),duration(0),description(""),assigned_d
 {
     total_customer++;
     generatePassword();
+    SetProjectId(0);
 }
 Customer::Customer(std::string nam,std::string phn,std::string addr,std::string em,double b,int t,std::string desc,Date d,WorkType w):Person(nam,phn,addr,em),budget(0.0),duration(0),description(""),assigned_date(0,0,0),work(WorkType::Web_Development)
 {
@@ -16,6 +17,7 @@ Customer::Customer(std::string nam,std::string phn,std::string addr,std::string 
     setWork(w);
     total_customer++;
     generatePassword();
+    SetProjectId(0);
 }
 Customer::~Customer()
 {
@@ -46,6 +48,7 @@ bool Customer::isServed()
     dt2.day=assigned_date.day;
     dt2.month=assigned_date.month+getDuration();
     dt2.year=assigned_date.year;
+    if(dt2.day==0&&dt2.month==0&&dt2.year==0) return 0;
     if(dt2.month>12) dt2.year++;
     time_t now=time(0);
     tm* dt1=localtime(&now);
