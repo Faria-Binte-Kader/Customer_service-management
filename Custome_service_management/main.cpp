@@ -225,19 +225,25 @@ int main()
     Employee e1;
     e1.setinfo("k","123","abc","def","Web Development",11);
     co1.addEmployee(e1);
+    Customer c1,c2;
+    custReceiveInfo(c1);
+    co1.addCustomer(c1);
+    co1.addCustomer(c2);
     co1.showStatus();
     co2.showStatus();
-    /*Customer c1,c2;
     Project* p[100];
-    custReceiveInfo(c1);
     if(generateOption(c1,e)==true)
     {
         p[Total_project]=new Project();
         p[Total_project]->setInfo(c1,e[M1],e[M2],e[M3],Cost);
+        co1.updateCompanyInfo(c1,e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
+        co2.updateCompanyInfo(c1,e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
         p[Total_project]->projectDetails();
         Total_project++;
     }
-    Date d(3,2,20);
+    co1.showStatus();
+    co2.showStatus();
+    /*Date d(3,2,20);
     Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
     Student s2("somestudent","456","xyz","def","Data Science",10.0,d,1,"B");
     Employee* i[2];
