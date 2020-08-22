@@ -1,4 +1,4 @@
-#include "project.h"
+#include "Project.h"
 #include<bits/stdc++.h>
 
 Project::Project():status("Unfinished")
