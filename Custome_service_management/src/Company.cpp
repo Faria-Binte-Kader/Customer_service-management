@@ -3,25 +3,26 @@
 Company::Company():name(""),totalEmployee(0),totalCustomer(0)
 {
     total_company++;
+    //std::cout<<"Total company"<<total_company<<std::endl;
 }
 Company::Company(std::string nam):name(nam),totalEmployee(0),totalCustomer(0)
 {
     total_company++;
+    //std::cout<<"Total company"<<total_company<<std::endl;
     setName(nam);
 }
 Company::~Company()
 {
-
 }
 int Company::total_company=0;
-void Company::addCustomer(Customer c)
+void Company::addCustomer(Customer &c)
 {
-    customers[totalCustomer]=c;
+    customers[totalCustomer]=&c;
     totalCustomer++;
 }
-void Company::addEmployee(Employee e)
+void Company::addEmployee(Employee &e)
 {
-    employees[totalEmployee]=e;
+    employees[totalEmployee]=&e;
     totalEmployee++;
 }
 void Company::showStatus()
@@ -33,12 +34,12 @@ void Company::showStatus()
     std::cout<<"------------------------------"<<std::endl;
     for(int i=0;i<totalEmployee;i++)
     {
-        employees[i].displayinfo();
+        employees[i]->displayinfo();
         std::cout<<std::endl;
     }
     for(int i=0;i<totalCustomer;i++)
     {
-        customers[i].displayinfo();
+        customers[i]->displayinfo();
         std::cout<<std::endl;
     }
 }
