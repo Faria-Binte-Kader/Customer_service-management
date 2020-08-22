@@ -1,26 +1,33 @@
 #ifndef COMPANY_H
 #define COMPANY_H
-
 #include<string>
 #include"Customer.h"
 #include"Employee.h"
-
 class Company
 {
-public:
-    Company(std::string name);
-    ~Company();
-    bool add(Customer c,int EmployeeIndex);
-    void showStatus();
-    bool addEmployee(Employee e);
-    bool served(int customerID);
 protected:
-private:
-    Employee employees[100];
-    int nextSerial;
+    std::string name;
     int totalEmployee;
     int totalCustomer;
-    std::string name;
+    Customer customers[5000];
+    Employee employees[5000];
+    static int total_company;
+    int company_id=total_company+1;
+public:
+    Company();
+    Company(std::string name);
+    ~Company();
+    void addCustomer(Customer c);
+    void addEmployee(Employee e);
+    void showStatus();
+    std::string getName()
+    {
+        return name;
+    }
+    void setName(std::string val)
+    {
+        name=val;
+    }
 };
 
 #endif // COMPANY_H
