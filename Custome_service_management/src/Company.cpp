@@ -25,6 +25,37 @@ void Company::addEmployee(Employee &e)
     employees[totalEmployee]=&e;
     totalEmployee++;
 }
+void Company::updateCompanyInfo(Customer &c1,Employee &e1,Employee &e2,Employee &e3,int pid)
+{
+    int cnt=0;
+    for(int i=0;i<totalEmployee;i++)
+    {
+        if(e1.getEmployeeID()==employees[i]->getEmployeeID())
+        {
+            e1.setProjectId(pid);
+            cnt++;
+        }
+        if(e2.getEmployeeID()==employees[i]->getEmployeeID())
+        {
+            e2.setProjectId(pid);
+            cnt++;
+        }
+        if(e3.getEmployeeID()==employees[i]->getEmployeeID())
+        {
+            e3.setProjectId(pid);
+            cnt++;
+        }
+        if(cnt==3) break;
+    }
+    for(int i=0;i<totalCustomer;i++)
+    {
+        if(c1.getCustID()==customers[i]->getCustID())
+        {
+            c1.SetProjectId(pid);
+            break;
+        }
+    }
+}
 void Company::showStatus()
 {
     std::cout<<"Name: "<<name<<std::endl;
