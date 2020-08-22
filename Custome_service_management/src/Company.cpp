@@ -1,4 +1,4 @@
-#include "company.h"
+#include"Company.h"
 #include<iostream>
 
 Company::Company(std::string name):nextSerial(1),totalEmployee(0),totalCustomer(0)
@@ -33,10 +33,10 @@ void Company::showStatus()
     std::cout<<"Total Added Customer: "<<totalCustomer<<std::endl;
     std::cout<<"Total Employee: "<<totalEmployee<<std::endl;
     std::cout<<"-----"<<std::endl;
-    for(int i=0;i<totalEmployee;i++)
+    for(int i=0; i<totalEmployee; i++)
     {
         std::cout<<employees[i].Getname()<<" has following customers\n";
-        for(int j=0;j<employees[i].GetnoOfCustomerTakenCare();j++)
+        for(int j=0; j<employees[i].GetnoOfCustomerTakenCare(); j++)
         {
             std::cout<<employees[i].getCustomerName(j)<<std::endl;
         }
@@ -47,16 +47,17 @@ void Company::showStatus()
 bool Company::addEmployee(Employee e)
 {
     if(totalEmployee+1>100) return false;
-    else{
+    else
+    {
         employees[totalEmployee++]=e;
         return true;
     }
 }
 bool Company::served(int customerID)
 {
-    for(int i=0;i<totalEmployee;i++)
+    for(int i=0; i<totalEmployee; i++)
     {
-        for(int j=0;j<employees[i].GetnoOfCustomerTakenCare();j++)
+        for(int j=0; j<employees[i].GetnoOfCustomerTakenCare(); j++)
         {
             if(employees[i].getCustomer(j).GetcustomerId()==customerID)
             {
@@ -70,4 +71,3 @@ bool Company::served(int customerID)
     }
     return false;
 }
-
