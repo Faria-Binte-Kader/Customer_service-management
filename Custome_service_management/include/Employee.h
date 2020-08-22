@@ -2,7 +2,7 @@
 #define EMPLOYEE_H
 #include"Person.h"
 #include<bits/stdc++.h>
-enum class Designation{Web_Development,Mobile_Development,Data_Science,Application_Development,Embedded_Systems,Cloud_Computing};
+enum class Designation {Web_Development,Mobile_Development,Data_Science,Application_Development,Embedded_Systems,Cloud_Computing};
 class Employee:virtual public Person
 {
 protected:
@@ -57,8 +57,14 @@ public:
     void generatePassword();
     virtual void displayinfo();
     virtual void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
-    int getProjectId() {return projectid;}
-    void setProjectId(int a) {projectid=a;}
+    int getProjectId()
+    {
+        return projectid;
+    }
+    void setProjectId(int a)
+    {
+        projectid=a;
+    }
     Employee operator =(Employee& e1);
 };
 #endif
