@@ -3,6 +3,7 @@
 #include"Student.h"
 #include"Intern.h"
 #include"Project.h"
+#include"Company.h"
 #include<ctime>
 #include<string>
 #include<bits/stdc++.h>
@@ -211,8 +212,23 @@ int main()
     e[17].setinfo("h","123","abc","def","Data Science",3);
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
+    Company co1("ABC"),co2("DEF");
+    for(int i=0;i<10;i++)
+    {
+        co1.addEmployee(e[i]);
+    }
+    for(int i=10;i<20;i++)
+    {
+        co2.addEmployee(e[i]);
+    }
+    Employee e1;
+    e1.setinfo("k","123","abc","def","Web Development",11);
+    co1.addEmployee(e1);
+    co1.showStatus();
+    co2.showStatus();
 
-    Customer c1,c2;
+
+    /*Customer c1,c2;
     Project p[100];
     custReceiveInfo(c1);
     if(generateOption(c1,e)==true)
@@ -226,7 +242,7 @@ int main()
     {
         p[Total_project].setInfo(c2,e[M1],e[M2],e[M3],Cost);
         Total_project++;
-    }*/
+    }
 
     p[0].projectDetails();
     //p[1].projectDetails();
@@ -247,7 +263,7 @@ int main()
         i[1]->displayinfo();
     }
     delete i[0];
-    delete i[1];
+    delete i[1];*/
     return 0;
 
 }
