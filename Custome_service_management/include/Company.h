@@ -9,16 +9,16 @@ protected:
     std::string name;
     int totalEmployee;
     int totalCustomer;
-    Customer customers[5000];
-    Employee employees[5000];
+    Customer* customers[500];
+    Employee* employees[500];
     static int total_company;
     int company_id=total_company+1;
 public:
     Company();
     Company(std::string name);
     ~Company();
-    void addCustomer(Customer c);
-    void addEmployee(Employee e);
+    void addCustomer(Customer &c);
+    void addEmployee(Employee &e);
     void showStatus();
     std::string getName()
     {
@@ -29,5 +29,4 @@ public:
         name=val;
     }
 };
-
 #endif // COMPANY_H
