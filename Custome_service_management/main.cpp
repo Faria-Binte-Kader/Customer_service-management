@@ -212,6 +212,7 @@ int main()
     e[17].setinfo("h","123","abc","def","Data Science",3);
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
+
     Company co1("ABC"),co2("DEF");
     for(int i=0;i<10;i++)
     {
@@ -226,32 +227,21 @@ int main()
     co1.addEmployee(e1);
     co1.showStatus();
     co2.showStatus();
-
-
     /*Customer c1,c2;
-    Project p[100];
+    Project* p[100];
     custReceiveInfo(c1);
     if(generateOption(c1,e)==true)
     {
-        p[Total_project].setInfo(c1,e[M1],e[M2],e[M3],Cost);
-        Total_project++;
-
-    }
-    /*custReceiveInfo(c2);
-    if(generateOption(c2,e)==true)
-    {
-        p[Total_project].setInfo(c2,e[M1],e[M2],e[M3],Cost);
+        p[Total_project]=new Project();
+        p[Total_project]->setInfo(c1,e[M1],e[M2],e[M3],Cost);
+        p[Total_project]->projectDetails();
         Total_project++;
     }
-
-    p[0].projectDetails();
-    //p[1].projectDetails();
     Date d(3,2,20);
     Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
     Student s2("somestudent","456","xyz","def","Data Science",10.0,d,1,"B");
     Employee* i[2];
     //Intern i1;
-
     if(s1.isQualified()==true)
     {
         i[0]=intrReceiveInfo(s1,i[0]);
@@ -262,8 +252,9 @@ int main()
         i[1]=intrReceiveInfo(s2,i[1]);
         i[1]->displayinfo();
     }
-    delete i[0];
-    delete i[1];*/
-    return 0;
 
+    delete i[0];
+    delete i[1];
+    */
+    return 0;
 }
