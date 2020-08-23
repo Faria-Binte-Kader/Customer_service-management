@@ -137,6 +137,32 @@ bool generateOption(Customer &c,Employee e[])
         return false;
 }
 
+Employee empReceiveInfo(Employee &e)
+{
+    string nam,phn,addr,em,desc,garbage,w,w1,w2;
+    double b;
+    int t,wk;
+    //WorkType w;
+    getline(cin,garbage);    //dummy getline
+    cout<<"Enter Employee's name: ";
+    getline(cin,nam);
+    cout<<"Enter Employee's contact no.: ";
+    getline(cin,phn);
+    cout<<"Enter Employee's address: ";
+    getline(cin,addr);
+    cout<<"Enter Employee's email: ";
+    cin>>em;
+    cout<<"Enter Designation: ";
+    cin>>w1>>w2;
+    w=w1+" "+w2;
+    //w=static_cast<WorkType>(wk);
+    cout<<"Enter experience time: ";
+    cin>>b;
+    //getline(cin,garbage);
+
+    e.setinfo(nam,phn,addr,em,w,b);
+    return e;
+}
 
 Customer custReceiveInfo(Customer &c)
 {
@@ -144,6 +170,7 @@ Customer custReceiveInfo(Customer &c)
     double b;
     int t,wk;
     WorkType w;
+    getline(cin,garbage);    //dummy getline
     cout<<"Enter your name: ";
     getline(cin,nam);
     cout<<"Enter your contact no.: ";
@@ -191,7 +218,11 @@ Employee* intrReceiveInfo(Student &s,Employee* i)
 int main()
 {
     Total_project=0;
+    int Total_customer=0;
     Employee e[20];
+    Customer c[20];
+    Project p[10];
+    Company co1("ABC");
     e[0].setinfo("a","123","abc","def","Web Development",11);
     e[1].setinfo("b","123","abc","def","Web Development",15);
     e[2].setinfo("c","123","abc","def","Data Science",11);
@@ -213,37 +244,126 @@ int main()
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
 
-    Company co1("ABC"),co2("DEF");
-    for(int i=0;i<10;i++)
+    for(int i=0; i<20; i++)
     {
         co1.addEmployee(e[i]);
     }
-    for(int i=10;i<20;i++)
+    cout<<"WELCOME!\n\n";
+    while(1)
+    {
+
+        cout<<"1. Login\n";
+        cout<<"2. Sign up\n";
+        cout<<"3. Administrator\n";
+        cout<<"4. Exit\n";
+        cout<<"Press 1,2,3 or 4\n";
+        int n;
+        cin>>n;
+        if(n==2)
+        {
+            string pass;
+            Total_customer++;
+            custReceiveInfo(c[Total_customer-1]);
+
+            if(generateOption(c[Total_customer-1],e)==true)
+            {
+                p[Total_project].setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
+                int b=p[Total_project].getProjectId();
+                co1.addCustomer(c[Total_customer-1]);
+                co1.editProjectid(M1,M2,M3,b,Total_customer-1,Cost);
+                Total_project++;
+
+            }
+            co1.updateCustomerlist();
+            co1.updateEmployeelist();
+        }
+
+        else if(n==3)
+        {
+            while(1)
+            {
+                cout<<"1. Add Employee\n";
+                cout<<"2. Remove Employee\n";
+                cout<<"3. Show Employee List\n";
+                cout<<"4. Show Customer List\n";
+                cout<<"5. Show Project List\n";
+                cout<<"6. Show Course and Student List\n";
+                cout<<"7. Show Intern List\n";
+                cout<<"8. Show Project List\n";
+                cout<<"9. Go Back\n\n";
+
+                int n;
+                cin>>n;
+
+                if(n==1)
+                {
+                    Employee e1;
+                    empReceiveInfo(e1);
+                    //e1.setinfo("k","123","abc","def","Web Development",11);
+                    co1.addEmployee(e1);
+                }
+
+                else if(n==3)
+                {
+                    co1.showemployee();
+                }
+
+                else if(n==4)
+                {
+                    co1.showCustomer();
+                }
+
+                else if(n==9)
+                {
+                    break;
+                }
+            }
+
+        }
+
+        else if(n==4)
+        {
+            exit(1);
+        }
+
+    }
+
+    /*for(int i=10;i<20;i++)
     {
         co2.addEmployee(e[i]);
-    }
-    Employee e1;
+    }*/
+    /*Employee e1;
     e1.setinfo("k","123","abc","def","Web Development",11);
     co1.addEmployee(e1);
-    Customer c1,c2;
+    //co1.showStatus();
+    //co2.showStatus();
+
+
+    /*Customer c1,c2;
+    Project p[10];
     custReceiveInfo(c1);
-    co1.addCustomer(c1);
-    co1.addCustomer(c2);
-    co1.showStatus();
-    co2.showStatus();
-    Project* p[100];
     if(generateOption(c1,e)==true)
     {
-        p[Total_project]=new Project();
-        p[Total_project]->setInfo(c1,e[M1],e[M2],e[M3],Cost);
-        co1.updateCompanyInfo(c1,e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
-        co2.updateCompanyInfo(c1,e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
-        p[Total_project]->projectDetails();
+        p[Total_project].setInfo(c1,e[M1],e[M2],e[M3],Cost);
+        int b=p[Total_project].getProjectId();
+        co1.editProjectid(M1,M2,M3,b);
+        Total_project++;
+
+    }*/
+    //
+
+    //co1.showStatus();
+    //co1.showemployee();
+
+    /*custReceiveInfo(c2);
+    if(generateOption(c2,e)==true)
+    {
+        p[Total_project].setInfo(c2,e[M1],e[M2],e[M3],Cost);
         Total_project++;
     }
-    co1.showStatus();
-    co2.showStatus();
-    /*Date d(3,2,20);
+    p[0].projectDetails();
+    //p[1].projectDetails();
+    Date d(3,2,20);
     Student s1("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
     Student s2("somestudent","456","xyz","def","Data Science",10.0,d,1,"B");
     Employee* i[2];
@@ -258,9 +378,8 @@ int main()
         i[1]=intrReceiveInfo(s2,i[1]);
         i[1]->displayinfo();
     }
-
     delete i[0];
-    delete i[1];
-    */
+    delete i[1];*/
     return 0;
+
 }
