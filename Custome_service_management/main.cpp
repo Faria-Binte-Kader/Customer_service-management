@@ -35,7 +35,7 @@ struct Entry
     int ID;
     int expr;
 };
-bool generateOption(Customer &c,Employee e[])
+bool generateOption(Customer &c,Employee e[],int total)
 {
     double b=c.getBudget();
     int t=c.getDuration();
@@ -47,9 +47,9 @@ bool generateOption(Customer &c,Employee e[])
     Entry entry[100];
     int s=0,j=0,en=0,cnt=0;
     double temp,temp2,temp3,pro;
-    for(int i=0; i<20; i++)
+    for(int i=0; i<total; i++)
     {
-        if(e[i].getDesignation()==w&&e[i].getPosition()=="Senior"&&(e[i].getBonus()*t)<=b)
+        if(e[i].getDesignation()==w&&e[i].getPosition()=="Senior"&&(e[i].getBonus()*t)<=b&&e[i].getProjectId()==0)
         {
             senior[s].idx=i;
             senior[s].bonus=e[i].getBonus()*t;
@@ -57,7 +57,7 @@ bool generateOption(Customer &c,Employee e[])
             senior[s].expr=e[i].getExperience();
             s++;
         }
-        if(e[i].getDesignation()==w&&e[i].getPosition()=="Junior"&&(e[i].getBonus()*t)<=b)
+        if(e[i].getDesignation()==w&&e[i].getPosition()=="Junior"&&(e[i].getBonus()*t)<=b&&e[i].getProjectId()==0)
         {
             junior[j].idx=i;
             junior[j].bonus=e[i].getBonus()*t;
@@ -65,7 +65,7 @@ bool generateOption(Customer &c,Employee e[])
             junior[j].expr=e[i].getExperience();
             j++;
         }
-        if(e[i].getDesignation()==w&&e[i].getPosition()=="Entry Level"&&(e[i].getBonus()*t)<=b)
+        if(e[i].getDesignation()==w&&e[i].getPosition()=="Entry Level"&&(e[i].getBonus()*t)<=b&&e[i].getProjectId()==0)
         {
             entry[en].idx=i;
             entry[en].bonus=e[i].getBonus()*t;
@@ -85,7 +85,7 @@ bool generateOption(Customer &c,Employee e[])
                 temp2=temp+junior[k].bonus;
             for(int l=0; l<en; l++)
             {
-                pro=((temp2+entry[l].bonus)*50)/100;
+                pro=(temp2+entry[l].bonus)*50/100;
                 if((temp2+entry[l].bonus+pro)>b)
                     break;
                 else
@@ -108,7 +108,7 @@ bool generateOption(Customer &c,Employee e[])
     }
     if(cnt==0)
     {
-        cout<<"No teams available within budget"<<endl;
+        cout<<"No team available within budget"<<endl;
         return false;
     }
     for(int i=0; i<cnt; i++)
@@ -219,9 +219,10 @@ int main()
 {
     Total_project=0;
     int Total_customer=0;
-    Employee e[20];
+    int et=0;
+    Employee e[100];
     Customer c[20];
-    Project* p[10];
+    Project *p[10];
     Company co1("ABC");
     e[0].setinfo("a","123","abc","def","Web Development",11);
     e[1].setinfo("b","123","abc","def","Web Development",15);
@@ -243,8 +244,8 @@ int main()
     e[17].setinfo("h","123","abc","def","Data Science",3);
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
-
-    for(int i=0; i<20; i++)
+    et+=20;
+    for(int i=0; i<et; i++)
     {
         co1.addEmployee(e[i]);
     }
@@ -265,13 +266,13 @@ int main()
             Total_customer++;
             custReceiveInfo(c[Total_customer-1]);
 
-            if(generateOption(c[Total_customer-1],e)==true)
+            if(generateOption(c[Total_customer-1],e,et)==true)
             {
                 p[Total_project]=new Project();
                 p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
                 int b=p[Total_project]->getProjectId();
                 co1.addCustomer(c[Total_customer-1]);
-                co1.editProjectid(M1,M2,M3,b,Total_customer-1,Cost);
+                co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
                 Total_project++;
 
             }
@@ -298,10 +299,10 @@ int main()
 
                 if(n==1)
                 {
-                    Employee e1;
-                    empReceiveInfo(e1);
+                    empReceiveInfo(e[et]);
                     //e1.setinfo("k","123","abc","def","Web Development",11);
-                    co1.addEmployee(e1);
+                    co1.addEmployee(e[et]);
+                    et++;
                 }
 
                 else if(n==3)
@@ -381,16 +382,3 @@ int main()
     return 0;
 
 }
-/*
-2
-sfgdfg
-342523
-dfhbgdb
-sfvdfv
-10000000
-4
-0
-vbgbg
-32
-1
-*/
