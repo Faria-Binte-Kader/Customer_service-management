@@ -20,6 +20,11 @@ public:
     void addCustomer(Customer &c);
     void addEmployee(Employee &e);
     void showStatus();
+    void showemployee();
+    void showCustomer();
+    void updateEmployeelist();
+    void updateCustomerlist();
+    void editProjectid(int employeeid1,int employeeid2,int employeeid3,int projectid,int customerindex,int cst);
     std::string getName()
     {
         return name;
@@ -28,6 +33,5 @@ public:
     {
         name=val;
     }
-    void updateCompanyInfo(Customer &c1,Employee &e1,Employee &e2,Employee &e3,int pid);
 };
 #endif // COMPANY_H
