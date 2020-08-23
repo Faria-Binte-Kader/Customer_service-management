@@ -85,6 +85,7 @@ void Company::updateEmployeelist()
     {
         std::cout << "Input file opening failed.\n";
         exit(1);
+
     }
     for(int i=0; i<totalEmployee; i++)
     {
@@ -109,10 +110,12 @@ void Company::updateCustomerlist()
     fin.open("customer.txt");
     if(fin.fail())
     {
+
         std::cout << "Input file opening failed.\n";
-        exit(1);
+
     }
-    for(int i=0; i<totalCustomer; i++)
+
+  for(int i=0; i<totalCustomer; i++)
     {
         fin<<"Name: "<<customers[i]->getName()<<std::endl;
         fin<<"Phone number: "<<customers[i]->getPhone_no()<<std::endl;
@@ -136,6 +139,7 @@ void Company::updateCustomerlist()
     fin.close();
 }
 
+
 void Company::showemployee()
 {
     std::ifstream fin;
@@ -157,11 +161,15 @@ void Company::showCustomer()
 {
     std::ifstream fin;
     fin.open("customer.txt");
-    if(fin.fail())
-    {
-        std::cout << "Input file opening failed.\n";
-        exit(1);
-    }
+
+    if ( fin.fail()==true )
+{
+   // Empty File
+        std::cout<<"Can not open file\n\n";
+
+}
+else
+{
     std::string a;
     while(getline(fin, a))
     {
@@ -169,3 +177,6 @@ void Company::showCustomer()
     }
     fin.close();
 }
+
+}
+
