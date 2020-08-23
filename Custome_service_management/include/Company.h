@@ -11,8 +11,6 @@ protected:
     int totalCustomer;
     Customer* customers[500];
     Employee* employees[500];
-    static int total_company;
-    int company_id=total_company+1;
 public:
     Company();
     Company(std::string name);
@@ -24,7 +22,7 @@ public:
     void showCustomer();
     void updateEmployeelist();
     void updateCustomerlist();
-    void editProjectid(int employeeid1,int employeeid2,int employeeid3,int projectid,int customerindex,int cst);
+    void editProjectid(Customer &c1,Employee &e1,Employee &e2,Employee &e3,int pid);
     std::string getName()
     {
         return name;
