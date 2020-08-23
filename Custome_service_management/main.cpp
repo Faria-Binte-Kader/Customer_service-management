@@ -136,12 +136,46 @@ bool generateOption(Customer &c,Employee e[],int total)
     else if(confirm==2)
         return false;
 }
+Student stdReceiveInfo(Student &s)
+{
+    string nam,phn,addr,em,w,w1,w2,garbage;
+    double crsfee;
+    getline(cin,garbage);    //dummy getline
+    cout<<"Enter your name: ";
+    getline(cin,nam);
+    cout<<"Enter your contact no.: ";
+    getline(cin,phn);
+    cout<<"Enter your address: ";
+    getline(cin,addr);
+    cout<<"Enter your email: ";
+    cin>>em;
+    cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+    cin>>w1>>w2;
+    w=w1+" "+w2;
+    if(w=="Web Development")
+        crsfee=1000;
+    else if(w=="Mobile Development")
+        crsfee=900;
+    else if(w=="Data Science")
+        crsfee=1200;
+    else if(w=="Application Development")
+        crsfee=1000;
+    else if(w=="Cloud Computing")
+        crsfee=1100;
+    Date dt2;
+    time_t now=time(0);
+    tm* dt1=localtime(&now);
+    dt2.day=dt1->tm_mday;
+    dt2.month=1+dt1->tm_mon;
+    dt2.year=1900+dt1->tm_year;
+    s.setInfo(nam,phn,addr,em,w,crsfee,dt2,120,"Not completed yet");
+
+}
 
 Employee empReceiveInfo(Employee &e)
 {
     string nam,phn,addr,em,desc,garbage,w,w1,w2;
     double b;
-    int t,wk;
     //WorkType w;
     getline(cin,garbage);    //dummy getline
     cout<<"Enter Employee's name: ";
@@ -208,20 +242,26 @@ Employee* intrReceiveInfo(Student &s,Employee* i)
     addr=s.getAddress();
     em=s.getEmail();
     d=s.getCourse();
-    cout<<"Enter Intership Period: "<<endl;
-    cin>>p;
     i=new Intern();
-    i->setinfo(nam,phn,addr,em,d,p);
+    i->setinfo(nam,phn,addr,em,d,30);
     return i;
 }
 
 int main()
-{
+{   Date d(3,2,20);
     Total_project=0;
     int Total_customer=0;
+    int Total_student=0;
+    int Total_intern=0;
     int et=0;
     Employee e[100];
     Customer c[20];
+    Student s[50];
+    s[0].setInfo("Nisa","123","abc","def","Web Development",10.0,d,1,"A");
+    string pas=s[0].getPassword();
+    cout<<"Login as student using Nisa and this password to check intern\n";
+    cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
+    Total_student++;
     Project *p[10];
     Company co1("ABC");
     e[0].setinfo("a","123","abc","def","Web Development",11);
@@ -245,6 +285,7 @@ int main()
     e[18].setinfo("i","123","abc","def","Data Science",2);
     e[19].setinfo("j","123","abc","def","Web Development",1);
     et+=20;
+    Employee* intern[20];
     for(int i=0; i<et; i++)
     {
         co1.addEmployee(e[i]);
@@ -253,46 +294,155 @@ int main()
     while(1)
     {
 
-        cout<<"1. Login\n";
-        cout<<"2. Sign up\n";
+        cout<<"1. Sign up\n";
+        cout<<"2. Login\n";
         cout<<"3. Administrator\n";
         cout<<"4. Exit\n";
         cout<<"Press 1,2,3 or 4\n";
         int n;
         cin>>n;
-        if(n==2)
+        if(n==1)
         {
-            string pass;
-            Total_customer++;
-            custReceiveInfo(c[Total_customer-1]);
-
-            if(generateOption(c[Total_customer-1],e,et)==true)
+            cout<<"1. User\n";
+            cout<<"2. Student\n";
+            int i;
+            cin>>i;
+            if(i==1)
             {
-                p[Total_project]=new Project();
-                p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
-                int b=p[Total_project]->getProjectId();
-                co1.addCustomer(c[Total_customer-1]);
-                co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
-                Total_project++;
+
+                Total_customer++;
+                custReceiveInfo(c[Total_customer-1]);
+                cout<<"Here's your password\n\n";
+                string pass=c[Total_customer-1].getPassword();
+                cout<<pass<<endl;
+                cout<<"Please login to continue\n\n";
+            }
+
+            else if(i==2)
+            {
+                Total_student++;
+                stdReceiveInfo(s[Total_student-1]);
+                cout<<"Here's your password\n\n";
+                string pass=s[Total_student-1].getPassword();
+                cout<<pass<<endl;
+                cout<<"Please login to continue\n\n";
 
             }
-            co1.updateCustomerlist();
-            co1.updateEmployeelist();
+        }
+
+        else if(n==2)
+        {
+            cout<<"1. User\n";
+            cout<<"2. Student\n";
+            int i;
+            cin>>i;
+            if(i==1)
+            {
+                cout<<"Enter your username: ";
+                string name,pass,pass2;
+                cin>>name;
+                int b;
+                for(int j=0; j<Total_customer ; j++)
+                    if(name==c[j].getName())
+                    {
+                        pass=c[j].getPassword();
+                        b=j;
+                    }
+
+                cout<<"Enter password: ";
+                cin>>pass2;
+                if(pass==pass2)
+                {
+                    if(c[b].GetProjectId()==0)
+                    {
+
+                        cout<<"Choose a group of 3 employees as your preference\n\n";
+                        if(generateOption(c[Total_customer-1],e,et)==true)
+                        {
+                            p[Total_project]=new Project();
+                            p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
+                            int b=p[Total_project]->getProjectId();
+                            co1.addCustomer(c[Total_customer-1]);
+                            co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
+                            Total_project++;
+
+                        }
+                        co1.updateCustomerlist();
+                        co1.updateEmployeelist();
+                    }
+                    else
+                    {
+                        cout<<"Project details:\n\n";
+                        for(int k=0; k<Total_project; k++)
+                        {
+                            if(p[k]->getProjectId()==c[b].GetProjectId())
+                                p[k]->projectDetails();
+                        }
+                    }
+                }
+                else
+                {
+                    cout<<"Incorrect password. Login again\n\n";
+                }
+
+            }
+
+            else if(i==2)
+            {
+                //
+                cout<<"Enter your username: ";
+                string name,pass,pass2;
+                cin>>name;
+                int b;
+                for(int j=0; j<Total_student ; j++)
+                    if(name==s[j].getName())
+                    {
+                        pass=s[j].getPassword();
+                        b=j;
+                    }
+
+                cout<<"Enter password: ";
+                cin>>pass2;
+                if(pass==pass2)
+                {
+                    s[b].displayinfo();
+                     if(s[b].isQualified()==true)
+                    {
+                        cout<<"We are glad to offer you as an intern to help you gain experience"<<endl;
+                        cout<<"Do you want to work the intership?"<<endl;
+                        cout<<"1. Yes 2. No"<<endl;
+                        int a;
+                        cin>>a;
+                        if(a==1)
+                        {
+                            Total_intern++;
+                         intern[Total_intern-1]=intrReceiveInfo(s[b],intern[Total_intern-1]);
+                         cout<<"We will contact you via email with more information. Congratulations!\n\n";
+                         intern[0]->displayinfo();
+                        }
+                        else if(a==2) cout<<"Hope to see you again!\n\n";
+                }
+                }
+                else
+                {
+                    cout<<"Incorrect password. Login again\n\n";
+                }
+
+            }
         }
 
         else if(n==3)
         {
             while(1)
             {
+                cout<<endl;
                 cout<<"1. Add Employee\n";
-                cout<<"2. Remove Employee\n";
-                cout<<"3. Show Employee List\n";
-                cout<<"4. Show Customer List\n";
-                cout<<"5. Show Project List\n";
-                cout<<"6. Show Course and Student List\n";
-                cout<<"7. Show Intern List\n";
-                cout<<"8. Show Project List\n";
-                cout<<"9. Go Back\n\n";
+                cout<<"2. Show Employee List\n";
+                cout<<"3. Show Customer List\n";
+                cout<<"4. Show Project List\n";
+                cout<<"5. Show Course and Student Information\n";
+                cout<<"6. Show Intern List\n";
+                cout<<"7. Go Back\n\n";
 
                 int n;
                 cin>>n;
@@ -305,17 +455,59 @@ int main()
                     et++;
                 }
 
-                else if(n==3)
+                else if(n==2)
                 {
                     co1.showemployee();
                 }
 
-                else if(n==4)
+                else if(n==3)
                 {
+                    if(Total_customer==0) cout<<"No Customers to show"<<endl;
+                    else
                     co1.showCustomer();
                 }
 
-                else if(n==9)
+                else if(n==4)
+                {
+                  for(int i=0; i<Total_project; i++) p[i]->projectDetails();
+                }
+
+                else if(n==5)
+                {
+                    int w=0,a=0,c=0,e=0,m=0, d=0;
+                    for(int i=0; i<Total_student; i++)
+                  {
+                      if(s[i].getCourse()=="Web Development" && s[i].hasCompleted()==false) w++;
+                      else if(s[i].getCourse()=="Mobile Development" && s[i].hasCompleted()==false) m++;
+                      else if(s[i].getCourse()=="Application Development" && s[i].hasCompleted()==false) a++;
+                      else if(s[i].getCourse()=="Cloud Computing" && s[i].hasCompleted()==false) c++;
+                      else if(s[i].getCourse()=="Data Science" && s[i].hasCompleted()==false) d++;
+                      else if(s[i].getCourse()=="Embedded Systems" && s[i].hasCompleted()==false) e++;
+                  }
+                  cout<<endl;
+                  cout<<"Web Development : "<<w<<endl;
+                  cout<<"Mobile Development : "<<m<<endl;
+                  cout<<"Application Development : "<<a<<endl;
+                  cout<<"Cloud Computing : "<<c<<endl;
+                  cout<<"Data Science : "<<d<<endl;
+                  cout<<"Embedded Systems : "<<e<<endl;
+
+                }
+
+                else if(n==6)
+                {
+                    if(Total_intern==0) cout<<"No interns to show\n";
+                    else
+                    {
+                        for(int i=0; i<Total_intern; i++)
+                        {
+                            intern[i]->displayinfo();
+                            cout<<endl;
+                        }
+                    }
+                }
+
+                else if(n==7)
                 {
                     break;
                 }
@@ -325,7 +517,7 @@ int main()
 
         else if(n==4)
         {
-            exit(1);
+            break;
         }
 
     }
@@ -376,9 +568,8 @@ int main()
     {
         i[1]=intrReceiveInfo(s2,i[1]);
         i[1]->displayinfo();
-    }
-    delete i[0];
-    delete i[1];*/
+    }*/
+    for(int i=0; i<Total_intern; i++) delete intern[i];
     return 0;
 
 }
