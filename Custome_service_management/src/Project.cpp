@@ -77,13 +77,17 @@ void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,doubl
     std::cout<<"Customer: "<<std::endl;
     cust.displayinfo();
     std::cout<<"Member 1: "<<std::endl;
-    emp1.displayinfo();
+    std::cout<<emp1.getName()<<std::endl;
+    std::cout<<emp1.getEmail()<<std::endl;
+    std::cout<<emp1.getPhone_no()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Member 2: "<<std::endl;
-    emp2.displayinfo();
+    std::cout<<emp2.getName()<<std::endl;
+    std::cout<<emp2.getEmail()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Member 3: "<<std::endl;
-    emp3.displayinfo();
+    std::cout<<emp3.getName()<<std::endl;
+    std::cout<<emp3.getEmail()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Total Cost: "<<getCost()<<std::endl;
 
@@ -98,6 +102,7 @@ void Project::projectDetails()
     std::cout<<"Member 2 id: "<<emp2.getEmployeeID()<<std::endl;
     std::cout<<"Member 3 id: "<<emp3.getEmployeeID()<<std::endl;
     std::cout<<"Project Time: "<<getProjectTime()<<std::endl;
+    std::cout<<"Project Description: "<<cust.getDescription()<<std::endl;
     std::cout<<"Status: "<<getStatus()<<std::endl;
     std::cout<<"Delivery Date: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
     std::cout<<"Project Cost: "<<getCost()<<std::endl;
