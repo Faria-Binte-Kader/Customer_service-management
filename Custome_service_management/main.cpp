@@ -221,7 +221,7 @@ int main()
     int Total_customer=0;
     Employee e[20];
     Customer c[20];
-    Project p[10];
+    Project* p[10];
     Company co1("ABC");
     e[0].setinfo("a","123","abc","def","Web Development",11);
     e[1].setinfo("b","123","abc","def","Web Development",15);
@@ -267,8 +267,9 @@ int main()
 
             if(generateOption(c[Total_customer-1],e)==true)
             {
-                p[Total_project].setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
-                int b=p[Total_project].getProjectId();
+                p[Total_project]=new Project();
+                p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
+                int b=p[Total_project]->getProjectId();
                 co1.addCustomer(c[Total_customer-1]);
                 co1.editProjectid(M1,M2,M3,b,Total_customer-1,Cost);
                 Total_project++;
@@ -337,8 +338,6 @@ int main()
     co1.addEmployee(e1);
     //co1.showStatus();
     //co2.showStatus();
-
-
     /*Customer c1,c2;
     Project p[10];
     custReceiveInfo(c1);
@@ -348,7 +347,6 @@ int main()
         int b=p[Total_project].getProjectId();
         co1.editProjectid(M1,M2,M3,b);
         Total_project++;
-
     }*/
     //
 
@@ -383,3 +381,16 @@ int main()
     return 0;
 
 }
+/*
+2
+sfgdfg
+342523
+dfhbgdb
+sfvdfv
+10000000
+4
+0
+vbgbg
+32
+1
+*/
