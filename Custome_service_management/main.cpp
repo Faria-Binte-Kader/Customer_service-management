@@ -279,7 +279,7 @@ int main()
     Employee e[100];
     Customer c[20];
     Student s[50];
-    s[0].setInfo("Nisa","123","abc","def","Web Development",10.0,d,90,"A");
+    s[0].setInfo("Nisa","123","abc","def","Web Development",10.0,d,120,"A");
     string pas=s[0].getPassword();
     cout<<"Login as student using Nisa and this password to check intern\n";
     cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
@@ -412,6 +412,7 @@ int main()
                             p[Total_project]=new Project();
                             p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
                             int b=p[Total_project]->getProjectId();
+                            c[Total_customer-1].setCost(Cost);
                             co1.addCustomer(c[Total_customer-1]);
                             co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
                             Total_project++;
@@ -527,8 +528,13 @@ int main()
 
                 else if(n==4)
                 {
-                    for(int i=0; i<Total_project; i++)
+                    if(Total_project==0)
+                        cout<<"No Projects to show"<<endl;
+                    else
+                    {
+                        for(int i=0; i<Total_project; i++)
                         p[i]->projectDetails();
+                    }
                 }
 
                 else if(n==5)
