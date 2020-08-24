@@ -279,7 +279,7 @@ int main()
     Employee e[100];
     Customer c[20];
     Student s[50];
-    s[0].setInfo("Nisa","123","abc","def","Web Development",10.0,d,120,"A");
+    s[0].setInfo("Nisa","123","abc","def","Web Development",10.0,d,90,"A");
     string pas=s[0].getPassword();
     cout<<"Login as student using Nisa and this password to check intern\n";
     cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
