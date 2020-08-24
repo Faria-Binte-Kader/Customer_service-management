@@ -248,7 +248,8 @@ Employee* intrReceiveInfo(Student &s,Employee* i)
 }
 
 int main()
-{   Date d(3,2,20);
+{
+    Date d(3,2,20);
     Total_project=0;
     int Total_customer=0;
     int Total_student=0;
@@ -406,22 +407,29 @@ int main()
                 if(pass==pass2)
                 {
                     s[b].displayinfo();
-                     if(s[b].isQualified()==true)
-                    {
-                        cout<<"We are glad to offer you as an intern to help you gain experience"<<endl;
-                        cout<<"Do you want to work the intership?"<<endl;
-                        cout<<"1. Yes 2. No"<<endl;
-                        int a;
-                        cin>>a;
-                        if(a==1)
+                    if(s[b].isQualified()==true && (Total_intern==0 || intern[Total_intern-1]->getName()!=s[b].getName()))
+                {
+                    cout<<"We are glad to offer you as an intern to help you gain experience"<<endl;
+                    cout<<"Do you want to work the intership?"<<endl;
+                    cout<<"1. Yes 2. No"<<endl;
+                    int a;
+                    cin>>a;
+                    if(a==1)
                         {
                             Total_intern++;
-                         intern[Total_intern-1]=intrReceiveInfo(s[b],intern[Total_intern-1]);
-                         cout<<"We will contact you via email with more information. Congratulations!\n\n";
-                         intern[0]->displayinfo();
+                            intern[Total_intern-1]=intrReceiveInfo(s[b],intern[Total_intern-1]);
+                            cout<<"We will contact you via email with more information. Congratulations!\n\n";
+                            intern[0]->displayinfo();
                         }
-                        else if(a==2) cout<<"Hope to see you again!\n\n";
-                }
+                        else if(a==2)
+                            cout<<"Hope to see you again!\n\n";
+                    }
+                    else if(s[b].isQualified()==true && intern[Total_intern-1]->getName()==s[b].getName())
+                   {
+                    cout<<"You are already an Intern.\n\n";
+                    intern[0]->displayinfo();
+                    }
+
                 }
                 else
                 {
@@ -462,41 +470,50 @@ int main()
 
                 else if(n==3)
                 {
-                    if(Total_customer==0) cout<<"No Customers to show"<<endl;
+                    if(Total_customer==0)
+                        cout<<"No Customers to show"<<endl;
                     else
-                    co1.showCustomer();
+                        co1.showCustomer();
                 }
 
                 else if(n==4)
                 {
-                  for(int i=0; i<Total_project; i++) p[i]->projectDetails();
+                    for(int i=0; i<Total_project; i++)
+                        p[i]->projectDetails();
                 }
 
                 else if(n==5)
                 {
                     int w=0,a=0,c=0,e=0,m=0, d=0;
                     for(int i=0; i<Total_student; i++)
-                  {
-                      if(s[i].getCourse()=="Web Development" && s[i].hasCompleted()==false) w++;
-                      else if(s[i].getCourse()=="Mobile Development" && s[i].hasCompleted()==false) m++;
-                      else if(s[i].getCourse()=="Application Development" && s[i].hasCompleted()==false) a++;
-                      else if(s[i].getCourse()=="Cloud Computing" && s[i].hasCompleted()==false) c++;
-                      else if(s[i].getCourse()=="Data Science" && s[i].hasCompleted()==false) d++;
-                      else if(s[i].getCourse()=="Embedded Systems" && s[i].hasCompleted()==false) e++;
-                  }
-                  cout<<endl;
-                  cout<<"Web Development : "<<w<<endl;
-                  cout<<"Mobile Development : "<<m<<endl;
-                  cout<<"Application Development : "<<a<<endl;
-                  cout<<"Cloud Computing : "<<c<<endl;
-                  cout<<"Data Science : "<<d<<endl;
-                  cout<<"Embedded Systems : "<<e<<endl;
+                    {
+                        if(s[i].getCourse()=="Web Development" && s[i].hasCompleted()==false)
+                            w++;
+                        else if(s[i].getCourse()=="Mobile Development" && s[i].hasCompleted()==false)
+                            m++;
+                        else if(s[i].getCourse()=="Application Development" && s[i].hasCompleted()==false)
+                            a++;
+                        else if(s[i].getCourse()=="Cloud Computing" && s[i].hasCompleted()==false)
+                            c++;
+                        else if(s[i].getCourse()=="Data Science" && s[i].hasCompleted()==false)
+                            d++;
+                        else if(s[i].getCourse()=="Embedded Systems" && s[i].hasCompleted()==false)
+                            e++;
+                    }
+                    cout<<endl;
+                    cout<<"Web Development : "<<w<<endl;
+                    cout<<"Mobile Development : "<<m<<endl;
+                    cout<<"Application Development : "<<a<<endl;
+                    cout<<"Cloud Computing : "<<c<<endl;
+                    cout<<"Data Science : "<<d<<endl;
+                    cout<<"Embedded Systems : "<<e<<endl;
 
                 }
 
                 else if(n==6)
                 {
-                    if(Total_intern==0) cout<<"No interns to show\n";
+                    if(Total_intern==0)
+                        cout<<"No interns to show\n";
                     else
                     {
                         for(int i=0; i<Total_intern; i++)
@@ -569,7 +586,8 @@ int main()
         i[1]=intrReceiveInfo(s2,i[1]);
         i[1]->displayinfo();
     }*/
-    for(int i=0; i<Total_intern; i++) delete intern[i];
+    for(int i=0; i<Total_intern; i++)
+        delete intern[i];
     return 0;
 
 }
