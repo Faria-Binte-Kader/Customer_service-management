@@ -23,7 +23,6 @@ protected:
     std::string address;
     std::string email;
     char *password;
-    void setPassword(char *c);
 public:
     Person();
     Person(std::string nam,std::string phn,std::string addr,std::string em);
@@ -64,6 +63,7 @@ public:
     {
         return password;
     }
+    void setPassword(char *c);
     virtual void generatePassword()=0;
     void displayinfo();
 };
