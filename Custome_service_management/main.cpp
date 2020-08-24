@@ -169,7 +169,7 @@ Student stdReceiveInfo(Student &s)
     dt2.month=1+dt1->tm_mon;
     dt2.year=1900+dt1->tm_year;
     s.setInfo(nam,phn,addr,em,w,crsfee,dt2,120,"Not completed yet");
-
+    return s;
 }
 
 Employee empReceiveInfo(Employee &e)
