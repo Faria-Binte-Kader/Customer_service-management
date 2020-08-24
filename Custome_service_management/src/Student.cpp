@@ -105,7 +105,7 @@ void Student::displayinfo()
     std::cout<<"Duration\t\t: "<<getCourseDuration()<<std::endl;
     std::cout<<"Grade\t\t\t: "<<getGrade()<<std::endl;
     std::cout<<"Password\t\t: "<<getPassword()<<std::endl;
-    std::cout<<"Qualified?\t\t ";
+    std::cout<<"Qualified for Internship?\t\t ";
     if(isQualified()) std::cout<<" Yes"<<std::endl;
     else if(!isQualified()) std::cout<<" No"<<std::endl;
     std::cout<<"\n\n"<<std::endl;
