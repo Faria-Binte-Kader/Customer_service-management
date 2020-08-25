@@ -25,7 +25,8 @@ void Intern::displayinfo()
     std::cout<<"Intern id: "<<getInternid()<<std::endl;
     std::cout<<"Internship period: "<<internship_period<<std::endl;
     std::cout<<"Designation: "<<Employee::getDesignation()<<std::endl;
-    //std::cout<<"Projectid: "<<getProjectid()<<std::endl;
+    if(Employee::getProjectId()>0)
+    std::cout<<"Projectid: "<<Employee::getProjectId()<<std::endl;
 
 }
 

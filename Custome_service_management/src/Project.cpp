@@ -95,6 +95,13 @@ void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,doubl
 
 }
 
+void Project::addIntern(Employee* i)
+{
+    intr=i;
+    //intr->displayinfo();
+    total_intern++;
+}
+
 void Project::projectDetails()
 {
     std::cout<<"----------------------------------------"<<std::endl;
@@ -103,6 +110,8 @@ void Project::projectDetails()
     std::cout<<"Member 1 id: "<<emp1.getEmployeeID()<<std::endl;
     std::cout<<"Member 2 id: "<<emp2.getEmployeeID()<<std::endl;
     std::cout<<"Member 3 id: "<<emp3.getEmployeeID()<<std::endl;
+    if(total_intern>0)
+        std::cout<<"Intern id: "<<intr->getEmployeeID()<<std::endl;
     std::cout<<"Project Time: "<<getProjectTime()<<std::endl;
     std::cout<<"Project Description: "<<cust.getDescription()<<std::endl;
     std::cout<<"Status: "<<getStatus()<<std::endl;
