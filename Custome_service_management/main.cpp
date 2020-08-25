@@ -12,7 +12,6 @@ int M2;
 int M3;
 int Total_project;
 double Cost;
-int abc;
 using namespace std;
 
 struct Senior
@@ -271,7 +270,6 @@ Employee* intrReceiveInfo(Student &s,Employee* i)
 
 int main()
 {
-    cout<<abc<<endl;
     Date d(24,4,2020);
     Total_project=0;
     int Total_customer=0;
@@ -414,11 +412,9 @@ int main()
                             p[Total_project]=new Project();
                             p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
                             int b=p[Total_project]->getProjectId();
-                            c[Total_customer-1].setCost(Cost);
                             co1.addCustomer(c[Total_customer-1]);
                             co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
                             Total_project++;
-
                         }
                         co1.updateCustomerlist();
                         co1.updateEmployeelist();
@@ -530,13 +526,8 @@ int main()
 
                 else if(n==4)
                 {
-                    if(Total_project==0)
-                        cout<<"No Projects to show"<<endl;
-                    else
-                    {
-                        for(int i=0; i<Total_project; i++)
+                    for(int i=0; i<Total_project; i++)
                         p[i]->projectDetails();
-                    }
                 }
 
                 else if(n==5)
@@ -595,10 +586,11 @@ int main()
         }
 
     }
-    //for(int i=0; i<Total_intern; i++)
-        delete[] intern;
-    //for(int i=0; i<Total_project; i++)
-        delete[] p;
+
+    for(int i=0; i<Total_intern; i++)
+        delete intern[i];
+    for(int i=0; i<Total_project; i++)
+        delete p[i];
     return 0;
 
 }
