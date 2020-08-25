@@ -12,7 +12,6 @@ int M2;
 int M3;
 int Total_project;
 double Cost;
-int abc;
 using namespace std;
 
 struct Senior
@@ -271,7 +270,6 @@ Employee* intrReceiveInfo(Student &s,Employee* i)
 
 int main()
 {
-    cout<<abc<<endl;
     Date d(24,4,2020);
     Total_project=0;
     int Total_customer=0;
