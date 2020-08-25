@@ -275,6 +275,7 @@ int main()
     int Total_customer=0;
     int Total_student=0;
     int Total_intern=0;
+    int Free_intern=Total_intern;
     int et=0;
     Employee e[100];
     Customer c[20];
@@ -411,10 +412,18 @@ int main()
                         {
                             p[Total_project]=new Project();
                             p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
+                            p[Total_project]->addIntern(intern[Free_intern-1]);
                             int b=p[Total_project]->getProjectId();
+                            if(Free_intern>0)
+                            {
+                                intern[Free_intern-1]->setProjectId(b);
+                                Free_intern--;
+                            }
+                            c[Total_customer-1].setCost(Cost);
                             co1.addCustomer(c[Total_customer-1]);
                             co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
                             Total_project++;
+
                         }
                         co1.updateCustomerlist();
                         co1.updateEmployeelist();
@@ -465,7 +474,10 @@ int main()
                         if(a==1)
                         {
                             Total_intern++;
+                            Free_intern++;
                             intern[Total_intern-1]=intrReceiveInfo(s[b],intern[Total_intern-1]);
+                            int int_id=intern[Total_intern-1]->getInternid();
+                            intern[Total_intern-1]->setEmployeeID(int_id);
                             cout<<"We will contact you via email with more information. Congratulations!\n\n";
                             intern[0]->displayinfo();
                         }
@@ -526,8 +538,13 @@ int main()
 
                 else if(n==4)
                 {
-                    for(int i=0; i<Total_project; i++)
-                        p[i]->projectDetails();
+                    if(Total_project==0)
+                        cout<<"No Projects to show"<<endl;
+                    else
+                    {
+                        for(int i=0; i<Total_project; i++)
+                            p[i]->projectDetails();
+                    }
                 }
 
                 else if(n==5)
@@ -586,11 +603,35 @@ int main()
         }
 
     }
-
-    for(int i=0; i<Total_intern; i++)
-        delete intern[i];
-    for(int i=0; i<Total_project; i++)
-        delete p[i];
+    //for(int i=0; i<Total_intern; i++)
+    delete[] intern;
+    //for(int i=0; i<Total_project; i++)
+    delete[] p;
     return 0;
 
 }
+
+/*
+2
+2
+Nisa
+Hw<YCpYj&2fU
+1
+1
+1
+Tasmia
+4534545
+fgfvdf
+fvfddv
+10000000
+24
+0
+sdfgefgfdb
+2
+2
+1
+Tasmia
+AAYKQrxyc7_#
+32
+1
+*/
