@@ -44,7 +44,8 @@ public:
     {
         return employee_id;
     }
-    //void setEmployeeID(int a) {employee_id=a;}
+    void setEmployeeID(int a) {employee_id=a;}
+    virtual int getInternid(){};
     //void addCustomer(Customer c);
     //bool removeCustomer(int index);
     double getBonus()
