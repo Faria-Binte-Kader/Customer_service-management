@@ -412,7 +412,7 @@ int main()
                             cout<<"Choose a group of 3 employees as your preference\n\n";
                             p[Total_project]=new Project();
                             p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
-                            p[Total_project]->addIntern(intern[Free_intern-1]);
+                            if(Free_intern>0) p[Total_project]->addIntern(intern[Free_intern-1]);
                             int b=p[Total_project]->getProjectId();
                             if(Free_intern>0)
                             {
