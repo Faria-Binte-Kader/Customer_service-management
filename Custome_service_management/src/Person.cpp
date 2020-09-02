@@ -26,8 +26,8 @@ void Person::setPassword(char *c)
 }
 void Person::displayinfo()
 {
-    std::cout<<"Name: "<<getName()<<std::endl;
-    std::cout<<"Phone number: "<<getPhone_no()<<std::endl;
-    std::cout<<"Address: "<<getAddress()<<std::endl;
-    std::cout<<"Email: "<<getEmail()<<std::endl;
+    std::cout<<"Name\t\t\t: "<<getName()<<std::endl;
+    std::cout<<"Phone number\t\t: "<<getPhone_no()<<std::endl;
+    std::cout<<"Address\t\t\t: "<<getAddress()<<std::endl;
+    std::cout<<"Email\t\t\t: "<<getEmail()<<std::endl;
 }
