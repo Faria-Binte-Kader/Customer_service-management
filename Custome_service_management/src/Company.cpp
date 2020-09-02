@@ -48,7 +48,7 @@ void Company::addEmployee(Employee &e)
 void Company::editProjectid(Customer &c1,Employee &e1,Employee &e2,Employee &e3,int pid)
 {
     int cnt=0;
-    for(int i=0;i<totalEmployee;i++)
+    for(int i=0; i<totalEmployee; i++)
     {
         if(e1.getEmployeeID()==employees[i]->getEmployeeID())
         {
@@ -67,7 +67,7 @@ void Company::editProjectid(Customer &c1,Employee &e1,Employee &e2,Employee &e3,
         }
         if(cnt==3) break;
     }
-    for(int i=0;i<totalCustomer;i++)
+    for(int i=0; i<totalCustomer; i++)
     {
         if(c1.getCustID()==customers[i]->getCustID())
         {
@@ -89,16 +89,16 @@ void Company::updateEmployeelist()
     }
     for(int i=0; i<totalEmployee; i++)
     {
-        fin<<"Name: "<<employees[i]->getName()<<std::endl;
-        fin<<"Phone number: "<<employees[i]->getPhone_no()<<std::endl;
-        fin<<"Address: "<<employees[i]->getAddress()<<std::endl;
-        fin<<"Email: "<<employees[i]->getEmail()<<std::endl;
-        fin <<"ID: "<<employees[i]->getEmployeeID()<<std::endl;
-        fin<<"Designation: "<<employees[i]->getDesignation()<<std::endl;
-        fin<<"Experience: "<<employees[i]->getExperience()<<std::endl;
-        fin<<"Position: "<<employees[i]->getPosition()<<std::endl;
-        fin<<"Salary: "<<employees[i]->getSalary()<<std::endl;
-        fin<<"Project id: "<<employees[i]->getProjectId()<<std::endl;
+        fin<<"Name\t\t\t: "<<employees[i]->getName()<<std::endl;
+        fin<<"Phone number\t\t: "<<employees[i]->getPhone_no()<<std::endl;
+        fin<<"Address\t\t\t: "<<employees[i]->getAddress()<<std::endl;
+        fin<<"Email\t\t\t: "<<employees[i]->getEmail()<<std::endl;
+        fin <<"Employee ID\t\t: "<<employees[i]->getEmployeeID()<<std::endl;
+        fin<<"Designation\t\t: "<<employees[i]->getDesignation()<<std::endl;
+        fin<<"Experience\t\t: "<<employees[i]->getExperience()<<std::endl;
+        fin<<"Position\t\t: "<<employees[i]->getPosition()<<std::endl;
+        fin<<"Salary\t\t\t: "<<employees[i]->getSalary()<<std::endl;
+        fin<<"Project ID\t\t: "<<employees[i]->getProjectId()<<std::endl;
         fin<<std::endl;
     }
     fin.close();
@@ -106,7 +106,7 @@ void Company::updateEmployeelist()
 
 void Company::updateCustomerlist()
 {
-   std::ofstream fin;
+    std::ofstream fin;
     fin.open("customer.txt");
     if(fin.fail())
     {
@@ -115,21 +115,21 @@ void Company::updateCustomerlist()
 
     }
 
-  for(int i=0; i<totalCustomer; i++)
+    for(int i=0; i<totalCustomer; i++)
     {
-        fin<<"Name: "<<customers[i]->getName()<<std::endl;
-        fin<<"Phone number: "<<customers[i]->getPhone_no()<<std::endl;
-        fin<<"Address: "<<customers[i]->getAddress()<<std::endl;
-        fin<<"Email: "<<customers[i]->getEmail()<<std::endl;
-        fin <<"ID: "<<customers[i]->getCustID()<<std::endl;
-        fin<<"Budget: "<<customers[i]->getBudget()<<std::endl;
-        fin<<"Duration: "<<customers[i]->getDuration()<<std::endl;
-        fin<<"Cost: "<<customers[i]->getCost()<<std::endl;
-        fin<<"Description: "<<customers[i]->getDescription()<<std::endl;
-        fin<<"Date Assigned: "<<customers[i]->getDate().day<<"/"<<customers[i]->getDate().month<<"/"<<customers[i]->getDate().year<<std::endl;
-        fin<<"Project Type: "<<customers[i]->getWork()<<std::endl;
-        fin<<"Project ID: "<<customers[i]->GetProjectId()<<std::endl;
-        fin<<"Project Condition: ";
+        fin<<"Name\t\t\t: "<<customers[i]->getName()<<std::endl;
+        fin<<"Phone number\t\t: "<<customers[i]->getPhone_no()<<std::endl;
+        fin<<"Address\t\t\t: "<<customers[i]->getAddress()<<std::endl;
+        fin<<"Email\t\t\t: "<<customers[i]->getEmail()<<std::endl;
+        fin <<"Customer ID\t\t: "<<customers[i]->getCustID()<<std::endl;
+        fin<<"Budget\t\t\t: "<<customers[i]->getBudget()<<std::endl;
+        fin<<"Duration\t\t: "<<customers[i]->getDuration()<<std::endl;
+        fin<<"Cost\t\t\t: "<<customers[i]->getCost()<<std::endl;
+        fin<<"Description\t\t: "<<customers[i]->getDescription()<<std::endl;
+        fin<<"Date Assigned\t\t: "<<customers[i]->getDate().day<<"/"<<customers[i]->getDate().month<<"/"<<customers[i]->getDate().year<<std::endl;
+        fin<<"Project Type\t\t: "<<customers[i]->getWork()<<std::endl;
+        fin<<"Project ID\t\t: "<<customers[i]->GetProjectId()<<std::endl;
+        fin<<"Project Condition\t: ";
         if(customers[i]->isServed())
             fin<<"Served."<<std::endl;
         else
@@ -163,20 +163,19 @@ void Company::showCustomer()
     fin.open("customer.txt");
 
     if ( fin.fail()==true )
-{
-   // Empty File
+    {
+        // Empty File
         std::cout<<"Can not open file\n\n";
 
-}
-else
-{
-    std::string a;
-    while(getline(fin, a))
-    {
-        std::cout << a << "\n";
     }
-    fin.close();
-}
+    else
+    {
+        std::string a;
+        while(getline(fin, a))
+        {
+            std::cout << a << "\n";
+        }
+        fin.close();
+    }
 
 }
-
