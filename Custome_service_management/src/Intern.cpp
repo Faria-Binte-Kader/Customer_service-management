@@ -17,16 +17,16 @@ void Intern::generatePassword()
 
 void Intern::displayinfo()
 {
-    std::cout<<"Name: "<<Student::getName()<<std::endl;
-    std::cout<<"Phone number: "<<Student::getPhone_no()<<std::endl;
-    std::cout<<"Address: "<<Student::getAddress()<<std::endl;
-    std::cout<<"Email: "<<Student::getEmail()<<std::endl;
+    std::cout<<"Name\t\t\t: "<<Student::getName()<<std::endl;
+    std::cout<<"Phone number\t\t: "<<Student::getPhone_no()<<std::endl;
+    std::cout<<"Address\t\t\t: "<<Student::getAddress()<<std::endl;
+    std::cout<<"Email\t\t\t: "<<Student::getEmail()<<std::endl;
     //std::cout<<"Password "<<Employee::password<<std::endl;
-    std::cout<<"Intern id: "<<getInternid()<<std::endl;
-    std::cout<<"Internship period: "<<internship_period<<std::endl;
-    std::cout<<"Designation: "<<Employee::getDesignation()<<std::endl;
+    std::cout<<"Intern ID\t\t: "<<getInternid()<<std::endl;
+    std::cout<<"Internship period\t: "<<internship_period<<std::endl;
+    std::cout<<"Designation\t\t: "<<Employee::getDesignation()<<std::endl;
     if(Employee::getProjectId()>0)
-    std::cout<<"Projectid: "<<Employee::getProjectId()<<std::endl;
+    std::cout<<"Project ID\t\t: "<<Employee::getProjectId()<<std::endl;
 
 }
 
