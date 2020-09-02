@@ -113,11 +113,11 @@ bool generateOption(Customer &c,Employee e[],int total)
     }
     for(int i=0; i<cnt; i++)
     {
-        cout<<"Option: "<<i+1<<endl;
-        cout<<"Member 1: "<<option[i][0]<<" [Experience: "<<ex[i][0]<<" years]"<<endl;
-        cout<<"Member 2: "<<option[i][1]<<" [Experience: "<<ex[i][1]<<" years]"<<endl;
-        cout<<"Member 3: "<<option[i][2]<<" [Experience: "<<ex[i][2]<<" years]"<<endl;
-        cout<<"Cost: "<<cost[i]<<endl;
+        cout<<"Option\t\t: "<<i+1<<endl;
+        cout<<"Member 1\t: "<<option[i][0]<<" [Experience: "<<ex[i][0]<<" years]"<<endl;
+        cout<<"Member 2\t: "<<option[i][1]<<" [Experience: "<<ex[i][1]<<" years]"<<endl;
+        cout<<"Member 3\t: "<<option[i][2]<<" [Experience: "<<ex[i][2]<<" years]"<<endl;
+        cout<<"Cost\t\t: "<<cost[i]<<endl;
         cout<<"----------------------------------------"<<endl;
         cout<<endl;
     }
@@ -566,12 +566,13 @@ int main()
                             e++;
                     }
                     cout<<endl;
-                    cout<<"Web Development : "<<w<<endl;
-                    cout<<"Mobile Development : "<<m<<endl;
-                    cout<<"Application Development : "<<a<<endl;
-                    cout<<"Cloud Computing : "<<c<<endl;
-                    cout<<"Data Science : "<<d<<endl;
-                    cout<<"Embedded Systems : "<<e<<endl;
+                    cout<<"Web Development\t\t: "<<w<<endl;
+                    cout<<"Mobile Development\t: "<<m<<endl;
+                    cout<<"Application Development\t: "<<a<<endl;
+                    cout<<"Cloud Computing\t\t: "<<c<<endl;
+                    cout<<"Data Science\t\t: "<<d<<endl;
+                    cout<<"Embedded Systems\t: "<<e<<endl;
+
 
                 }
 
