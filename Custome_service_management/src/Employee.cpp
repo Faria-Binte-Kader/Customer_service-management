@@ -8,6 +8,7 @@ Employee::Employee():Person(),designation(Designation::Web_Development),experien
     calcBonus();
     setProjectId(0);
     generatePassword();
+    //std::cout<<"Total employee"<<total_employee<<std::endl;
 }
 Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
 {
@@ -19,6 +20,7 @@ Employee::Employee(std::string nam,std::string phn,std::string addr,std::string 
     calcBonus();
     setProjectId(0);
     generatePassword();
+    //std::cout<<"Total employee"<<total_employee<<std::endl;
 }
 Employee::~Employee()
 {
@@ -54,6 +56,8 @@ void Employee::setDesignation(std::string val)
         designation=Designation::Data_Science;
     else if(val=="Application Development")
         designation=Designation::Application_Development;
+    else if(val=="Mobile Development")
+        designation=Designation::Mobile_Development;
     else if(val=="Embedded Systems")
         designation=Designation::Embedded_Systems;
     else if(val=="Cloud Computing")
@@ -87,13 +91,13 @@ void Employee::calcBonus()
 void Employee::displayinfo()
 {
     Person::displayinfo();
-    std::cout<<"ID: "<<getEmployeeID()<<std::endl;
-    std::cout<<"Designation: "<<getDesignation()<<std::endl;
-    std::cout<<"Experience: "<<getExperience()<<std::endl;
-    std::cout<<"Position: "<<getPosition()<<std::endl;
-    std::cout<<"Salary: "<<getSalary()<<std::endl;
-    std::cout<<"Password: "<<getPassword()<<std::endl;
-    std::cout<<"Project id: "<<getProjectId()<<std::endl;
+    std::cout<<"Employee ID\t\t: "<<getEmployeeID()<<std::endl;
+    std::cout<<"Designation\t\t: "<<getDesignation()<<std::endl;
+    std::cout<<"Experience\t\t: "<<getExperience()<<std::endl;
+    std::cout<<"Position\t\t: "<<getPosition()<<std::endl;
+    std::cout<<"Salary\t\t\t: "<<getSalary()<<std::endl;
+    //std::cout<<"Password\t\t: "<<getPassword()<<std::endl;
+    std::cout<<"Project ID\t\t: "<<getProjectId()<<std::endl;
 }
 void Employee::generatePassword()
 {
