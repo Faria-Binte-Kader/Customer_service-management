@@ -96,15 +96,15 @@ void Customer::generatePassword()
 void Customer::displayinfo()
 {
     Person::displayinfo();
-    std::cout<<"ID: "<<getCustID()<<std::endl;
-    std::cout<<"Budget: "<<getBudget()<<std::endl;
-    std::cout<<"Duration: "<<getDuration()<<std::endl;
-    std::cout<<"Cost: "<<getCost()<<std::endl;
-    std::cout<<"Description: "<<getDescription()<<std::endl;
-    std::cout<<"Date Assigned: "<<getDate().day<<"/"<<getDate().month<<"/"<<getDate().year<<std::endl;
-    std::cout<<"Project Type: "<<getWork()<<std::endl;
-    std::cout<<"Project ID: "<<GetProjectId()<<std::endl;
-    std::cout<<"Project Condition: ";
+    std::cout<<"Customer ID\t\t: "<<getCustID()<<std::endl;
+    std::cout<<"Budget\t\t\t: "<<getBudget()<<std::endl;
+    std::cout<<"Duration\t\t: "<<getDuration()<<std::endl;
+    std::cout<<"Cost\t\t\t: "<<getCost()<<std::endl;
+    std::cout<<"Description\t\t: "<<getDescription()<<std::endl;
+    std::cout<<"Date Assigned\t\t: "<<getDate().day<<"/"<<getDate().month<<"/"<<getDate().year<<std::endl;
+    std::cout<<"Project Type\t\t: "<<getWork()<<std::endl;
+    std::cout<<"Project ID\t\t: "<<GetProjectId()<<std::endl;
+    std::cout<<"Project Condition\t: ";
     if(isServed()) std::cout<<"Served."<<std::endl;
     else std::cout<<"Not served yet."<<std::endl;
 }
