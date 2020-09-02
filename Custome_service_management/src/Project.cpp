@@ -77,21 +77,21 @@ void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,doubl
     std::cout<<"Customer: "<<std::endl;
     cust.displayinfo();
     std::cout<<"Member 1: "<<std::endl;
-    std::cout<<"Name: "<<emp1.getName()<<std::endl;
-    std::cout<<"Email: "<<emp1.getEmail()<<std::endl;
-    std::cout<<"Contact no: "<<emp1.getPhone_no()<<std::endl;
+    std::cout<<"Name\t\t\t: "<<emp1.getName()<<std::endl;
+    std::cout<<"Email\t\t\t: "<<emp1.getEmail()<<std::endl;
+    std::cout<<"Contact no\t\t: "<<emp1.getPhone_no()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Member 2: "<<std::endl;
-    std::cout<<"Name: "<<emp2.getName()<<std::endl;
-    std::cout<<"Email: "<<emp2.getEmail()<<std::endl;
-    std::cout<<"Contact no: "<<emp2.getPhone_no()<<std::endl;
+    std::cout<<"Name\t\t\t: "<<emp2.getName()<<std::endl;
+    std::cout<<"Email\t\t\t: "<<emp2.getEmail()<<std::endl;
+    std::cout<<"Contact no\t\t: "<<emp2.getPhone_no()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Member 3: "<<std::endl;
-    std::cout<<"Name: "<<emp3.getName()<<std::endl;
-    std::cout<<"Email: "<<emp3.getEmail()<<std::endl;
-    std::cout<<"Contact no: "<<emp3.getPhone_no()<<std::endl;
+    std::cout<<"Name\t\t\t: "<<emp3.getName()<<std::endl;
+    std::cout<<"Email\t\t\t: "<<emp3.getEmail()<<std::endl;
+    std::cout<<"Contact no\t\t: "<<emp3.getPhone_no()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
-    std::cout<<"Total Cost: "<<getCost()<<std::endl;
+    std::cout<<"Total Cost\t\t: "<<getCost()<<std::endl;
 
 }
 
@@ -105,17 +105,17 @@ void Project::addIntern(Employee* i)
 void Project::projectDetails()
 {
     std::cout<<"----------------------------------------"<<std::endl;
-    std::cout<<"Project id: "<<getProjectId()<<std::endl;
-    std::cout<<"Customer ID: "<<cust.getCustID()<<std::endl;
-    std::cout<<"Member 1 id: "<<emp1.getEmployeeID()<<std::endl;
-    std::cout<<"Member 2 id: "<<emp2.getEmployeeID()<<std::endl;
-    std::cout<<"Member 3 id: "<<emp3.getEmployeeID()<<std::endl;
+    std::cout<<"Project ID\t\t: "<<getProjectId()<<std::endl;
+    std::cout<<"Customer ID\t\t: "<<cust.getCustID()<<std::endl;
+    std::cout<<"Member 1 ID\t\t: "<<emp1.getEmployeeID()<<std::endl;
+    std::cout<<"Member 2 ID\t\t: "<<emp2.getEmployeeID()<<std::endl;
+    std::cout<<"Member 3 ID\t\t: "<<emp3.getEmployeeID()<<std::endl;
     if(total_intern>0)
-        std::cout<<"Intern id: "<<intr->getEmployeeID()<<std::endl;
-    std::cout<<"Project Time: "<<getProjectTime()<<std::endl;
-    std::cout<<"Project Description: "<<cust.getDescription()<<std::endl;
-    std::cout<<"Status: "<<getStatus()<<std::endl;
-    std::cout<<"Delivery Date: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
-    std::cout<<"Project Cost: "<<getCost()<<std::endl;
+        std::cout<<"Intern ID\t\t: "<<intr->getEmployeeID()<<std::endl;
+    std::cout<<"Project Time\t\t: "<<getProjectTime()<<" months"<<std::endl;
+    std::cout<<"Project Description\t: "<<cust.getDescription()<<std::endl;
+    std::cout<<"Status\t\t\t: "<<getStatus()<<std::endl;
+    std::cout<<"Delivery Date\t\t: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
+    std::cout<<"Project Cost\t\t: "<<getCost()<<std::endl;
     //std::cout<<"Customer id: "<<getProjectId()<<std::endl;
 }
