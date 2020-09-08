@@ -285,7 +285,7 @@ int main()
     cout<<"Login as student using Nisa and this password to check intern\n";
     cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
     Total_student++;
-    Project *p[10];
+    Project p[10];
     Company co1("ABC");
     e[0].setinfo("a","123","abc","def","Web Development",11);
     e[1].setinfo("b","123","abc","def","Web Development",15);
@@ -297,17 +297,57 @@ int main()
     e[7].setinfo("h","123","abc","def","Data Science",3);
     e[8].setinfo("i","123","abc","def","Data Science",2);
     e[9].setinfo("j","123","abc","def","Web Development",1);
-    e[10].setinfo("a","123","abc","def","Web Development",11);
-    e[11].setinfo("b","123","abc","def","Web Development",15);
-    e[12].setinfo("c","123","abc","def","Data Science",11);
-    e[13].setinfo("d","123","abc","def","Web Development",9);
-    e[14].setinfo("e","123","abc","def","Data Science",5);
-    e[15].setinfo("f","123","abc","def","Data Science",7);
-    e[16].setinfo("g","123","abc","def","Web Development",4);
-    e[17].setinfo("h","123","abc","def","Data Science",3);
-    e[18].setinfo("i","123","abc","def","Data Science",2);
-    e[19].setinfo("j","123","abc","def","Web Development",1);
-    et+=20;
+    e[10].setinfo("k","123","abc","def","Web Development",11);
+    e[11].setinfo("l","123","abc","def","Web Development",15);
+    e[12].setinfo("m","123","abc","def","Data Science",11);
+    e[13].setinfo("n","123","abc","def","Web Development",9);
+    e[14].setinfo("o","123","abc","def","Data Science",5);
+    e[15].setinfo("p","123","abc","def","Data Science",7);
+    e[16].setinfo("q","123","abc","def","Web Development",4);
+    e[17].setinfo("r","123","abc","def","Data Science",3);
+    e[18].setinfo("s","123","abc","def","Data Science",2);
+    e[19].setinfo("t","123","abc","def","Web Development",1);
+    e[20].setinfo("a","123","abc","def","Mobile Development",11);
+    e[21].setinfo("b","123","abc","def","Mobile Development",15);
+    e[22].setinfo("c","123","abc","def","Embedded Systems",11);
+    e[23].setinfo("d","123","abc","def","Mobile Development",9);
+    e[24].setinfo("e","123","abc","def","Embedded Systems",5);
+    e[25].setinfo("f","123","abc","def","Embedded Systems",7);
+    e[26].setinfo("g","123","abc","def","Mobile Development",4);
+    e[27].setinfo("h","123","abc","def","Embedded Systems",3);
+    e[28].setinfo("i","123","abc","def","Embedded Systems",2);
+    e[29].setinfo("j","123","abc","def","Mobile Development",1);
+    e[30].setinfo("k","123","abc","def","Mobile Development",11);
+    e[31].setinfo("l","123","abc","def","Mobile Development",15);
+    e[32].setinfo("m","123","abc","def","Embedded Systems",11);
+    e[33].setinfo("n","123","abc","def","Mobile Development",9);
+    e[34].setinfo("o","123","abc","def","Embedded Systems",5);
+    e[35].setinfo("p","123","abc","def","Embedded Systems",7);
+    e[36].setinfo("q","123","abc","def","Mobile Development",4);
+    e[37].setinfo("r","123","abc","def","Embedded Systems",3);
+    e[38].setinfo("s","123","abc","def","Embedded Systems",2);
+    e[39].setinfo("t","123","abc","def","Mobile Development",1);
+    e[40].setinfo("a","123","abc","def","Application Development",11);
+    e[41].setinfo("b","123","abc","def","Application Development",15);
+    e[42].setinfo("c","123","abc","def","Cloud Computing",11);
+    e[43].setinfo("d","123","abc","def","Application Development",9);
+    e[44].setinfo("e","123","abc","def","Cloud Computing",5);
+    e[45].setinfo("f","123","abc","def","Cloud Computing",7);
+    e[46].setinfo("g","123","abc","def","Application Development",4);
+    e[47].setinfo("h","123","abc","def","Cloud Computing",3);
+    e[48].setinfo("i","123","abc","def","Cloud Computing",2);
+    e[49].setinfo("j","123","abc","def","Application Development",1);
+    e[50].setinfo("k","123","abc","def","Application Development",11);
+    e[51].setinfo("l","123","abc","def","Application Development",15);
+    e[52].setinfo("m","123","abc","def","Cloud Computing",11);
+    e[53].setinfo("n","123","abc","def","Application Development",9);
+    e[54].setinfo("o","123","abc","def","Cloud Computing",5);
+    e[55].setinfo("p","123","abc","def","Cloud Computing",7);
+    e[56].setinfo("q","123","abc","def","Application Development",4);
+    e[57].setinfo("r","123","abc","def","Cloud Computing",3);
+    e[58].setinfo("s","123","abc","def","Cloud Computing",2);
+    e[59].setinfo("t","123","abc","def","Application Development",1);
+    et+=60;
     Employee* intern[20];
     for(int i=0; i<et; i++)
     {
@@ -410,10 +450,10 @@ int main()
                         if(generateOption(c[Total_customer-1],e,et)==true)
                         {
                             cout<<"Choose a group of 3 employees as your preference\n\n";
-                            p[Total_project]=new Project();
-                            p[Total_project]->setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
-                            if(Free_intern>0) p[Total_project]->addIntern(intern[Free_intern-1]);
-                            int b=p[Total_project]->getProjectId();
+                            //p[Total_project]=new Project();
+                            p[Total_project].setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
+                            if(Free_intern>0) p[Total_project].addIntern(intern[Free_intern-1]);
+                            int b=p[Total_project].getProjectId();
                             if(Free_intern>0)
                             {
                                 intern[Free_intern-1]->setProjectId(b);
@@ -421,7 +461,7 @@ int main()
                             }
                             c[Total_customer-1].setCost(Cost);
                             co1.addCustomer(c[Total_customer-1]);
-                            co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project]->getProjectId());
+                            co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project].getProjectId());
                             Total_project++;
 
                         }
@@ -433,8 +473,8 @@ int main()
                         cout<<"Project details:\n\n";
                         for(int k=0; k<Total_project; k++)
                         {
-                            if(p[k]->getProjectId()==c[b].GetProjectId())
-                                p[k]->projectDetails();
+                            if(p[k].getProjectId()==c[b].GetProjectId())
+                                p[k].projectDetails();
                         }
                     }
                 }
@@ -543,7 +583,7 @@ int main()
                     else
                     {
                         for(int i=0; i<Total_project; i++)
-                            p[i]->projectDetails();
+                            p[i].projectDetails();
                     }
                 }
 
@@ -572,10 +612,7 @@ int main()
                     cout<<"Cloud Computing\t\t: "<<c<<endl;
                     cout<<"Data Science\t\t: "<<d<<endl;
                     cout<<"Embedded Systems\t: "<<e<<endl;
-
-
                 }
-
                 else if(n==6)
                 {
                     if(Total_intern==0)
@@ -589,7 +626,6 @@ int main()
                         }
                     }
                 }
-
                 else if(n==7)
                 {
                     break;
@@ -597,16 +633,13 @@ int main()
             }
 
         }
-
         else if(n==4)
         {
             break;
         }
 
     }
-    //for(int i=0; i<Total_intern; i++)
     delete[] intern;
-    //for(int i=0; i<Total_project; i++)
     delete[] p;
     return 0;
 
@@ -626,7 +659,7 @@ fgfvdf
 fvfddv
 10000000
 24
-0
+4
 sdfgefgfdb
 2
 2
