@@ -10,8 +10,8 @@ class Project
 protected:
     static int total_projects;
     const int projectId=10001+total_projects;
-    Employee emp1,emp2,emp3;
-    Customer cust;
+    Employee* emp[3];
+    Customer* cust;
     Employee* intr;
     int total_intern=0;
     int project_time; //in months
