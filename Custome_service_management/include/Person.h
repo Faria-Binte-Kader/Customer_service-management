@@ -59,11 +59,8 @@ public:
     {
         email=val;
     }
-    char* getPassword()
-    {
-        return password;
-    }
-    void setPassword(char *c);
+    std::string getPassword();
+    void setPassword(std::string c);
     virtual void generatePassword()=0;
     void displayinfo();
 };
