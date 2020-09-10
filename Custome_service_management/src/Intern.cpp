@@ -6,6 +6,7 @@ Intern::Intern():Person(),Student(),Employee(),internship_period(0)
     //ctor
     generatePassword();
     total_interns++;
+
 }
 
 int Intern::total_interns=0;
@@ -42,5 +43,7 @@ void Intern::setinfo(std::string nam,std::string phn,std::string addr,std::strin
 
 Intern::~Intern()
 {
-    //dtor
+    delete[] password;
+}
+
 }
