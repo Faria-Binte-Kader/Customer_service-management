@@ -8,7 +8,6 @@ Employee::Employee():Person(),designation(Designation::Web_Development),experien
     calcBonus();
     setProjectId(0);
     generatePassword();
-    //std::cout<<"Total employee"<<total_employee<<std::endl;
 }
 Employee::Employee(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex):Person(nam,phn,addr,em),designation(Designation::Web_Development),experience(0)
 {
@@ -20,13 +19,15 @@ Employee::Employee(std::string nam,std::string phn,std::string addr,std::string 
     calcBonus();
     setProjectId(0);
     generatePassword();
-    //std::cout<<"Total employee"<<total_employee<<std::endl;
+    std::cout<<"Total employee"<<total_employee<<std::endl;
 }
 Employee::~Employee()
 {
-
+   delete[] password;
 }
+
 int Employee::total_employee=0;
+
 void Employee::setPosition()
 {
     if(experience<5) position="Entry Level";
@@ -96,43 +97,25 @@ void Employee::displayinfo()
     std::cout<<"Experience\t\t: "<<getExperience()<<std::endl;
     std::cout<<"Position\t\t: "<<getPosition()<<std::endl;
     std::cout<<"Salary\t\t\t: "<<getSalary()<<std::endl;
-    //std::cout<<"Password\t\t: "<<getPassword()<<std::endl;
     std::cout<<"Project ID\t\t: "<<getProjectId()<<std::endl;
 }
 void Employee::generatePassword()
 {
-    delete[] password;
-    char lower[]="abcdefghijklmnopqrstuvwxyz";
-    char upper[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char special[]="!@#$%&-_(),:{}";
-    char number[]="0123456789";
-    password=new char[15];
-    int b=0;
+    char special_character[]="!@#$%&*_-:/<>";
+    int sc_length=strlen(special_character);
+    char rand_pass[13];
     for(int i=0; i<5; i++)
-    {
-        password[b]=upper[rand()%26];
-        b++;
-    }
-    for(int i=0; i<4; i++)
-    {
-        password[b]=lower[rand()%26];
-        b++;
-    }
-    password[b]=number[rand()%10];
-    b++;
-    for(int i=0; i<2; i++)
-    {
-        password[b]=special[rand()%18];
-        b++;
-    }
-    std::random_shuffle(password,password+12);
-    password[12]='\0';
+        rand_pass[i]='A'+rand()%26;
+    for(int i=5; i<9; i++)
+        rand_pass[i]='a'+rand()%26;
+    rand_pass[9]='0'+rand()%10;
+    for(int i=10; i<12; i++)
+        rand_pass[i]=special_character[rand()%sc_length];
+    rand_pass[12]='\0';
+    std::random_shuffle(rand_pass,rand_pass+12);
+    strcpy(password,rand_pass);
 }
 
-char* Employee::getPassword()
-{
-    return password;
-}
 void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex)
 {
     Person::setName(nam);
@@ -147,12 +130,7 @@ void Employee::setinfo(std::string nam,std::string phn,std::string addr,std::str
 }
 Employee Employee::operator =(Employee& e1)
 {
-    /*setName(e1.getName());
-    setPhone_no(e1.getPhone_no());
-    setAddress(e1.getAddress());
-    setEmail(e1.getEmail());
-    setDesignation(e1.getDesignation());
-    setExperience(e1.getExperience());*/
+
     employee_id=e1.employee_id;
     name=e1.name;
     phone_no=e1.phone_no;
@@ -165,7 +143,6 @@ Employee Employee::operator =(Employee& e1)
     salary=e1.salary;
     bonus=e1.bonus;
     return *this;
-    /*
-    setEmployeeID(e1.getEmployeeID());
-    setinfo(e1.getName(),e1.getPhone_no(),e1.getAddress(),e1.getEmail(),e1.getDesignation(),e1.getExperience());*/
+
 }
+
