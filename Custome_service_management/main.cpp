@@ -475,7 +475,10 @@ int main()
                             if(generateOption(c[b],e,et)==true)
                             {
                                 cout<<"Chosen a group of 3 employees as your preference\n\n";
-                                p[Total_project].setInfo(*c[b],*e[M1],*e[M2],*e[M3],Cost);
+                                cout<<"Give your project a name. Enter name--"<<endl;
+                                string projectname;
+                                cin>>projectname;
+                                p[Total_project].setInfo(*c[b],*e[M1],*e[M2],*e[M3],Cost,projectname);
                                 if(Free_intern>0)
                                     p[Total_project].addIntern(intern[Free_intern-1]);
                                 int bp=p[Total_project].getProjectId();
@@ -766,4 +769,3 @@ fvfddv
 4
 sdfgefgfdb
 */
-
