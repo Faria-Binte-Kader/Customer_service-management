@@ -14,16 +14,25 @@ Person::Person(std::string nam,std::string phn,std::string addr,std::string em):
     password=new char[1];
     strcpy(password,"");
 }
+
 Person::~Person()
 {
     delete[] password;
 }
-void Person::setPassword(char *c)
+
+std::string Person::getPassword()
+{
+    std::string pas=password;
+    return pas;
+}
+
+void Person::setPassword(std::string c)
 {
     delete[] password;
-    password=new char[strlen(c)+1];
-    strcpy(password,c);
+    password=new char[sizeof(c)+1];
+    strcpy(password,c.c_str());
 }
+
 void Person::displayinfo()
 {
     std::cout<<"Name\t\t\t: "<<getName()<<std::endl;
