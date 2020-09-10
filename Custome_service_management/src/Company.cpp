@@ -1,11 +1,11 @@
 #include"Company.h"
 #include<bits/stdc++.h>
 #include<fstream>
-Company::Company():name(""),totalEmployee(0),totalCustomer(0)
+Company::Company():name(""),totalEmployee(0),totalCustomer(0),totalStaff(0)
 {
 
 }
-Company::Company(std::string nam):name(nam),totalEmployee(0),totalCustomer(0)
+Company::Company(std::string nam):name(nam),totalEmployee(0),totalCustomer(0),totalStaff(0)
 {
     setName(nam);
 }
@@ -22,28 +22,17 @@ void Company::addCustomer(Customer &c)
 
 void Company::addEmployee(Employee &e)
 {
-    employees[totalEmployee]=&e;
+    employees[totalStaff]=&e;
     totalEmployee++;
+    totalStaff++;
     Company::updateEmployeelist();
 }
-/*void Company::showStatus()
-{
-    std::cout<<"Name: "<<name<<std::endl;
-    std::cout<<"ID: "<<company_id<<std::endl;
-    std::cout<<"Total Customer: "<<totalCustomer<<std::endl;
-    std::cout<<"Total Employee: "<<totalEmployee<<std::endl;
-    std::cout<<"------------------------------"<<std::endl;
-    for(int i=0;i<totalEmployee;i++)
-    {
-        employees[i]->displayinfo();
-        std::cout<<std::endl;
-    }
-    /*for(int i=0;i<totalCustomer;i++)
-    {
-        customers[i]->displayinfo();
-        std::cout<<std::endl;
-    }}*/
 
+void Company::addIntern(Employee* i)
+{
+    employees[totalStaff]=i;
+    totalStaff++;
+}
 
 void Company::editProjectid(Customer &c1,Employee &e1,Employee &e2,Employee &e3,int pid)
 {
@@ -76,7 +65,18 @@ void Company::editProjectid(Customer &c1,Employee &e1,Employee &e2,Employee &e3,
         }
     }
 }
+void Company::showIntern()
+{
+   for(int i=0; i<totalStaff; i++)
+    {
+        if(employees[i]->permanent()==false)
+        {
+           employees[i]->displayinfo();
+           std::cout<<std::endl;
+        }
+    }
 
+}
 void Company::updateEmployeelist()
 {
     std::ofstream fin;
@@ -87,8 +87,11 @@ void Company::updateEmployeelist()
         exit(1);
 
     }
-    for(int i=0; i<totalEmployee; i++)
+    for(int i=0; i<totalStaff; i++)
     {
+        if(employees[i]->permanent()==true)
+        {
+
         fin<<"Name\t\t\t: "<<employees[i]->getName()<<std::endl;
         fin<<"Phone number\t\t: "<<employees[i]->getPhone_no()<<std::endl;
         fin<<"Address\t\t\t: "<<employees[i]->getAddress()<<std::endl;
@@ -100,7 +103,7 @@ void Company::updateEmployeelist()
         fin<<"Salary\t\t\t: "<<employees[i]->getSalary()<<std::endl;
         fin<<"Project ID\t\t: "<<employees[i]->getProjectId()<<std::endl;
         fin<<std::endl;
-    }
+    } }
     fin.close();
 }
 
@@ -179,3 +182,4 @@ void Company::showCustomer()
     }
 
 }
+
