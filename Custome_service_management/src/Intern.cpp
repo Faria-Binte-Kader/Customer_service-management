@@ -46,4 +46,3 @@ Intern::~Intern()
     delete[] password;
 }
 
-}
