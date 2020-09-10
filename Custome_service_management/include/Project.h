@@ -13,6 +13,7 @@ protected:
     Employee* emp[3];
     Customer* cust;
     Employee* intr;
+    std::string name;
     int total_intern=0;
     int project_time; //in months
     std::string description;
@@ -32,6 +33,8 @@ public:
         return project_time;
     }
     void setStatus();
+    std::string setProjectName(std::string nam) { name=nam;}
+    std::string getProjectName() {return name;}
     std::string getStatus()
     {
         return status;
@@ -49,9 +52,10 @@ public:
     {
         return cost;
     }
-    void setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,double cst);
+    void setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,double cst, std::string nam);
     void addIntern(Employee* i);
     void projectDetails();
 };
 
 #endif // PROJECT_H
+
