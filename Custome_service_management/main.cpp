@@ -35,11 +35,11 @@ struct Entry
     int ID;
     int expr;
 };
-bool generateOption(Customer &c,Employee e[],int total)
+bool generateOption(Customer* &c,Employee* e[],int total)
 {
-    double b=c.getBudget();
-    int t=c.getDuration();
-    string w=c.getWork();
+    double b=c->getBudget();
+    int t=c->getDuration();
+    string w=c->getWork();
     int index[100][3],option[100][3],ex[100][3],op;
     double cost[100];
     Senior senior[100];
@@ -49,28 +49,28 @@ bool generateOption(Customer &c,Employee e[],int total)
     double temp,temp2,temp3,pro;
     for(int i=0; i<total; i++)
     {
-        if(e[i].getDesignation()==w&&e[i].getPosition()=="Senior"&&(e[i].getBonus()*t)<=b&&e[i].getProjectId()==0)
+        if(e[i]->getDesignation()==w&&e[i]->getPosition()=="Senior"&&(e[i]->getBonus()*t)<=b&&e[i]->getProjectId()==0)
         {
             senior[s].idx=i;
-            senior[s].bonus=e[i].getBonus()*t;
-            senior[s].ID=e[i].getEmployeeID();
-            senior[s].expr=e[i].getExperience();
+            senior[s].bonus=e[i]->getBonus()*t;
+            senior[s].ID=e[i]->getEmployeeID();
+            senior[s].expr=e[i]->getExperience();
             s++;
         }
-        if(e[i].getDesignation()==w&&e[i].getPosition()=="Junior"&&(e[i].getBonus()*t)<=b&&e[i].getProjectId()==0)
+        if(e[i]->getDesignation()==w&&e[i]->getPosition()=="Junior"&&(e[i]->getBonus()*t)<=b&&e[i]->getProjectId()==0)
         {
             junior[j].idx=i;
-            junior[j].bonus=e[i].getBonus()*t;
-            junior[j].ID=e[i].getEmployeeID();
-            junior[j].expr=e[i].getExperience();
+            junior[j].bonus=e[i]->getBonus()*t;
+            junior[j].ID=e[i]->getEmployeeID();
+            junior[j].expr=e[i]->getExperience();
             j++;
         }
-        if(e[i].getDesignation()==w&&e[i].getPosition()=="Entry Level"&&(e[i].getBonus()*t)<=b&&e[i].getProjectId()==0)
+        if(e[i]->getDesignation()==w&&e[i]->getPosition()=="Entry Level"&&(e[i]->getBonus()*t)<=b&&e[i]->getProjectId()==0)
         {
             entry[en].idx=i;
-            entry[en].bonus=e[i].getBonus()*t;
-            entry[en].ID=e[i].getEmployeeID();
-            entry[en].expr=e[i].getExperience();
+            entry[en].bonus=e[i]->getBonus()*t;
+            entry[en].ID=e[i]->getEmployeeID();
+            entry[en].expr=e[i]->getExperience();
             en++;
         }
     }
@@ -136,7 +136,7 @@ bool generateOption(Customer &c,Employee e[],int total)
     else if(confirm==2)
         return false;
 }
-Student stdReceiveInfo(Student &s)
+Student* stdReceiveInfo(Student* s)
 {
     string nam,phn,addr,em,w,w1,w2,garbage;
     double crsfee;
@@ -189,11 +189,12 @@ Student stdReceiveInfo(Student &s)
     dt2.day=dt1->tm_mday;
     dt2.month=1+dt1->tm_mon;
     dt2.year=1900+dt1->tm_year;
-    s.setInfo(nam,phn,addr,em,w,crsfee,dt2,drtn,"Not completed yet");
+    s=new Student();
+    s->setInfo(nam,phn,addr,em,w,crsfee,dt2,drtn,"Not completed yet");
     return s;
 }
 
-Employee empReceiveInfo(Employee &e)
+Employee* empReceiveInfo(Employee* e)
 {
     string nam,phn,addr,em,desc,garbage,w,w1,w2;
     double b;
@@ -214,12 +215,12 @@ Employee empReceiveInfo(Employee &e)
     cout<<"Enter experience time: ";
     cin>>b;
     //getline(cin,garbage);
-
-    e.setinfo(nam,phn,addr,em,w,b);
+    e=new Employee();
+    e->setinfo(nam,phn,addr,em,w,b);
     return e;
 }
 
-Customer custReceiveInfo(Customer &c)
+Customer* custReceiveInfo(Customer* c)
 {
     string nam,phn,addr,em,desc,garbage;
     double b;
@@ -250,14 +251,14 @@ Customer custReceiveInfo(Customer &c)
     dt2.day=dt1->tm_mday;
     dt2.month=1+dt1->tm_mon;
     dt2.year=1900+dt1->tm_year;
-    c.setinfo(nam,phn,addr,em,b,t,desc,dt2,w);
+    c=new Customer();
+    c->setinfo(nam,phn,addr,em,b,t,desc,dt2,w);
     return c;
 }
 
 Employee* intrReceiveInfo(Student &s,Employee* i)
 {
     string nam,phn,addr,em,d;
-    int p;
     nam=s.getName();
     phn=s.getPhone_no();
     addr=s.getAddress();
@@ -277,81 +278,87 @@ int main()
     int Total_intern=0;
     int Free_intern=Total_intern;
     int et=0;
-    Employee e[100];
-    Customer c[20];
-    Student s[50];
-    s[0].setInfo("Nisa","123","abc","def","Web Development",10.0,d,90,"A");
-    string pas=s[0].getPassword();
+    Employee* e[100];
+    Customer* c[20];
+    Student* s[50];
+    s[0]=new Student();
+    s[0]->setInfo("Nisa","123","abc","def","Web Development",10.0,d,90,"A");
+    string pas=s[0]->getPassword();
     cout<<"Login as student using Nisa and this password to check intern\n";
     cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
     Total_student++;
     Project p[10];
     Company co1("ABC");
-    e[0].setinfo("a","123","abc","def","Web Development",11);
-    e[1].setinfo("b","123","abc","def","Web Development",15);
-    e[2].setinfo("c","123","abc","def","Data Science",11);
-    e[3].setinfo("d","123","abc","def","Web Development",9);
-    e[4].setinfo("e","123","abc","def","Data Science",5);
-    e[5].setinfo("f","123","abc","def","Data Science",7);
-    e[6].setinfo("g","123","abc","def","Web Development",4);
-    e[7].setinfo("h","123","abc","def","Data Science",3);
-    e[8].setinfo("i","123","abc","def","Data Science",2);
-    e[9].setinfo("j","123","abc","def","Web Development",1);
-    e[10].setinfo("k","123","abc","def","Web Development",11);
-    e[11].setinfo("l","123","abc","def","Web Development",15);
-    e[12].setinfo("m","123","abc","def","Data Science",11);
-    e[13].setinfo("n","123","abc","def","Web Development",9);
-    e[14].setinfo("o","123","abc","def","Data Science",5);
-    e[15].setinfo("p","123","abc","def","Data Science",7);
-    e[16].setinfo("q","123","abc","def","Web Development",4);
-    e[17].setinfo("r","123","abc","def","Data Science",3);
-    e[18].setinfo("s","123","abc","def","Data Science",2);
-    e[19].setinfo("t","123","abc","def","Web Development",1);
-    e[20].setinfo("a","123","abc","def","Mobile Development",11);
-    e[21].setinfo("b","123","abc","def","Mobile Development",15);
-    e[22].setinfo("c","123","abc","def","Embedded Systems",11);
-    e[23].setinfo("d","123","abc","def","Mobile Development",9);
-    e[24].setinfo("e","123","abc","def","Embedded Systems",5);
-    e[25].setinfo("f","123","abc","def","Embedded Systems",7);
-    e[26].setinfo("g","123","abc","def","Mobile Development",4);
-    e[27].setinfo("h","123","abc","def","Embedded Systems",3);
-    e[28].setinfo("i","123","abc","def","Embedded Systems",2);
-    e[29].setinfo("j","123","abc","def","Mobile Development",1);
-    e[30].setinfo("k","123","abc","def","Mobile Development",11);
-    e[31].setinfo("l","123","abc","def","Mobile Development",15);
-    e[32].setinfo("m","123","abc","def","Embedded Systems",11);
-    e[33].setinfo("n","123","abc","def","Mobile Development",9);
-    e[34].setinfo("o","123","abc","def","Embedded Systems",5);
-    e[35].setinfo("p","123","abc","def","Embedded Systems",7);
-    e[36].setinfo("q","123","abc","def","Mobile Development",4);
-    e[37].setinfo("r","123","abc","def","Embedded Systems",3);
-    e[38].setinfo("s","123","abc","def","Embedded Systems",2);
-    e[39].setinfo("t","123","abc","def","Mobile Development",1);
-    e[40].setinfo("a","123","abc","def","Application Development",11);
-    e[41].setinfo("b","123","abc","def","Application Development",15);
-    e[42].setinfo("c","123","abc","def","Cloud Computing",11);
-    e[43].setinfo("d","123","abc","def","Application Development",9);
-    e[44].setinfo("e","123","abc","def","Cloud Computing",5);
-    e[45].setinfo("f","123","abc","def","Cloud Computing",7);
-    e[46].setinfo("g","123","abc","def","Application Development",4);
-    e[47].setinfo("h","123","abc","def","Cloud Computing",3);
-    e[48].setinfo("i","123","abc","def","Cloud Computing",2);
-    e[49].setinfo("j","123","abc","def","Application Development",1);
-    e[50].setinfo("k","123","abc","def","Application Development",11);
-    e[51].setinfo("l","123","abc","def","Application Development",15);
-    e[52].setinfo("m","123","abc","def","Cloud Computing",11);
-    e[53].setinfo("n","123","abc","def","Application Development",9);
-    e[54].setinfo("o","123","abc","def","Cloud Computing",5);
-    e[55].setinfo("p","123","abc","def","Cloud Computing",7);
-    e[56].setinfo("q","123","abc","def","Application Development",4);
-    e[57].setinfo("r","123","abc","def","Cloud Computing",3);
-    e[58].setinfo("s","123","abc","def","Cloud Computing",2);
-    e[59].setinfo("t","123","abc","def","Application Development",1);
+    for(int i=0; i<60; i++)
+    {
+        e[i]=new Employee();
+    }
+    e[0]->setinfo("a","123","abc","def","Web Development",11);
+    cout<<e[0]->getPassword()<<" use this password to check employee login for name 'a'"<<endl;
+    e[1]->setinfo("b","123","abc","def","Web Development",15);
+    e[2]->setinfo("c","123","abc","def","Data Science",11);
+    e[3]->setinfo("d","123","abc","def","Web Development",9);
+    e[4]->setinfo("e","123","abc","def","Data Science",5);
+    e[5]->setinfo("f","123","abc","def","Data Science",7);
+    e[6]->setinfo("g","123","abc","def","Web Development",4);
+    e[7]->setinfo("h","123","abc","def","Data Science",3);
+    e[8]->setinfo("i","123","abc","def","Data Science",2);
+    e[9]->setinfo("j","123","abc","def","Web Development",1);
+    e[10]->setinfo("k","123","abc","def","Web Development",11);
+    e[11]->setinfo("l","123","abc","def","Web Development",15);
+    e[12]->setinfo("m","123","abc","def","Data Science",11);
+    e[13]->setinfo("n","123","abc","def","Web Development",9);
+    e[14]->setinfo("o","123","abc","def","Data Science",5);
+    e[15]->setinfo("p","123","abc","def","Data Science",7);
+    e[16]->setinfo("q","123","abc","def","Web Development",4);
+    e[17]->setinfo("r","123","abc","def","Data Science",3);
+    e[18]->setinfo("s","123","abc","def","Data Science",2);
+    e[19]->setinfo("t","123","abc","def","Web Development",1);
+    e[20]->setinfo("a1","123","abc","def","Mobile Development",11);
+    e[21]->setinfo("b1","123","abc","def","Mobile Development",15);
+    e[22]->setinfo("c1","123","abc","def","Embedded Systems",11);
+    e[23]->setinfo("d1","123","abc","def","Mobile Development",9);
+    e[24]->setinfo("e1","123","abc","def","Embedded Systems",5);
+    e[25]->setinfo("f1","123","abc","def","Embedded Systems",7);
+    e[26]->setinfo("g1","123","abc","def","Mobile Development",4);
+    e[27]->setinfo("h1","123","abc","def","Embedded Systems",3);
+    e[28]->setinfo("i1","123","abc","def","Embedded Systems",2);
+    e[29]->setinfo("j1","123","abc","def","Mobile Development",1);
+    e[30]->setinfo("k1","123","abc","def","Mobile Development",11);
+    e[31]->setinfo("l1","123","abc","def","Mobile Development",15);
+    e[32]->setinfo("m1","123","abc","def","Embedded Systems",11);
+    e[33]->setinfo("n1","123","abc","def","Mobile Development",9);
+    e[34]->setinfo("o1","123","abc","def","Embedded Systems",5);
+    e[35]->setinfo("p1","123","abc","def","Embedded Systems",7);
+    e[36]->setinfo("q1","123","abc","def","Mobile Development",4);
+    e[37]->setinfo("r1","123","abc","def","Embedded Systems",3);
+    e[38]->setinfo("s1","123","abc","def","Embedded Systems",2);
+    e[39]->setinfo("t1","123","abc","def","Mobile Development",1);
+    e[40]->setinfo("a2","123","abc","def","Application Development",11);
+    e[41]->setinfo("b2","123","abc","def","Application Development",15);
+    e[42]->setinfo("c2","123","abc","def","Cloud Computing",11);
+    e[43]->setinfo("d2","123","abc","def","Application Development",9);
+    e[44]->setinfo("e2","123","abc","def","Cloud Computing",5);
+    e[45]->setinfo("f2","123","abc","def","Cloud Computing",7);
+    e[46]->setinfo("g2","123","abc","def","Application Development",4);
+    e[47]->setinfo("h2","123","abc","def","Cloud Computing",3);
+    e[48]->setinfo("i2","123","abc","def","Cloud Computing",2);
+    e[49]->setinfo("j2","123","abc","def","Application Development",1);
+    e[50]->setinfo("k2","123","abc","def","Application Development",11);
+    e[51]->setinfo("l2","123","abc","def","Application Development",15);
+    e[52]->setinfo("m2","123","abc","def","Cloud Computing",11);
+    e[53]->setinfo("n2","123","abc","def","Application Development",9);
+    e[54]->setinfo("o2","123","abc","def","Cloud Computing",5);
+    e[55]->setinfo("p2","123","abc","def","Cloud Computing",7);
+    e[56]->setinfo("q2","123","abc","def","Application Development",4);
+    e[57]->setinfo("r2","123","abc","def","Cloud Computing",3);
+    e[58]->setinfo("s2","123","abc","def","Cloud Computing",2);
+    e[59]->setinfo("t2","123","abc","def","Application Development",1);
     et+=60;
     Employee* intern[20];
     for(int i=0; i<et; i++)
     {
-        co1.addEmployee(e[i]);
+        co1.addEmployee(*e[i]);
     }
     cout<<"WELCOME!\n\n";
     while(1)
@@ -368,63 +375,73 @@ int main()
         {
             cout<<"1. User\n";
             cout<<"2. Student\n";
+
             int i;
             cin>>i;
             if(i==1)
             {
 
                 Total_customer++;
-                custReceiveInfo(c[Total_customer-1]);
+                c[Total_customer-1]=custReceiveInfo(c[Total_customer-1]);
                 cout<<"Here's your password\n\n";
-                char* pass=c[Total_customer-1].getPassword();
+                string pass;
+                pass=c[Total_customer-1]->getPassword();
                 cout<<pass<<endl;
+                cout<<endl;
+                string pass1;
                 cout<<"Would you like to change your password?\n1.Yes\n2.No\n";
                 int paschoic;
                 cin>>paschoic;
                 if(paschoic==1)
                 {
                     cout<<"Please create a password (12 characters maximum)"<<endl;
-                    cin>>pass;
-                    c[Total_customer-1].setPassword(pass);
-                    cout<<"You've chosen to use "<<c[Total_customer-1].getPassword()<<" as your password."<<endl;
+                    cin>>pass1;
+                    c[Total_customer-1]->setPassword(pass1);
+                    cout<<"You've chosen to use "<<c[Total_customer-1]->getPassword()<<" as your password."<<endl;
                 }
                 else if(paschoic==2)
                 {
-                    cout<<"You've chosen to use "<<c[Total_customer-1].getPassword()<<" as your password."<<endl;
+                    cout<<"You've chosen to use "<<c[Total_customer-1]->getPassword()<<" as your password."<<endl;
                 }
+
                 cout<<"Please login to continue\n\n";
             }
 
             else if(i==2)
             {
                 Total_student++;
-                stdReceiveInfo(s[Total_student-1]);
-                cout<<"Here's your password\n\n";
-                char* pass=s[Total_student-1].getPassword();
+                s[Total_student-1]=stdReceiveInfo(s[Total_student-1]);
+                cout<<"Here's your password\n";
+                string pass;
+                pass=s[Total_student-1]->getPassword();
                 cout<<pass<<endl;
+                cout<<endl;
+                string pass1;
                 cout<<"Would you like to change your password?\n1.Yes\n2.No\n";
                 int paschoic;
                 cin>>paschoic;
                 if(paschoic==1)
                 {
                     cout<<"Please create a password (12 characters maximum)"<<endl;
-                    cin>>pass;
-                    s[Total_student-1].setPassword(pass);
-                    cout<<"You've chosen to use "<<s[Total_student-1].getPassword()<<" as your password."<<endl;
+                    cin>>pass1;
+                    s[Total_student-1]->setPassword(pass1);
+                    cout<<"You've chosen to use "<<s[Total_student-1]->getPassword()<<" as your password."<<endl;
                 }
                 else if(paschoic==2)
                 {
-                    cout<<"You've chosen to use "<<s[Total_student-1].getPassword()<<" as your password."<<endl;
+                    cout<<"You've chosen to use "<<s[Total_student-1]->getPassword()<<" as your password."<<endl;
                 }
                 cout<<"Please login to continue\n\n";
 
             }
+
         }
 
         else if(n==2)
         {
             cout<<"1. User\n";
             cout<<"2. Student\n";
+            cout<<"3. Employee\n";
             int i;
             cin>>i;
             if(i==1)
@@ -432,57 +449,65 @@ int main()
                 cout<<"Enter your username: ";
                 string name,pass,pass2;
                 cin>>name;
-                int b;
+                int b=-1;
                 for(int j=0; j<Total_customer ; j++)
-                    if(name==c[j].getName())
-                    {
-                        pass=c[j].getPassword();
-                        b=j;
-                    }
-
-                cout<<"Enter password: ";
-                cin>>pass2;
-                if(pass==pass2)
                 {
-                    if(c[b].GetProjectId()==0)
+
+                    if(name==c[j]->getName())
                     {
-
-                        if(generateOption(c[Total_customer-1],e,et)==true)
+                        pass=c[j]->getPassword();
+                        b=j;
+                        break;
+                    }
+                }
+                if(b==-1)
+                    cout<<"Not a valid username"<<endl;
+                else
+                {
+                    cout<<"Enter password: ";
+                    cin>>pass2;
+                    cout<<"real password: "<<pass<<endl;
+                    if(pass==pass2)
+                    {
+                        if(c[b]->GetProjectId()==0)
                         {
-                            cout<<"Choose a group of 3 employees as your preference\n\n";
-                            //p[Total_project]=new Project();
-                            p[Total_project].setInfo(c[Total_customer-1],e[M1],e[M2],e[M3],Cost);
-                            if(Free_intern>0) p[Total_project].addIntern(intern[Free_intern-1]);
-                            int b=p[Total_project].getProjectId();
-                            if(Free_intern>0)
-                            {
-                                intern[Free_intern-1]->setProjectId(b);
-                                Free_intern--;
-                            }
-                            c[Total_customer-1].setCost(Cost);
-                            co1.addCustomer(c[Total_customer-1]);
-                            co1.editProjectid(c[Total_customer-1],e[M1],e[M2],e[M3],p[Total_project].getProjectId());
-                            Total_project++;
 
+                            if(generateOption(c[b],e,et)==true)
+                            {
+                                cout<<"Chosen a group of 3 employees as your preference\n\n";
+                                p[Total_project].setInfo(*c[b],*e[M1],*e[M2],*e[M3],Cost);
+                                if(Free_intern>0)
+                                    p[Total_project].addIntern(intern[Free_intern-1]);
+                                int bp=p[Total_project].getProjectId();
+                                if(Free_intern>0)
+                                {
+                                    intern[Free_intern-1]->setProjectId(bp);
+                                    Free_intern--;
+                                }
+                                c[b]->setCost(Cost);
+                                co1.addCustomer(*c[b]);
+                                co1.editProjectid(*c[b],*e[M1],*e[M2],*e[M3],p[Total_project].getProjectId());
+                                Total_project++;
+
+                            }
+                            co1.updateCustomerlist();
+                            co1.updateEmployeelist();
                         }
-                        co1.updateCustomerlist();
-                        co1.updateEmployeelist();
+                        else
+                        {
+                            cout<<"Project details:\n\n";
+                            for(int k=0; k<Total_project; k++)
+                            {
+                                if(p[k].getProjectId()==c[b]->GetProjectId())
+                                    p[k].projectDetails();
+                            }
+                        }
                     }
                     else
                     {
-                        cout<<"Project details:\n\n";
-                        for(int k=0; k<Total_project; k++)
-                        {
-                            if(p[k].getProjectId()==c[b].GetProjectId())
-                                p[k].projectDetails();
-                        }
+                        cout<<"Incorrect password. Login again\n\n";
                     }
                 }
-                else
-                {
-                    cout<<"Incorrect password. Login again\n\n";
-                }
-
             }
 
             else if(i==2)
@@ -491,53 +516,96 @@ int main()
                 cout<<"Enter your username: ";
                 string name,pass,pass2;
                 cin>>name;
-                int b;
+                int b=-1;
                 for(int j=0; j<Total_student ; j++)
-                    if(name==s[j].getName())
+                {
+                    if(name==s[j]->getName())
                     {
-                        pass=s[j].getPassword();
+                        pass=s[j]->getPassword();
                         b=j;
                     }
-
-                cout<<"Enter password: ";
-                cin>>pass2;
-                if(pass==pass2)
-                {
-                    s[b].displayinfo();
-                    if(s[b].isQualified()==true && (Total_intern==0 || intern[Total_intern-1]->getName()!=s[b].getName()))
-                    {
-                        cout<<"We are glad to offer you as an intern to help you gain experience"<<endl;
-                        cout<<"Do you want to work the internship?"<<endl;
-                        cout<<"1. Yes 2. No"<<endl;
-                        int a;
-                        cin>>a;
-                        if(a==1)
-                        {
-                            Total_intern++;
-                            Free_intern++;
-                            intern[Total_intern-1]=intrReceiveInfo(s[b],intern[Total_intern-1]);
-                            int int_id=intern[Total_intern-1]->getInternid();
-                            intern[Total_intern-1]->setEmployeeID(int_id);
-                            cout<<"We will contact you via email with more information. Congratulations!\n\n";
-                            intern[0]->displayinfo();
-                        }
-                        else if(a==2)
-                            cout<<"Hope to see you again!\n\n";
-                    }
-                    else if(s[b].isQualified()==true && intern[Total_intern-1]->getName()==s[b].getName())
-                    {
-                        cout<<"You are already an Intern.\n\n";
-                        intern[0]->displayinfo();
-                    }
-
                 }
+                if(b==-1)
+                    cout<<"Not a valid username"<<endl;
                 else
                 {
-                    cout<<"Incorrect password. Login again\n\n";
-                }
+                    cout<<"Enter password: ";
+                    cin>>pass2;
+                    if(pass==pass2)
+                    {
+                        s[b]->displayinfo();
+                        if(s[b]->isQualified()==true && (Total_intern==0 || intern[Total_intern-1]->getName()!=s[b]->getName()))
+                        {
+                            cout<<"We are glad to offer you as an intern to help you gain experience"<<endl;
+                            cout<<"Do you want to take the internship?"<<endl;
+                            cout<<endl;
+                            cout<<"1. Yes 2. No"<<endl;
+                            int a;
+                            cin>>a;
+                            if(a==1)
+                            {
+                                Total_intern++;
+                                Free_intern++;
+                                intern[Total_intern-1]=intrReceiveInfo(*s[b],intern[Total_intern-1]);
+                                int int_id=intern[Total_intern-1]->getInternid();
+                                intern[Total_intern-1]->setEmployeeID(int_id);
+                                cout<<"We will contact you via email with more information. Congratulations!\n\n";
+                                intern[Total_intern-1]->displayinfo();
+                                co1.addIntern(intern[Total_intern-1]);
+                            }
+                            else if(a==2)
+                                cout<<"Hope to see you again!\n\n";
+                        }
+                        else if(s[b]->isQualified()==true && intern[Total_intern-1]->getName()==s[b]->getName())
+                        {
+                            cout<<"You are already an Intern.\n\n";
+                            intern[Total_intern-1]->displayinfo();
+                        }
 
+                    }
+                    else
+                    {
+                        cout<<"Incorrect password. Login again\n\n";
+                    }
+
+                }
             }
+
+            else if(i==3)
+            {
+                cout<<"Enter your username: ";
+                string name,pass2;
+                cin>>name;
+                int b=-1;
+                for(int j=0; j<et ; j++)
+                {
+                    if(name==e[j]->getName())
+                    {
+                        b=j;
+                    }
+                }
+                if(b==-1)
+                    cout<<"Not a valid username"<<endl;
+                else
+                {
+                    cout<<"Enter password: ";
+                    cin>>pass2;
+                    if(e[b]->getPassword()==pass2)
+                    {
+                        e[b]->displayinfo();
+                    }
+                    else
+                    {
+                        cout<<"Incorrect password. Login again\n\n";
+                    }
+
+                }
+            }
+
+
         }
+
+
 
         else if(n==3)
         {
@@ -557,14 +625,17 @@ int main()
 
                 if(n==1)
                 {
-                    empReceiveInfo(e[et]);
-                    //e1.setinfo("k","123","abc","def","Web Development",11);
-                    co1.addEmployee(e[et]);
+                    e[et]=empReceiveInfo(e[et]);
+                    co1.addEmployee(*e[et]);
+                    cout<<endl;
+                    cout<<e[et]->getName()<<" has been added as an Employee."<<endl;
                     et++;
                 }
 
                 else if(n==2)
                 {
+                    cout<<"Total Employee: "<<et<<endl;
+                    cout<<endl;
                     co1.showemployee();
                 }
 
@@ -573,7 +644,11 @@ int main()
                     if(Total_customer==0)
                         cout<<"No Customers to show"<<endl;
                     else
-                        co1.showCustomer();
+                        {
+                             cout<<"Total Customer: "<<Total_customer<<endl;
+                             cout<<endl;
+                             co1.showCustomer();
+                        }
                 }
 
                 else if(n==4)
@@ -592,17 +667,17 @@ int main()
                     int w=0,a=0,c=0,e=0,m=0, d=0;
                     for(int i=0; i<Total_student; i++)
                     {
-                        if(s[i].getCourse()=="Web Development" && s[i].hasCompleted()==false)
+                        if(s[i]->getCourse()=="Web Development" && s[i]->hasCompleted()==false)
                             w++;
-                        else if(s[i].getCourse()=="Mobile Development" && s[i].hasCompleted()==false)
+                        else if(s[i]->getCourse()=="Mobile Development" && s[i]->hasCompleted()==false)
                             m++;
-                        else if(s[i].getCourse()=="Application Development" && s[i].hasCompleted()==false)
+                        else if(s[i]->getCourse()=="Application Development" && s[i]->hasCompleted()==false)
                             a++;
-                        else if(s[i].getCourse()=="Cloud Computing" && s[i].hasCompleted()==false)
+                        else if(s[i]->getCourse()=="Cloud Computing" && s[i]->hasCompleted()==false)
                             c++;
-                        else if(s[i].getCourse()=="Data Science" && s[i].hasCompleted()==false)
+                        else if(s[i]->getCourse()=="Data Science" && s[i]->hasCompleted()==false)
                             d++;
-                        else if(s[i].getCourse()=="Embedded Systems" && s[i].hasCompleted()==false)
+                        else if(s[i]->getCourse()=="Embedded Systems" && s[i]->hasCompleted()==false)
                             e++;
                     }
                     cout<<endl;
@@ -619,11 +694,9 @@ int main()
                         cout<<"No interns to show\n";
                     else
                     {
-                        for(int i=0; i<Total_intern; i++)
-                        {
-                            intern[i]->displayinfo();
-                            cout<<endl;
-                        }
+                        cout<<"Total Intern: "<<Total_intern<<endl;
+                        cout<<endl;
+                        co1.showIntern();
                     }
                 }
                 else if(n==7)
@@ -640,7 +713,9 @@ int main()
 
     }
     delete[] intern;
-    delete[] p;
+    delete[] e;
+    delete[] c;
+    delete[] s;
     return 0;
 
 }
@@ -669,3 +744,26 @@ AAYKQrxyc7_#
 32
 1
 */
+/*
+1
+1
+Tasmia
+4534545
+fgfvdf
+fvfddv
+10000000
+24
+4
+sdfgefgfdb
+1
+1
+abc
+4534545
+fgfvdf
+fvfddv
+10000000
+24
+4
+sdfgefgfdb
+*/
+
