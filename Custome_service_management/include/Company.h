@@ -9,6 +9,7 @@ protected:
     std::string name;
     int totalEmployee;
     int totalCustomer;
+    int totalStaff;
     Customer* customers[500];
     Employee* employees[500];
 public:
@@ -17,12 +18,15 @@ public:
     ~Company();
     void addCustomer(Customer &c);
     void addEmployee(Employee &e);
+    void addIntern(Employee* i);
     void showStatus();
     void showemployee();
     void showCustomer();
+    void showIntern();
     void updateEmployeelist();
     void updateCustomerlist();
     void editProjectid(Customer &c1,Employee &e1,Employee &e2,Employee &e3,int pid);
+    int getTotalStaff() { return totalStaff; }
     std::string getName()
     {
         return name;
@@ -33,3 +37,4 @@ public:
     }
 };
 #endif // COMPANY_H
+
