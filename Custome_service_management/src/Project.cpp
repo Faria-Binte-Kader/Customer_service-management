@@ -1,15 +1,14 @@
 #include "Project.h"
 #include<bits/stdc++.h>
 
-Project::Project():status("Unfinished")
+Project::Project():name(""),status("Unfinished")
 {
     //ctor
     total_projects++;
-    //calcDeliveryDate();
-    //setStatus();
+  
 }
 
-Project::Project(Customer &c, Employee &e1,Employee &e2, Employee &e3, double cst, int tm, std::string des):cost(cst),project_time(tm),description(des),status("Unfinished")
+Project::Project(Customer &c, Employee &e1,Employee &e2, Employee &e3, double cst, int tm, std::string des):cost(cst),project_time(tm),description(des),status("Unfinished"),name("")
 {
     //ctor
     cust=&c;
@@ -63,21 +62,9 @@ void Project::setStatus()
     else status="Unfinished";
 }
 
-void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,double cst)
+void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,double cst, std::string nam)
 {
-    /*cust=&c;
-    emp[0]=&e1;
-    emp[1]=&e2;
-    emp[2]=&e3;
-    emp[0]->setProjectId(projectId);
-    emp[1]->setProjectId(projectId);
-    emp[2]->setProjectId(projectId);
-    cust->setCost(cst);
-    cust->SetProjectId(projectId);
-    setCost(cst);
-    project_time=cust->getDuration();
-    calcDeliveryDate();
-    setStatus();*/
+    setProjectName(nam);
     e1.setProjectId(projectId);
     e2.setProjectId(projectId);
     e3.setProjectId(projectId);
@@ -109,19 +96,20 @@ void Project::setInfo(Customer &c, Employee &e1,Employee &e2, Employee &e3,doubl
     std::cout<<"Contact no\t\t: "<<emp[2]->getPhone_no()<<std::endl;
     std::cout<<"----------------------------------------"<<std::endl;
     std::cout<<"Total Cost\t\t: "<<getCost()<<std::endl;
+    std::cout<<"Project Name\t\t: "<<getProjectName()<<std::endl;
 
 }
 
 void Project::addIntern(Employee* i)
 {
     intr=i;
-    //intr->displayinfo();
     total_intern++;
 }
 
 void Project::projectDetails()
 {
     std::cout<<"----------------------------------------"<<std::endl;
+    std::cout<<"Project Name\t\t: "<<getProjectName()<<std::endl;
     std::cout<<"Project ID\t\t: "<<getProjectId()<<std::endl;
     std::cout<<"Customer ID\t\t: "<<cust->getCustID()<<std::endl;
     std::cout<<"Member 1 ID\t\t: "<<emp[0]->getEmployeeID()<<std::endl;
@@ -134,5 +122,6 @@ void Project::projectDetails()
     std::cout<<"Status\t\t\t: "<<getStatus()<<std::endl;
     std::cout<<"Delivery Date\t\t: "<<getDeliveryDate().day<<"/"<<getDeliveryDate().month<<"/"<<getDeliveryDate().year<<std::endl;
     std::cout<<"Project Cost\t\t: "<<getCost()<<std::endl;
-    //std::cout<<"Customer id: "<<getProjectId()<<std::endl;
+ 
 }
+
