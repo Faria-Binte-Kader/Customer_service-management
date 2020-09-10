@@ -9,7 +9,6 @@ class Intern: public Student,public Employee
 {
 protected:
     int internship_period;
-    //int project_id=0;
     static int total_interns;
     const int intern_id=4001+total_interns;
 
@@ -31,9 +30,9 @@ public:
         return intern_id;
     }
     void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,int period);
-    //void assignproject();
-    //void setProjectid();
-    //int getProjectid(){return project_id;}
+    bool permanent(){ return false; }
+
 };
 
 #endif // INTERN_H*/
+
