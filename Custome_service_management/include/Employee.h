@@ -11,9 +11,7 @@ protected:
     std::string position;
     double salary;
     static int total_employee;
-    //const
     int employee_id=2001+total_employee;
-    //int no_of_projects;
     int projectid;
     double bonus;
 public:
@@ -46,15 +44,11 @@ public:
     }
     void setEmployeeID(int a) {employee_id=a;}
     virtual int getInternid(){};
-    //void addCustomer(Customer c);
-    //bool removeCustomer(int index);
     double getBonus()
     {
         return bonus;
     }
     void calcBonus();
-    //int getno_ofprojects();
-    char* getPassword();
     void generatePassword();
     virtual void displayinfo();
     virtual void setinfo(std::string nam,std::string phn,std::string addr,std::string em,std::string des,int ex);
@@ -66,6 +60,8 @@ public:
     {
         projectid=a;
     }
+    virtual bool permanent(){return true;}
     Employee operator =(Employee& e1);
 };
 #endif
+
