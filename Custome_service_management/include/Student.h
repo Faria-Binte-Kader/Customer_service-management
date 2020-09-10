@@ -9,7 +9,7 @@ protected:
     Available_Courses course;
     double course_fee;
     Date starting_date;
-    int course_duration;
+    int course_duration;//in days
     std::string grade;
     static int total_students;
     const int student_id=3001+total_students;
@@ -50,15 +50,14 @@ public:
     void setGrade(std::string g);
     bool isQualified();
     void generatePassword();
-    char* getPassword();
     virtual void displayinfo();
 
     void setInfo(std::string nam,std::string phn,std::string addr,std::string em,std::string cors,double corsfe, Date strtdat,int drtn,std::string grd);
     bool hasCompleted();
-    //void setStudentId(Available_Courses c);
     long long int getStudentId()
     {
         return student_id;
     }
 };
 #endif
+
