@@ -681,6 +681,21 @@ int main()
                     if(e[b]->getPassword()==pass2)
                     {
                         e[b]->displayinfo();
+                        string pass1;
+                        cout<<"Would you like to change your password?\n1.Yes\n2.No\n";
+                        int paschoic;
+                        cin>>paschoic;
+                        if(paschoic==1)
+                        {
+                            cout<<"Please create a password (12 characters maximum)"<<endl;
+                            cin>>pass1;
+                            e[b]->setPassword(pass1);
+                            cout<<"You've chosen to use "<<e[b]->getPassword()<<" as your password."<<endl;
+                        }
+                        else if(paschoic==2)
+                        {
+                            cout<<"You've chosen to use "<<e[b]->getPassword()<<" as your password."<<endl;
+                        }
                     }
                     else
                     {
