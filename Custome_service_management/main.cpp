@@ -576,6 +576,7 @@ int main()
                                 c[b]->setCost(Cost);
                                 co1.addCustomer(*c[b]);
                                 co1.editProjectid(*c[b],*e[M1],*e[M2],*e[M3],p[Total_project].getProjectId());
+                                co1.addProject(p[Total_project]);
                                 Total_project++;
 
                             }
@@ -766,8 +767,9 @@ int main()
                             cout<<"No Projects to show"<<endl;
                         else
                         {
-                            for(int i=0; i<Total_project; i++)
-                                p[i].projectDetails();
+                            //for(int i=0; i<Total_project; i++)
+                            //p[i].projectDetails();
+                            co1.showProject();
                         }
                     }
 
