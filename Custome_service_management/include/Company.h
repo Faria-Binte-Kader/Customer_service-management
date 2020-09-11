@@ -7,7 +7,7 @@
 class Company
 {
 protected:
-    std::string name;
+    std::string name,password;
     int totalEmployee;
     int totalCustomer;
     int totalStaff;
@@ -39,6 +39,14 @@ public:
     void setName(std::string val)
     {
         name=val;
+    }
+    void setPassword(std::string pass)
+    {
+        password=pass;
+    }
+    std::string getPassword()
+    {
+        return password;
     }
 };
 #endif // COMPANY_H
