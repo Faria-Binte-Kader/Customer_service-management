@@ -3,6 +3,7 @@
 #include<string>
 #include"Customer.h"
 #include"Employee.h"
+#include"project.h"
 class Company
 {
 protected:
@@ -10,8 +11,10 @@ protected:
     int totalEmployee;
     int totalCustomer;
     int totalStaff;
+    int totalProject;
     Customer* customers[500];
     Employee* employees[500];
+    Project* projects[100];
 public:
     Company();
     Company(std::string name);
@@ -19,7 +22,9 @@ public:
     void addCustomer(Customer &c);
     void addEmployee(Employee &e);
     void addIntern(Employee* i);
-    void showStatus();
+    void addProject(Project &p);
+    void showProject();
+    //void showStatus();
     void showemployee();
     void showCustomer();
     void showIntern();
@@ -37,4 +42,5 @@ public:
     }
 };
 #endif // COMPANY_H
+
 
