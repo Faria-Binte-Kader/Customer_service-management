@@ -138,9 +138,9 @@ bool generateOption(Customer* &c,Employee* e[],int total)
 }
 Student* stdReceiveInfo(Student* s)
 {
-    string nam,phn,addr,em,w,w1,w2,garbage;
+    string nam,phn,addr,em,w,wkk,garbage;
     double crsfee;
-    int drtn=0;
+    int drtn=0,wk;
     getline(cin,garbage);    //dummy getline
     cout<<"Enter your name: ";
     getline(cin,nam);
@@ -150,9 +150,33 @@ Student* stdReceiveInfo(Student* s)
     getline(cin,addr);
     cout<<"Enter your email: ";
     cin>>em;
-    cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
-    cin>>w1>>w2;
-    w=w1+" "+w2;
+    cout<<"Enter department:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+    cin>>wkk;
+    if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53)
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid value for department."<<endl;
+            cout<<"Enter department:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+            cin>>wkk;
+            if(!((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53))
+                break;
+        }
+    }
+    wk=stoi(wkk);
+    if(wk==0)
+        w="Web Development";
+    else if(wk==1)
+        w="Mobile Development";
+    else if(wk==2)
+        w="Data Science";
+    else if(wk==3)
+        w="Application Development";
+    else if(wk==4)
+        w="Embedded Systems";
+    else if(wk==5)
+        w="Cloud Computing";
+    getline(cin,garbage);
     if(w=="Web Development")
     {
         crsfee=10000;
@@ -196,9 +220,9 @@ Student* stdReceiveInfo(Student* s)
 
 Employee* empReceiveInfo(Employee* e)
 {
-    string nam,phn,addr,em,desc,garbage,w,w1,w2;
+    string nam,phn,addr,em,desc,garbage,wkk,w;
     double b;
-    //WorkType w;
+    int wk;
     getline(cin,garbage);    //dummy getline
     cout<<"Enter Employee's name: ";
     getline(cin,nam);
@@ -208,10 +232,33 @@ Employee* empReceiveInfo(Employee* e)
     getline(cin,addr);
     cout<<"Enter Employee's email: ";
     cin>>em;
-    cout<<"Enter Designation: ";
-    cin>>w1>>w2;
-    w=w1+" "+w2;
-    //w=static_cast<WorkType>(wk);
+    cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+    cin>>wkk;
+    if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53)
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid value for designation."<<endl;
+            cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+            cin>>wkk;
+            if(!((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53))
+                break;
+        }
+    }
+    wk=stoi(wkk);
+    if(wk==0)
+        w="Web Development";
+    else if(wk==1)
+        w="Mobile Development";
+    else if(wk==2)
+        w="Data Science";
+    else if(wk==3)
+        w="Application Development";
+    else if(wk==4)
+        w="Embedded Systems";
+    else if(wk==5)
+        w="Cloud Computing";
+    getline(cin,garbage);
     cout<<"Enter experience time: ";
     cin>>b;
     //getline(cin,garbage);
@@ -223,6 +270,7 @@ Employee* empReceiveInfo(Employee* e)
 Customer* custReceiveInfo(Customer* c)
 {
     string nam,phn,addr,em,desc,garbage;
+    string bj,ti,wkk;
     double b;
     int t,wk;
     WorkType w;
@@ -236,11 +284,47 @@ Customer* custReceiveInfo(Customer* c)
     cout<<"Enter your email: ";
     cin>>em;
     cout<<"Enter your budget: ";
-    cin>>b;
+    cin>>bj;
+    if((bj[0]>=97 && bj[0]<=123)||(bj[0]>=65 && bj[0]<=90))
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid amount."<<endl;
+            cout<<"Enter your budget: ";
+            cin>>bj;
+            if(!((bj[0]>=97 && bj[0]<=123)||(bj[0]>=65 && bj[0]<=90)))
+                break;
+        }
+    }
+    b=stod(bj);
     cout<<"Enter the time(in months 1-24): ";
-    cin>>t;
+    cin>>ti;
+    if((ti[0]>=97 && ti[0]<=123)||(ti[0]>=65 && ti[0]<=90))
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid value for time."<<endl;
+            cout<<"Enter the time(in months 1-24): ";
+            cin>>ti;
+            if(!((ti[0]>=97 && ti[0]<=123)||(ti[0]>=65 && ti[0]<=90)))
+                break;
+        }
+    }
+    t=stoi(ti);
     cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
-    cin>>wk;
+    cin>>wkk;
+    if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90))
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid value for type."<<endl;
+            cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+            cin>>wkk;
+            if(!((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)))
+                break;
+        }
+    }
+    wk=stoi(wkk);
     w=static_cast<WorkType>(wk);
     getline(cin,garbage);
     cout<<"Enter description: ";
@@ -466,7 +550,7 @@ int main()
                 {
                     cout<<"Enter password: ";
                     cin>>pass2;
-                    cout<<"real password: "<<pass<<endl;
+                    //cout<<"real password: "<<pass<<endl;
                     if(pass==pass2)
                     {
                         if(c[b]->GetProjectId()==0)
@@ -474,10 +558,11 @@ int main()
 
                             if(generateOption(c[b],e,et)==true)
                             {
-                                cout<<"Chosen a group of 3 employees as your preference\n\n";
+                                string projectname,garbage;
+                                cout<<"You've chosen a group of 3 employees as your preference for your project.\n\n";
+                                getline(cin,garbage);
                                 cout<<"Give your project a name. Enter name--"<<endl;
-                                string projectname;
-                                cin>>projectname;
+                                getline(cin,projectname);
                                 p[Total_project].setInfo(*c[b],*e[M1],*e[M2],*e[M3],Cost,projectname);
                                 if(Free_intern>0)
                                     p[Total_project].addIntern(intern[Free_intern-1]);
@@ -647,11 +732,11 @@ int main()
                     if(Total_customer==0)
                         cout<<"No Customers to show"<<endl;
                     else
-                        {
-                             cout<<"Total Customer: "<<Total_customer<<endl;
-                             cout<<endl;
-                             co1.showCustomer();
-                        }
+                    {
+                        cout<<"Total Customer: "<<Total_customer<<endl;
+                        cout<<endl;
+                        co1.showCustomer();
+                    }
                 }
 
                 else if(n==4)
