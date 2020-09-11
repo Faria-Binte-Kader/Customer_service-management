@@ -373,12 +373,13 @@ int main()
     Total_student++;
     Project p[10];
     Company co1("ABC");
+    co1.setPassword("CSM!&!#");
     for(int i=0; i<60; i++)
     {
         e[i]=new Employee();
     }
     e[0]->setinfo("a","123","abc","def","Web Development",11);
-    cout<<e[0]->getPassword()<<" use this password to check employee login for name 'a'"<<endl;
+    cout<<e[0]->getPassword()<<" use this password to check employee login for name "<<e[0]->getName()<<endl;
     e[1]->setinfo("b","123","abc","def","Web Development",15);
     e[2]->setinfo("c","123","abc","def","Data Science",11);
     e[3]->setinfo("d","123","abc","def","Web Development",9);
@@ -457,7 +458,7 @@ int main()
         cin>>n;
         if(n==1)
         {
-            cout<<"1. User\n";
+            cout<<"1. Client\n";
             cout<<"2. Student\n";
 
             int i;
@@ -488,7 +489,7 @@ int main()
                     cout<<"You've chosen to use "<<c[Total_customer-1]->getPassword()<<" as your password."<<endl;
                 }
 
-                cout<<"Please login to continue\n\n";
+                cout<<"You have been registered as a client. Please login to continue\n\n";
             }
 
             else if(i==2)
@@ -515,7 +516,7 @@ int main()
                 {
                     cout<<"You've chosen to use "<<s[Total_student-1]->getPassword()<<" as your password."<<endl;
                 }
-                cout<<"Please login to continue\n\n";
+                cout<<"You have been registered as a student. Please login to continue\n\n";
 
             }
 
@@ -523,7 +524,7 @@ int main()
 
         else if(n==2)
         {
-            cout<<"1. User\n";
+            cout<<"1. Client\n";
             cout<<"2. Student\n";
             cout<<"3. Employee\n";
             int i;
@@ -712,102 +713,110 @@ int main()
 
         else if(n==3)
         {
-            while(1)
+            string pass;
+            cout<<"Password: "<<endl;
+            cin>>pass;
+            if(pass==co1.getPassword())
             {
-                cout<<endl;
-                cout<<"1. Add Employee\n";
-                cout<<"2. Show Employee List\n";
-                cout<<"3. Show Customer List\n";
-                cout<<"4. Show Project List\n";
-                cout<<"5. Show Course and Student Information\n";
-                cout<<"6. Show Intern List\n";
-                cout<<"7. Go Back\n\n";
-
-                int n;
-                cin>>n;
-
-                if(n==1)
+                while(1)
                 {
-                    e[et]=empReceiveInfo(e[et]);
-                    co1.addEmployee(*e[et]);
                     cout<<endl;
-                    cout<<e[et]->getName()<<" has been added as an Employee."<<endl;
-                    et++;
-                }
+                    cout<<"1. Add Employee\n";
+                    cout<<"2. Show Employee List\n";
+                    cout<<"3. Show Customer List\n";
+                    cout<<"4. Show Project List\n";
+                    cout<<"5. Show Course and Student Information\n";
+                    cout<<"6. Show Intern List\n";
+                    cout<<"7. Go Back\n\n";
 
-                else if(n==2)
-                {
-                    cout<<"Total Employee: "<<et<<endl;
-                    cout<<endl;
-                    co1.showemployee();
-                }
+                    int n;
+                    cin>>n;
 
-                else if(n==3)
-                {
-                    if(Total_customer==0)
-                        cout<<"No Customers to show"<<endl;
-                    else
+                    if(n==1)
                     {
-                        cout<<"Total Customer: "<<Total_customer<<endl;
+                        e[et]=empReceiveInfo(e[et]);
+                        co1.addEmployee(*e[et]);
                         cout<<endl;
-                        co1.showCustomer();
+                        cout<<e[et]->getName()<<" has been added as an Employee."<<endl;
+                        et++;
                     }
-                }
 
-                else if(n==4)
-                {
-                    if(Total_project==0)
-                        cout<<"No Projects to show"<<endl;
-                    else
+                    else if(n==2)
                     {
-                        for(int i=0; i<Total_project; i++)
-                            p[i].projectDetails();
-                    }
-                }
-
-                else if(n==5)
-                {
-                    int w=0,a=0,c=0,e=0,m=0, d=0;
-                    for(int i=0; i<Total_student; i++)
-                    {
-                        if(s[i]->getCourse()=="Web Development" && s[i]->hasCompleted()==false)
-                            w++;
-                        else if(s[i]->getCourse()=="Mobile Development" && s[i]->hasCompleted()==false)
-                            m++;
-                        else if(s[i]->getCourse()=="Application Development" && s[i]->hasCompleted()==false)
-                            a++;
-                        else if(s[i]->getCourse()=="Cloud Computing" && s[i]->hasCompleted()==false)
-                            c++;
-                        else if(s[i]->getCourse()=="Data Science" && s[i]->hasCompleted()==false)
-                            d++;
-                        else if(s[i]->getCourse()=="Embedded Systems" && s[i]->hasCompleted()==false)
-                            e++;
-                    }
-                    cout<<endl;
-                    cout<<"Web Development\t\t: "<<w<<endl;
-                    cout<<"Mobile Development\t: "<<m<<endl;
-                    cout<<"Application Development\t: "<<a<<endl;
-                    cout<<"Cloud Computing\t\t: "<<c<<endl;
-                    cout<<"Data Science\t\t: "<<d<<endl;
-                    cout<<"Embedded Systems\t: "<<e<<endl;
-                }
-                else if(n==6)
-                {
-                    if(Total_intern==0)
-                        cout<<"No interns to show\n";
-                    else
-                    {
-                        cout<<"Total Intern: "<<Total_intern<<endl;
+                        cout<<"Total Employee: "<<et<<endl;
                         cout<<endl;
-                        co1.showIntern();
+                        co1.showemployee();
+                    }
+
+                    else if(n==3)
+                    {
+                        if(Total_customer==0)
+                            cout<<"No Customers to show"<<endl;
+                        else
+                        {
+                            cout<<"Total Customer: "<<Total_customer<<endl;
+                            cout<<endl;
+                            co1.showCustomer();
+                        }
+                    }
+
+                    else if(n==4)
+                    {
+                        if(Total_project==0)
+                            cout<<"No Projects to show"<<endl;
+                        else
+                        {
+                            for(int i=0; i<Total_project; i++)
+                                p[i].projectDetails();
+                        }
+                    }
+
+                    else if(n==5)
+                    {
+                        int w=0,a=0,c=0,e=0,m=0, d=0;
+                        for(int i=0; i<Total_student; i++)
+                        {
+                            if(s[i]->getCourse()=="Web Development" && s[i]->hasCompleted()==false)
+                                w++;
+                            else if(s[i]->getCourse()=="Mobile Development" && s[i]->hasCompleted()==false)
+                                m++;
+                            else if(s[i]->getCourse()=="Application Development" && s[i]->hasCompleted()==false)
+                                a++;
+                            else if(s[i]->getCourse()=="Cloud Computing" && s[i]->hasCompleted()==false)
+                                c++;
+                            else if(s[i]->getCourse()=="Data Science" && s[i]->hasCompleted()==false)
+                                d++;
+                            else if(s[i]->getCourse()=="Embedded Systems" && s[i]->hasCompleted()==false)
+                                e++;
+                        }
+                        cout<<endl;
+                        cout<<"Web Development\t\t: "<<w<<endl;
+                        cout<<"Mobile Development\t: "<<m<<endl;
+                        cout<<"Application Development\t: "<<a<<endl;
+                        cout<<"Cloud Computing\t\t: "<<c<<endl;
+                        cout<<"Data Science\t\t: "<<d<<endl;
+                        cout<<"Embedded Systems\t: "<<e<<endl;
+                    }
+                    else if(n==6)
+                    {
+                        if(Total_intern==0)
+                            cout<<"No interns to show\n";
+                        else
+                        {
+                            cout<<"Total Intern: "<<Total_intern<<endl;
+                            cout<<endl;
+                            co1.showIntern();
+                        }
+                    }
+                    else if(n==7)
+                    {
+                        break;
                     }
                 }
-                else if(n==7)
-                {
-                    break;
-                }
+
             }
-
+            else
+                cout<<"Wrong Password"<<endl;
         }
         else if(n==4)
         {
