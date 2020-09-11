@@ -1,11 +1,11 @@
 #include"Company.h"
 #include<bits/stdc++.h>
 #include<fstream>
-Company::Company():name(""),totalEmployee(0),totalCustomer(0),totalStaff(0)
+Company::Company():name(""),totalEmployee(0),totalCustomer(0),totalStaff(0),totalProject(0)
 {
 
 }
-Company::Company(std::string nam):name(nam),totalEmployee(0),totalCustomer(0),totalStaff(0)
+Company::Company(std::string nam):name(nam),totalEmployee(0),totalCustomer(0),totalStaff(0),totalProject(0)
 {
     setName(nam);
 }
@@ -26,6 +26,11 @@ void Company::addEmployee(Employee &e)
     totalEmployee++;
     totalStaff++;
     Company::updateEmployeelist();
+}
+void Company::addProject(Project &p)
+{
+    projects[totalProject]=&p;
+    totalProject++;
 }
 
 void Company::addIntern(Employee* i)
@@ -74,6 +79,16 @@ void Company::showIntern()
            employees[i]->displayinfo();
            std::cout<<std::endl;
         }
+    }
+
+}
+
+void Company::showProject()
+{
+   for(int i=0; i<totalProject; i++)
+    {
+           projects[i]->projectDetails();
+           std::cout<<std::endl;
     }
 
 }
@@ -182,4 +197,5 @@ void Company::showCustomer()
     }
 
 }
+
 
