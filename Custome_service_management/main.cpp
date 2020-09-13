@@ -368,8 +368,8 @@ int main()
     s[0]=new Student();
     s[0]->setInfo("Nisa","123","abc","def","Web Development",10.0,d,90,"A");
     string pas=s[0]->getPassword();
-    cout<<"Login as student using Nisa and this password to check intern\n";
-    cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
+    //cout<<"Login as student using Nisa and this password to check intern\n";
+    //cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
     Total_student++;
     Project p[10];
     Company co1("ABC");
@@ -379,7 +379,7 @@ int main()
         e[i]=new Employee();
     }
     e[0]->setinfo("a","123","abc","def","Web Development",11);
-    cout<<e[0]->getPassword()<<" use this password to check employee login for name "<<e[0]->getName()<<endl;
+    //cout<<e[0]->getPassword()<<" use this password to check employee login for name "<<e[0]->getName()<<endl;
     e[1]->setinfo("b","123","abc","def","Web Development",15);
     e[2]->setinfo("c","123","abc","def","Data Science",11);
     e[3]->setinfo("d","123","abc","def","Web Development",9);
@@ -531,9 +531,10 @@ int main()
             cin>>i;
             if(i==1)
             {
+                string name,pass,pass2,garbage;
+                getline(cin,garbage);
                 cout<<"Enter your username: ";
-                string name,pass,pass2;
-                cin>>name;
+                getline(cin,name);
                 int b=-1;
                 for(int j=0; j<Total_customer ; j++)
                 {
@@ -603,9 +604,10 @@ int main()
             else if(i==2)
             {
                 //
+                string name,pass,pass2,garbage;
+                getline(cin,garbage);
                 cout<<"Enter your username: ";
-                string name,pass,pass2;
-                cin>>name;
+                getline(cin,name);
                 int b=-1;
                 for(int j=0; j<Total_student ; j++)
                 {
@@ -833,50 +835,3 @@ int main()
     return 0;
 
 }
-
-/*
-2
-2
-Nisa
-Hw<YCpYj&2fU
-1
-1
-1
-Tasmia
-4534545
-fgfvdf
-fvfddv
-10000000
-24
-4
-sdfgefgfdb
-2
-2
-1
-Tasmia
-AAYKQrxyc7_#
-32
-1
-*/
-/*
-1
-1
-Tasmia
-4534545
-fgfvdf
-fvfddv
-10000000
-24
-4
-sdfgefgfdb
-1
-1
-abc
-4534545
-fgfvdf
-fvfddv
-10000000
-24
-4
-sdfgefgfdb
-*/
