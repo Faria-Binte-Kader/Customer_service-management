@@ -1,3 +1,4 @@
+#include<bits/stdc++.h>
 #include"Customer.h"
 #include"Employee.h"
 #include"Student.h"
@@ -6,13 +7,12 @@
 #include"Company.h"
 #include<ctime>
 #include<string>
-#include<bits/stdc++.h>
+using namespace std;
 int M1;
 int M2;
 int M3;
 int Total_project;
 double Cost;
-using namespace std;
 
 struct Senior
 {
@@ -36,7 +36,7 @@ struct Entry
     int expr;
 };
 
-double is_double(char str[])
+double convToNumber(char str[])
 {
     char *pEnd;
     if((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90))
@@ -44,7 +44,6 @@ double is_double(char str[])
         while(1)
         {
             cout<<"Error. Please enter a valid value."<<endl;
-            //cout<<"Enter your budget: ";
             cin>>str;
             if(!((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)))
                 break;
@@ -53,14 +52,13 @@ double is_double(char str[])
     return strtod(str, &pEnd);
 }
 
-int is_int(string str)
+int convToNumber(string str)
 {
     if((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)||str[0]<48||str[0]>53)
     {
         while(1)
         {
             cout<<"Error. Please enter a valid value."<<endl;
-            //cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
             cin>>str;
             if(!((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)||str[0]<48||str[0]>53))
                 break;
@@ -186,7 +184,7 @@ Student* stdReceiveInfo(Student* s)
     cin>>em;
     cout<<"Enter department:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    wk=is_int(wkk);
+    wk=convToNumber(wkk);
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -257,7 +255,7 @@ Employee* empReceiveInfo(Employee* e)
     cin>>em;
     cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    wk=is_int(wkk);
+    wk=convToNumber(wkk);
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -297,13 +295,13 @@ Customer* custReceiveInfo(Customer* c)
     cin>>em;
     cout<<"Enter your budget: ";
     cin>>bj;
-    b=is_double(bj);
+    b=convToNumber(bj);
     cout<<"Enter the time(in months 1-24): ";
     cin>>ti;
-    t=is_int(ti);
+    t=convToNumber(ti);
     cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    wk=is_int(wkk);
+    wk=convToNumber(wkk);
     w=static_cast<WorkType>(wk);
     getline(cin,garbage);
     cout<<"Enter description: ";
@@ -812,7 +810,6 @@ int main()
     delete[] c;
     delete[] s;
     return 0;
-
 }
 /*
 1
