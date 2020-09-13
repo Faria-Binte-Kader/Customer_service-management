@@ -35,6 +35,40 @@ struct Entry
     int ID;
     int expr;
 };
+
+double is_double(char str[])
+{
+    char *pEnd;
+    if((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90))
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid value."<<endl;
+            //cout<<"Enter your budget: ";
+            cin>>str;
+            if(!((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)))
+                break;
+        }
+    }
+    return strtod(str, &pEnd);
+}
+
+int is_int(string str)
+{
+    if((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)||str[0]<48||str[0]>53)
+    {
+        while(1)
+        {
+            cout<<"Error. Please enter a valid value."<<endl;
+            //cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
+            cin>>str;
+            if(!((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)||str[0]<48||str[0]>53))
+                break;
+        }
+    }
+    return atoi(str.c_str());
+}
+
 bool generateOption(Customer* &c,Employee* e[],int total)
 {
     double b=c->getBudget();
@@ -152,18 +186,7 @@ Student* stdReceiveInfo(Student* s)
     cin>>em;
     cout<<"Enter department:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53)
-    {
-        while(1)
-        {
-            cout<<"Error. Please enter a valid value for department."<<endl;
-            cout<<"Enter department:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
-            cin>>wkk;
-            if(!((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53))
-                break;
-        }
-    }
-    wk=atoi(wkk.c_str());
+    wk=is_int(wkk);
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -234,18 +257,7 @@ Employee* empReceiveInfo(Employee* e)
     cin>>em;
     cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53)
-    {
-        while(1)
-        {
-            cout<<"Error. Please enter a valid value for designation."<<endl;
-            cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
-            cin>>wkk;
-            if(!((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)||wkk[0]<48||wkk[0]>53))
-                break;
-        }
-    }
-    wk=atoi(wkk.c_str());
+    wk=is_int(wkk);
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -261,7 +273,6 @@ Employee* empReceiveInfo(Employee* e)
     getline(cin,garbage);
     cout<<"Enter experience time: ";
     cin>>b;
-    //getline(cin,garbage);
     e=new Employee();
     e->setinfo(nam,phn,addr,em,w,b);
     return e;
@@ -271,7 +282,7 @@ Customer* custReceiveInfo(Customer* c)
 {
     string nam,phn,addr,em,desc,garbage;
     string ti,wkk;
-    char bj[30],*pEnd;
+    char bj[30];
     double b;
     int t,wk;
     WorkType w;
@@ -286,46 +297,13 @@ Customer* custReceiveInfo(Customer* c)
     cin>>em;
     cout<<"Enter your budget: ";
     cin>>bj;
-    if((bj[0]>=97 && bj[0]<=123)||(bj[0]>=65 && bj[0]<=90))
-    {
-        while(1)
-        {
-            cout<<"Error. Please enter a valid amount."<<endl;
-            cout<<"Enter your budget: ";
-            cin>>bj;
-            if(!((bj[0]>=97 && bj[0]<=123)||(bj[0]>=65 && bj[0]<=90)))
-                break;
-        }
-    }
-    b=strtod(bj,&pEnd);
+    b=is_double(bj);
     cout<<"Enter the time(in months 1-24): ";
     cin>>ti;
-    if((ti[0]>=97 && ti[0]<=123)||(ti[0]>=65 && ti[0]<=90))
-    {
-        while(1)
-        {
-            cout<<"Error. Please enter a valid value for time."<<endl;
-            cout<<"Enter the time(in months 1-24): ";
-            cin>>ti;
-            if(!((ti[0]>=97 && ti[0]<=123)||(ti[0]>=65 && ti[0]<=90)))
-                break;
-        }
-    }
-    t=atoi(ti.c_str());
+    t=is_int(ti);
     cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90))
-    {
-        while(1)
-        {
-            cout<<"Error. Please enter a valid value for type."<<endl;
-            cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
-            cin>>wkk;
-            if(!((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90)))
-                break;
-        }
-    }
-    wk=atoi(wkk.c_str());
+    wk=is_int(wkk);
     w=static_cast<WorkType>(wk);
     getline(cin,garbage);
     cout<<"Enter description: ";
