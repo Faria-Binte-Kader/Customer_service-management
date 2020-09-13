@@ -833,7 +833,8 @@ int main()
 passwords-
 Admin: CSM!&!#
 Student: a4!eGHQ<muHP
-Employee: kXq1GWB_/nfG
+Employee name: a
+password for 'a': kXq1GWB_/nfG
 /*
 1
 1
