@@ -1,4 +1,3 @@
-#include<bits/stdc++.h>
 #include"Customer.h"
 #include"Employee.h"
 #include"Student.h"
@@ -7,12 +6,13 @@
 #include"Company.h"
 #include<ctime>
 #include<string>
-using namespace std;
+#include<bits/stdc++.h>
 int M1;
 int M2;
 int M3;
 int Total_project;
 double Cost;
+using namespace std;
 
 struct Senior
 {
@@ -36,7 +36,7 @@ struct Entry
     int expr;
 };
 
-double convToNumber(char str[])
+double is_double(char str[])
 {
     char *pEnd;
     if((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90))
@@ -44,6 +44,7 @@ double convToNumber(char str[])
         while(1)
         {
             cout<<"Error. Please enter a valid value."<<endl;
+            //cout<<"Enter your budget: ";
             cin>>str;
             if(!((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)))
                 break;
@@ -52,13 +53,14 @@ double convToNumber(char str[])
     return strtod(str, &pEnd);
 }
 
-int convToNumber(string str)
+int is_int(string str)
 {
     if((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)||str[0]<48||str[0]>53)
     {
         while(1)
         {
             cout<<"Error. Please enter a valid value."<<endl;
+            //cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
             cin>>str;
             if(!((str[0]>=97 && str[0]<=123)||(str[0]>=65 && str[0]<=90)||str[0]<48||str[0]>53))
                 break;
@@ -184,7 +186,7 @@ Student* stdReceiveInfo(Student* s)
     cin>>em;
     cout<<"Enter department:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    wk=convToNumber(wkk);
+    wk=is_int(wkk);
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -255,7 +257,7 @@ Employee* empReceiveInfo(Employee* e)
     cin>>em;
     cout<<"Enter designation:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    wk=convToNumber(wkk);
+    wk=is_int(wkk);
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -295,13 +297,13 @@ Customer* custReceiveInfo(Customer* c)
     cin>>em;
     cout<<"Enter your budget: ";
     cin>>bj;
-    b=convToNumber(bj);
+    b=is_double(bj);
     cout<<"Enter the time(in months 1-24): ";
     cin>>ti;
-    t=convToNumber(ti);
+    t=is_int(ti);
     cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
-    wk=convToNumber(wkk);
+    wk=is_int(wkk);
     w=static_cast<WorkType>(wk);
     getline(cin,garbage);
     cout<<"Enter description: ";
@@ -346,7 +348,7 @@ int main()
     s[0]->setInfo("Nisa","123","abc","def","Web Development",10.0,d,90,"A");
     string pas=s[0]->getPassword();
     //cout<<"Login as student using Nisa and this password to check intern\n";
-    //cout<<pas<<endl;  //to check intern, login using name- Nisa , and password from the first line
+    //cout<<pas<<endl;  //to check intern, login using name- Nisa , and password- a4!eGHQ<muHP from the first line
     Total_student++;
     Project p[10];
     Company co1("ABC");
@@ -458,6 +460,11 @@ int main()
                 {
                     cout<<"Please create a password (12 characters maximum)"<<endl;
                     cin>>pass1;
+                    while(pass1.length()>12)
+                    {
+                        cout<<"Password is too long. Enter again"<<endl;
+                        cin>>pass1;
+                    }
                     c[Total_customer-1]->setPassword(pass1);
                     cout<<"You've chosen to use "<<c[Total_customer-1]->getPassword()<<" as your password."<<endl;
                 }
@@ -486,6 +493,11 @@ int main()
                 {
                     cout<<"Please create a password (12 characters maximum)"<<endl;
                     cin>>pass1;
+                    while(pass1.length()>12)
+                    {
+                        cout<<"Password is too long. Enter again"<<endl;
+                        cin>>pass1;
+                    }
                     s[Total_student-1]->setPassword(pass1);
                     cout<<"You've chosen to use "<<s[Total_student-1]->getPassword()<<" as your password."<<endl;
                 }
@@ -670,6 +682,11 @@ int main()
                         {
                             cout<<"Please create a password (12 characters maximum)"<<endl;
                             cin>>pass1;
+                            while(pass1.length()>12)
+                            {
+                                cout<<"Password is too long. Enter again"<<endl;
+                                cin>>pass1;
+                            }
                             e[b]->setPassword(pass1);
                             cout<<"You've chosen to use "<<e[b]->getPassword()<<" as your password."<<endl;
                         }
@@ -810,7 +827,13 @@ int main()
     delete[] c;
     delete[] s;
     return 0;
+
 }
+/*
+passwords-
+Admin: CSM!&!#
+Student: a4!eGHQ<muHP
+Employee: kXq1GWB_/nfG
 /*
 1
 1
@@ -823,17 +846,35 @@ tasmia719@gmail.com
 3
 A calculator app that can solve equations of any order as well as differential and integral equations.
 1
-tasmia243calc
+tasmi243calc
 2
 1
 Tasmia Binte Sogir
-tasmia243calc
+tasmi243calc
 32
 1
 Equation Solver Calculator
 2
 1
 Tasmia Binte Sogir
-tasmia243calc
-4
+tasmi243calc
+1
+2
+Nafisa Hossain Nujhat
++8801762203595
+Adabar, Dhaka
+nhnujhat@gmail.com
+3
+1
+nujhat213iut
+2
+2
+Nafisa Hossain Nujhat
+nujhat213iut
+2
+2
+Nisa
+a4!eGHQ<muHP
+1
+
 */
