@@ -163,7 +163,7 @@ Student* stdReceiveInfo(Student* s)
                 break;
         }
     }
-    wk=stoi(wkk);
+    wk=atoi(wkk.c_str());
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -245,7 +245,7 @@ Employee* empReceiveInfo(Employee* e)
                 break;
         }
     }
-    wk=stoi(wkk);
+    wk=atoi(wkk.c_str());
     if(wk==0)
         w="Web Development";
     else if(wk==1)
@@ -270,7 +270,8 @@ Employee* empReceiveInfo(Employee* e)
 Customer* custReceiveInfo(Customer* c)
 {
     string nam,phn,addr,em,desc,garbage;
-    string bj,ti,wkk;
+    string ti,wkk;
+    char bj[30],*pEnd;
     double b;
     int t,wk;
     WorkType w;
@@ -296,7 +297,7 @@ Customer* custReceiveInfo(Customer* c)
                 break;
         }
     }
-    b=stod(bj);
+    b=strtod(bj,&pEnd);
     cout<<"Enter the time(in months 1-24): ";
     cin>>ti;
     if((ti[0]>=97 && ti[0]<=123)||(ti[0]>=65 && ti[0]<=90))
@@ -310,7 +311,7 @@ Customer* custReceiveInfo(Customer* c)
                 break;
         }
     }
-    t=stoi(ti);
+    t=atoi(ti.c_str());
     cout<<"Enter the type:\n0.Web Development\n1.Mobile Development\n2.Data Science\n3.Application Development\n4.Embedded Systems\n5.Cloud Computing"<<endl;
     cin>>wkk;
     if((wkk[0]>=97 && wkk[0]<=123)||(wkk[0]>=65 && wkk[0]<=90))
@@ -324,7 +325,7 @@ Customer* custReceiveInfo(Customer* c)
                 break;
         }
     }
-    wk=stoi(wkk);
+    wk=atoi(wkk.c_str());
     w=static_cast<WorkType>(wk);
     getline(cin,garbage);
     cout<<"Enter description: ";
@@ -835,3 +836,29 @@ int main()
     return 0;
 
 }
+/*
+1
+1
+Tasmia Binte Sogir
++8801911123456
+Dhaka Cantonment, Dhaka 1206
+tasmia719@gmail.com
+10000000
+24
+3
+A calculator app that can solve equations of any order as well as differential and integral equations.
+1
+tasmia243calc
+2
+1
+Tasmia Binte Sogir
+tasmia243calc
+32
+1
+Equation Solver Calculator
+2
+1
+Tasmia Binte Sogir
+tasmia243calc
+4
+*/
