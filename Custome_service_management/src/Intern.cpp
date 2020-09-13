@@ -5,6 +5,8 @@ Intern::Intern():Person(),Student(),Employee(),internship_period(0)
 {
     //ctor
     generatePassword();
+    Employee::total_employee--;
+    Student::total_students--;
     total_interns++;
 
 }
